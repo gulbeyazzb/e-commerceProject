@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Main from "./layouts/Main";
 
 function App() {
-  return <></>;
+  return <Main />;
 }
 
 export default App;
