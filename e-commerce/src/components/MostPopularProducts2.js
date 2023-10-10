@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 export default function MostPopularProducts2() {
   return (
-    <div className="py-[48px] container m-auto">
+    <div className="py-[18px] container m-auto">
       <div className="flex flex-row-reverse mb-8">
         <div>
-          <img className="w-[674px] h-[649px]" src={most}></img>
+          <img className="w-[550px] h-[649px]" src={most}></img>
         </div>
-        <div className="flex flex-col items-center justify-center gap-10 h-[649px] w-[400px] text-center bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center gap-6 h-[649px] w-[400px] text-center bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
           <p className="font-normal text-sm text-[#737373] w-[280px]">
             We focus on ergonomics and meeting you where you work. It's only a
             keystroke away.
           </p>
-          <img src={product}></img>
+          <img className="h-[200px]" src={product}></img>
           <Link
             className="font-bold text-sm text-[#252B42]"
             exact
@@ -45,7 +45,6 @@ export default function MostPopularProducts2() {
               <i class="bx bxs-circle text-[#252B42]"></i>
             </button>
           </div>
-          "
         </div>
       </div>
       <div className="flex justify-evenly items-center ">
