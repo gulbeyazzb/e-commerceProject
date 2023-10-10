@@ -4,8 +4,8 @@ import banner3 from "../Assets/h5-baner-1 1 (1).png";
 
 const ShopCards = () => {
   return (
-    <div className="container m-auto">
-      <div className="row flex">
+    <div className=" m-auto bg-[#FAFAFA]">
+      <div className="row flex p-6 gap-4 justify-center items-center">
         <div className="col-md-4 w-[332px] h-[232px]">
           <div className="relative">
             <img className="relative z-0" src={banner1}></img>
