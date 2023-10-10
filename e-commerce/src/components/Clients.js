@@ -7,7 +7,7 @@ import brand6 from "../Assets/fa-brands-6.png";
 
 const Clients = () => {
   return (
-    <div className="container m-auto p-12">
+    <div className="px-36 p-12 bg-[#FAFAFA]">
       <div className="flex justify-center items-center gap-10">
         <img className="w-[80px] h-[33.81px]" src={brand1}></img>
         <img className="w-[83px] h-[59px]" src={brand2}></img>
