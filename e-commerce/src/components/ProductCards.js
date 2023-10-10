@@ -37,19 +37,13 @@ const ProductCards = () => {
               </nav>
               <nav className="flex list-none">
                 <li>
-                  <button className=" border-[1px] me-3 border-black py-3.5 px-5 w-[48.57px] h-[48px]  rounded-[50%]">
-                    <box-icon
-                      className=" icn arrow-left .icn-xs w-[8.57px] h-[15px] top-[15px] left-[8.57px]"
-                      name="chevron-left"
-                    ></box-icon>
+                  <button className="  me-3  w-[48.57px] h-[48px] ">
+                    <i class="bx bx-chevron-left-circle w-[8.57px] h-[15px] text-3xl  font-thin "></i>
                   </button>
                 </li>
                 <li>
-                  <button className=" btn-sm border-[1px] me-3 border-black py-3.5 px-5 w-[48.57px] h-[48px]  rounded-[50%]">
-                    <box-icon
-                      className=" icn arrow-right .icn-xs w-[8.57px] h-[15px] top-[15px] left-[8.57px]"
-                      name="chevron-right"
-                    ></box-icon>
+                  <button className=" me-3 w-[48.57px] h-[48px] ">
+                    <i class="bx bx-chevron-right-circle text-3xl  font-thin"></i>
                   </button>
                 </li>
               </nav>
