@@ -1,5 +1,6 @@
 import BestSeller from "../components/BestSeller";
 import Clients from "../components/Clients";
+import FeaturedPosts from "../components/FeaturedPosts";
 import MostPopularProducts from "../components/MostPopularProducts";
 import MostPopularProducts2 from "../components/MostPopularProducts2";
 import ProductCards from "../components/ProductCards";
@@ -11,7 +12,7 @@ import NavBar from "./Navbar";
 
 const Main = ({}) => {
   return (
-    <div>
+    <div className="font-[Montserrat]">
       <NavBar />
       <Header />
       <ShopCards />
@@ -21,6 +22,7 @@ const Main = ({}) => {
       <MostPopularProducts2 />
       <BestSeller />
       <Clients />
+      <FeaturedPosts />
       <Footer />
     </div>
   );
