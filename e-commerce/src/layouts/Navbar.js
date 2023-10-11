@@ -6,28 +6,30 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="flex justify-evenly container mx-auto p-4">
+      <div className="flex justify-evenly container mx-auto p-4 h-14">
         <div>
           <NavLink to="/" exact className="font-bold text-2xl">
             Bandage
           </NavLink>
         </div>
 
-        <div className="flex gap-4 text-[#737373] font-bold text-sm items-center">
-          <NavLink to="/" exact>
+        <div className="flex text-[#737373] font-bold text-sm items-center">
+          <NavLink to="/" className="mr-6" exact>
             Home
           </NavLink>
-          <div class="relative inline-block text-left">
-            <div>
+          <NavLink to="/product-list" className="mr-1">
+            Shop
+          </NavLink>
+          <div class="relative inline-block  text-left">
+            <div className="flex items-center">
               <button
                 onClick={() => setToggle(!toggle)}
                 type="button"
-                class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm  text-[#737373] font-bold hover:bg-gray-50"
+                class="inline-flex w-full justify-center rounded-md bg-white text-sm  text-[#737373] font-bold hover:bg-gray-50"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
               >
-                Shop
                 <svg
                   class="-mr-1 h-5 w-5 text-gray-400"
                   viewBox="0 0 20 20"
@@ -93,14 +95,13 @@ const NavBar = () => {
               </div>
             )}
           </div>
-
-          <NavLink to="/about" exact>
+          <NavLink to="/about" className="ml-6 mr-6" exact>
             About
           </NavLink>
-          <NavLink to="/blog" exact>
+          <NavLink to="/blog" className="mr-6" exact>
             Blog
           </NavLink>
-          <NavLink to="/contact" exact>
+          <NavLink to="/contact" className="mr-6" exact>
             Contact
           </NavLink>
           <NavLink to="/pages" exact>
