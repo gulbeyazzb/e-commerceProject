@@ -1,4 +1,5 @@
 import Clients from "../components/Clients";
+import { FilterComponent } from "../components/FilterComponent";
 import ProductListShopCards from "../components/ProductListShopCards";
 import Products from "../components/Products";
 import NavBarDark from "../layouts/NavBarDark";
@@ -12,6 +13,7 @@ const ProductListPage = () => {
       <NavBar />
       <ProductHeader />
       <ProductListShopCards />
+      <FilterComponent />
       <Products />
       <Clients />
     </>
