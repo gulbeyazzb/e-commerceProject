@@ -79,10 +79,10 @@ const Footer = () => {
           <a href="">
             <i class="bx bxl-facebook-circle text-[#23A6F0]"></i>
           </a>
-          <a>
+          <a href="">
             <i class="bx bxl-instagram text-[#23A6F0]"></i>
           </a>
-          <a>
+          <a href="">
             <i class="bx bxl-twitter text-[#23A6F0]"></i>
           </a>
         </div>

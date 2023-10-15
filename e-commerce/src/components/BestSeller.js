@@ -9,7 +9,10 @@ const BestSeller = () => {
     <div className="bg-[#FAFAFA]  px-36 py-12">
       <div>
         <div>
-          <h3 id="section-title" className="font-bold text-sm mb-6">
+          <h3
+            id="section-title"
+            className="font-bold text-sm mb-6 text-[#252B42]"
+          >
             BESTSELLER PRODUCTS
           </h3>
         </div>
@@ -17,7 +20,7 @@ const BestSeller = () => {
         <div className="flex justify-between">
           <div className="p-2 text-center">
             <img src={Pcard1} className="py-2"></img>
-            <h5 className="pb-3 text-center font-bold text-base">
+            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
               Graphic Design
             </h5>
             <Link
@@ -33,7 +36,7 @@ const BestSeller = () => {
           </div>
           <div className="p-2 text-center">
             <img src={Pcard2} className="py-2"></img>
-            <h5 className="pb-3 text-center font-bold text-base">
+            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
               Graphic Design
             </h5>
             <Link
@@ -49,7 +52,7 @@ const BestSeller = () => {
           </div>
           <div className="p-2 text-center">
             <img src={Pcard3} className="py-2"></img>
-            <h5 className="pb-3 text-center font-bold text-base">
+            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
               Graphic Design
             </h5>
             <Link
@@ -65,7 +68,7 @@ const BestSeller = () => {
           </div>
           <div className="p-2 text-center">
             <img src={Pcard4} className="py-2"></img>
-            <h5 className="pb-3 text-center font-bold text-base">
+            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
               Graphic Design
             </h5>
             <Link

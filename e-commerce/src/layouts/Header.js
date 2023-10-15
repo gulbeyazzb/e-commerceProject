@@ -31,7 +31,7 @@ const Header = () => {
           />
         </Carousel>
       </div>
-      <div className="container absolute top-[30%] left-[5%] z-50">
+      <div className="container absolute top-[30%] left-[5%]">
         <div className="text-center">
           <div>
             <h1 className="font-bold text-6xl pb-3 text-white text-center">

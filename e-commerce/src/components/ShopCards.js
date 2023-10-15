@@ -9,7 +9,7 @@ const ShopCards = () => {
         <div className="col-md-4 w-[332px] h-[232px]">
           <div className="relative">
             <img className="relative z-0" src={banner1}></img>
-            <div className=" absolute z-50  top-20 left-10 ">
+            <div className=" absolute   top-20 left-10 ">
               <h6 className="text-xs font-normal">Your Space</h6>
               <h2 className="text-2xl font-bold w-[94px] h-[64px]">
                 Unique Life
@@ -21,7 +21,7 @@ const ShopCards = () => {
         <div className="col-md-4 w-[332px] h-[232px]">
           <div className="relative">
             <img className="relative z-0" src={banner2}></img>
-            <div className=" absolute z-50  top-20 left-10 ">
+            <div className=" absolute   top-20 left-10 ">
               <h6 className="text-xs font-normal">Ends Today</h6>
               <h2 className="text-2xl font-bold w-[94px] h-[64px]">
                 Elements Style
@@ -33,7 +33,7 @@ const ShopCards = () => {
         <div className="col-md-4 w-[332px] h-[232px]">
           <div className="relative">
             <img className="relative z-0" src={banner3}></img>
-            <div className=" absolute z-50 top-20 left-10 ">
+            <div className=" absolute  top-20 left-10 ">
               <h6 className="text-xs font-normal">Ends Today</h6>
               <h2 className="text-2xl font-bold w-[94px] h-[64px]">
                 Elements Style

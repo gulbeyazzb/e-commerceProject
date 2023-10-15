@@ -101,7 +101,7 @@ const FeaturedPosts = () => {
                 <p className="text-[#737373] font-normal text-xs">Trending</p>
                 <p className="text-[#737373] font-normal text-xs">New</p>
               </div>
-              <h4 className="font-normal text-xl text-[#252B42]">
+              <h4 className="font-medium text-xl text-[#252B42]">
                 Loudest à la Madison #1 (L'integral)
               </h4>
               <p className="font-normal text-xs text-[#737373]">
