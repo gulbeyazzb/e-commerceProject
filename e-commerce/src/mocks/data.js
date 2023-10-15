@@ -1,15 +1,15 @@
-import Pcard1 from "../Assets/clothes/product-cover-5 (7).png";
-import Pcard2 from "../Assets/clothes/product-cover-5 (8).png";
-import Pcard3 from "../Assets/clothes/product-cover-5 (9).png";
-import Pcard4 from "../Assets/clothes/product-cover-5 (10).png";
-import Pcard5 from "../Assets/clothes/product-cover-5 (11).png";
-import Pcard6 from "../Assets/clothes/product-cover-5 (12).png";
-import Pcard7 from "../Assets/clothes/product-cover-5 (13).png";
-import Pcard8 from "../Assets/clothes/product-cover-5 (14).png";
-import Pcard9 from "../Assets/clothes/product-cover-5 (15).png";
-import Pcard10 from "../Assets/clothes/product-cover-5 (16).png";
-import Pcard11 from "../Assets/clothes/product-cover-5 (17).png";
-import Pcard12 from "../Assets/clothes/product-cover-5 (7).png";
+import Pcard1 from "../Assets/productList/product-cover-5 (7).png";
+import Pcard2 from "../Assets/productList/product-cover-5 (8).png";
+import Pcard3 from "../Assets/productList/product-cover-5 (9).png";
+import Pcard4 from "../Assets/productList/product-cover-5 (10).png";
+import Pcard5 from "../Assets/productList/product-cover-5 (11).png";
+import Pcard6 from "../Assets/productList/product-cover-5 (12).png";
+import Pcard7 from "../Assets/productList/product-cover-5 (13).png";
+import Pcard8 from "../Assets/productList/product-cover-5 (14).png";
+import Pcard9 from "../Assets/productList/product-cover-5 (15).png";
+import Pcard10 from "../Assets/productList/product-cover-5 (16).png";
+import Pcard11 from "../Assets/productList/product-cover-5 (17).png";
+import Pcard12 from "../Assets/productList/product-cover-5 (7).png";
 
 export let data = [
   {

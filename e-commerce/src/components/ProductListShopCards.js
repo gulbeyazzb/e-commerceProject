@@ -1,8 +1,8 @@
-import banner1 from "../Assets/clothes/media bg-cover.png";
-import banner2 from "../Assets/clothes/card-cover-5 (2).png";
-import banner3 from "../Assets/clothes/media bg-cover (1).png";
-import banner4 from "../Assets/clothes/media bg-cover (2).png";
-import banner5 from "../Assets/clothes/media bg-cover (3).png";
+import banner1 from "../Assets/productList/media bg-cover.png";
+import banner2 from "../Assets/productList/card-cover-5 (2).png";
+import banner3 from "../Assets/productList/media bg-cover (1).png";
+import banner4 from "../Assets/productList/media bg-cover (2).png";
+import banner5 from "../Assets/productList/media bg-cover (3).png";
 const ProductListShopCards = () => {
   return (
     <div className="bg-[#FAFAFA]">
