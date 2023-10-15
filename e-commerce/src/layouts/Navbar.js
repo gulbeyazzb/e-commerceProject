@@ -5,7 +5,7 @@ const NavBar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div>
+    <div className="fixed z-50 bg-white w-full">
       <div className="flex justify-evenly container mx-auto p-4 h-14">
         <div>
           <NavLink to="/" exact className="font-bold text-2xl">
