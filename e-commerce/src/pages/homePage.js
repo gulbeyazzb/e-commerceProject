@@ -1,11 +1,11 @@
-import BestSeller from "../components/BestSeller";
-import Clients from "../components/Clients";
-import FeaturedPosts from "../components/FeaturedPosts";
-import MostPopularProducts from "../components/MostPopularProducts";
-import MostPopularProducts2 from "../components/MostPopularProducts2";
-import ProductCards from "../components/ProductCards";
-import ProductCards2 from "../components/ProductCards2";
-import ShopCards from "../components/ShopCards";
+import BestSeller from "../components/HomeComp/BestSeller";
+import Clients from "../components/ProductList/Clients";
+import FeaturedPosts from "../components/HomeComp/FeaturedPosts";
+import MostPopularProducts from "../components/HomeComp/MostPopularProducts";
+import MostPopularProducts2 from "../components/HomeComp/MostPopularProducts2";
+import ProductCards from "../components/HomeComp/ProductCards";
+import ProductCards2 from "../components/HomeComp/ProductCards2";
+import ShopCards from "../components/HomeComp/ShopCards";
 import Header from "../layouts/Header";
 
 export default function HomePage() {
@@ -13,10 +13,12 @@ export default function HomePage() {
     <>
       <Header />
       <ShopCards />
-      <ProductCards />
-      <MostPopularProducts />
-      <ProductCards2 />
-      <MostPopularProducts2 />
+      <div className="w-[1050px] mx-auto">
+        <ProductCards />
+        <MostPopularProducts />
+        <ProductCards2 />
+        <MostPopularProducts2 />
+      </div>
       <BestSeller />
       <Clients />
       <FeaturedPosts />
