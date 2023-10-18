@@ -1,7 +1,7 @@
-import Clients from "../components/Clients";
-import { FilterComponent } from "../components/FilterComponent";
-import ProductListShopCards from "../components/ProductListShopCards";
-import Products from "../components/Products";
+import Clients from "../components/ProductList/Clients";
+import { FilterComponent } from "../components/ProductList/FilterComponent";
+import ProductListShopCards from "../components/ProductList/ProductListShopCards";
+import Products from "../components/ProductList/Products";
 import NavBarDark from "../layouts/NavBarDark";
 import NavBar from "../layouts/Navbar";
 import ProductHeader from "../layouts/ProductHeader";
@@ -13,8 +13,10 @@ const ProductListPage = () => {
       <NavBar />
       <ProductHeader />
       <ProductListShopCards />
-      <FilterComponent />
-      <Products />
+      <div className="w-[1050px] mx-auto">
+        <FilterComponent />
+        <Products />
+      </div>
       <Clients />
     </>
   );
