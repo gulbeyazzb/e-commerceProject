@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const ProductHeader = () => {
   return (
     <div className="bg-[#FAFAFA]">
-      <div className="flex justify-between container mx-auto py-6  px-[7.5rem]  h-14">
+      <div className="flex justify-between py-6 items-center w-[1050px] mx-auto h-14">
         <div>
           <NavLink to="/product-list" exact className="font-bold text-2xl ">
             Shop
