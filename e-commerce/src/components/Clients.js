@@ -1,9 +1,9 @@
-import brand1 from "../Assets/Vector.png";
-import brand2 from "../Assets/fa-brands-2.png";
-import brand3 from "../Assets/fa-brands-3.png";
-import brand4 from "../Assets/fa-brands-4.png";
-import brand5 from "../Assets/fa-brands-5.png";
-import brand6 from "../Assets/fa-brands-6.png";
+import brand1 from "../Assets/clientsLogo/Vector.png";
+import brand2 from "../Assets/clientsLogo/fa-brands-2.png";
+import brand3 from "../Assets/clientsLogo/fa-brands-3.png";
+import brand4 from "../Assets/clientsLogo/fa-brands-4.png";
+import brand5 from "../Assets/clientsLogo/fa-brands-5.png";
+import brand6 from "../Assets/clientsLogo/fa-brands-6.png";
 
 const Clients = () => {
   return (
