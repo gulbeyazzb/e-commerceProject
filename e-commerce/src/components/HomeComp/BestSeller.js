@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import Pcard1 from "../Assets/bestSeller/product-cover-5 (3).png";
-import Pcard2 from "../Assets/bestSeller/product-cover-5 (4).png";
-import Pcard3 from "../Assets/bestSeller/product-cover-5 (5).png";
-import Pcard4 from "../Assets/bestSeller/product-cover-5 (6).png";
+import Pcard1 from "../../Assets/bestSeller/product-cover-5 (3).png";
+import Pcard2 from "../../Assets/bestSeller/product-cover-5 (4).png";
+import Pcard3 from "../../Assets/bestSeller/product-cover-5 (5).png";
+import Pcard4 from "../../Assets/bestSeller/product-cover-5 (6).png";
 
 const BestSeller = () => {
   return (
-    <div className="bg-[#FAFAFA]  px-36 py-12">
-      <div>
+    <div className="bg-[#FAFAFA] py-12">
+      <div className=" w-[1050px] mx-auto">
         <div>
           <h3
             id="section-title"

@@ -1,13 +1,13 @@
-import banner1 from "../Assets/productList/media bg-cover.png";
-import banner2 from "../Assets/productList/card-cover-5 (2).png";
-import banner3 from "../Assets/productList/media bg-cover (1).png";
-import banner4 from "../Assets/productList/media bg-cover (2).png";
-import banner5 from "../Assets/productList/media bg-cover (3).png";
+import banner1 from "../../Assets/productList/media bg-cover.png";
+import banner2 from "../../Assets/productList/card-cover-5 (2).png";
+import banner3 from "../../Assets/productList/media bg-cover (1).png";
+import banner4 from "../../Assets/productList/media bg-cover (2).png";
+import banner5 from "../../Assets/productList/media bg-cover (3).png";
 const ProductListShopCards = () => {
   return (
     <div className="bg-[#FAFAFA]">
-      <div className="container m-auto ">
-        <div className="row flex p-6 gap-4 justify-center items-center text-white text-center">
+      <div className="w-[1050px] mx-auto py-6">
+        <div className="row flex  gap-4 justify-center items-center text-white text-center">
           <div className="col-md-4 w-[332px] h-[232px]">
             <div className="relative">
               <img className="relative z-0 " src={banner1}></img>

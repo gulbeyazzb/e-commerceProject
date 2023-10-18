@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
-import img1 from "../Assets/featuredPosts/unsplash_dEGu-oCuB1Y.png";
-import img2 from "../Assets/featuredPosts/unsplash_hHdHCfAifHU.png";
-import img3 from "../Assets/featuredPosts/unsplash_tVEqStC2uz8.png";
+import img1 from "../../Assets/featuredPosts/unsplash_dEGu-oCuB1Y.png";
+import img2 from "../../Assets/featuredPosts/unsplash_hHdHCfAifHU.png";
+import img3 from "../../Assets/featuredPosts/unsplash_tVEqStC2uz8.png";
 
 const FeaturedPosts = () => {
   return (
-    <div className="font-[Montserrat] pb-16">
-      <div className="container m-auto ">
+    <div className="pb-16">
+      <div className="w-[1050px] mx-auto ">
         <div className="text-center py-16">
           <h6 className="text-[#23A6F0] font-bold text-sm font-[Montserrat]">
             Practice Advice

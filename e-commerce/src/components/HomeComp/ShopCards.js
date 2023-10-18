@@ -1,12 +1,12 @@
-import banner1 from "../Assets/h5-baner-3 1baner-3.png";
-import banner2 from "../Assets/h5-baner-1 1.png";
-import banner3 from "../Assets/h5-baner-1 1 (1).png";
+import banner1 from "../../Assets/h5-baner-3 1baner-3.png";
+import banner2 from "../../Assets/h5-baner-1 1.png";
+import banner3 from "../../Assets/h5-baner-1 1 (1).png";
 
 const ShopCards = () => {
   return (
-    <div className=" m-auto bg-[#FAFAFA]">
-      <div className="row flex p-6 gap-4 justify-center items-center">
-        <div className="col-md-4 w-[332px] h-[232px]">
+    <div className=" bg-[#FAFAFA]">
+      <div className="w-[1050px] m-auto flex py-20 justify-between items-center">
+        <div>
           <div className="relative">
             <img className="relative z-0" src={banner1}></img>
             <div className=" absolute   top-20 left-10 ">
@@ -18,7 +18,7 @@ const ShopCards = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-4 w-[332px] h-[232px]">
+        <div>
           <div className="relative">
             <img className="relative z-0" src={banner2}></img>
             <div className=" absolute   top-20 left-10 ">
@@ -30,7 +30,7 @@ const ShopCards = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-4 w-[332px] h-[232px]">
+        <div>
           <div className="relative">
             <img className="relative z-0" src={banner3}></img>
             <div className=" absolute  top-20 left-10 ">

@@ -1,21 +1,22 @@
-import most from "../Assets/mostPopular/unsplash_X5BWooeO4Cw (1).png";
-import product from "../Assets/mostPopular/printed-summer-dress (4) 1 (1).png";
-import { Link } from "react-router-dom";
+import most from "../../Assets/mostPopular/unsplash_X5BWooeO4Cw.png";
+import product from "../../Assets/mostPopular/printed-summer-dress (4) 1.png";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function MostPopularProducts2() {
+export default function MostPopularProducts() {
   return (
-    <div className="py-[18px] container m-auto">
-      <div className="flex flex-row-reverse mb-8">
+    <div className="flex flex-col gap-[30px] py-12">
+      <div className="flex ">
         <div>
-          <img className="w-[550px] h-[649px]" src={most}></img>
+          <img className="w-[600px] h-[630px]" src={most}></img>
         </div>
-        <div className="flex flex-col items-center justify-center gap-6 h-[649px] w-[400px] text-center bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[649px] w-[400px] text-center bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
           <p className="font-normal text-sm text-[#737373] w-[280px]">
             We focus on ergonomics and meeting you where you work. It's only a
             keystroke away.
           </p>
-          <img className="h-[200px]" src={product}></img>
+
+          <img src={product}></img>
           <Link
             className="font-bold text-sm text-[#252B42]"
             exact
@@ -23,27 +24,9 @@ export default function MostPopularProducts2() {
           >
             English Department
           </Link>
-          <div className="flex items-center text-[#737373] gap-1">
-            <i class="bx bx-download h-4 w-4"></i>
-            <p className="font-bold text-sm ">15 Sales</p>
-          </div>
           <div className="flex">
-            <h5 className="font-bold text-base text-[#BDBDBD]">$6.48</h5>
-            <h5 className="font-bold text-base text-[#23856D]">$6.48</h5>
-          </div>
-          <div>
-            <button>
-              <i class="bx bxs-circle text-[#23A6F0]"></i>
-            </button>
-            <button>
-              <i class="bx bxs-circle text-[#23856D]"></i>
-            </button>
-            <button>
-              <i class="bx bxs-circle text-[#E77C40]"></i>
-            </button>
-            <button>
-              <i class="bx bxs-circle text-[#252B42]"></i>
-            </button>
+            <h5 className="font-bold text-base text-[#BDBDBD]">$16.48</h5>
+            <h5 className="font-bold text-base text-[#23856D]">$16.48</h5>
           </div>
         </div>
       </div>

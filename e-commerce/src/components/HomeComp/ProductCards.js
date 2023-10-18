@@ -1,12 +1,12 @@
-import card1 from "../Assets/card-cover-5.png";
-import Pcard1 from "../Assets/product-cover-5.png";
-import Pcard2 from "../Assets/product-cover-5 (1).png";
-import Pcard3 from "../Assets/product-cover-5 (2).png";
+import card1 from "../../Assets/card-cover-5.png";
+import Pcard1 from "../../Assets/product-cover-5.png";
+import Pcard2 from "../../Assets/product-cover-5 (1).png";
+import Pcard3 from "../../Assets/product-cover-5 (2).png";
 
 const ProductCards = () => {
   return (
-    <div className=" container m-auto">
-      <div className="flex">
+    <div>
+      <div className="flex py-12 gap-[30px]">
         <div>
           <div className="relative w-[350px] ">
             <img className="absolute h-[650px]" src={card1}></img>
@@ -17,7 +17,7 @@ const ProductCards = () => {
           </div>
         </div>
         <div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-[10px]">
             <div>
               <h3 id="section-title" className="font-bold text-sm">
                 BESTSELLER PRODUCTS
@@ -50,7 +50,7 @@ const ProductCards = () => {
             </div>
           </div>
           <hr />
-          <div className="p-6">
+          <div className="pt-[25] pb-[35] px-[25]">
             <div className="flex pb-3">
               <div className="p-2 text-center">
                 <img src={Pcard1} className="py-2"></img>

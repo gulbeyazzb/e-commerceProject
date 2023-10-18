@@ -1,23 +1,14 @@
-import card1 from "../Assets/card-cover-5.jpg";
-import Pcard1 from "../Assets/product-cover-5.png";
-import Pcard2 from "../Assets/product-cover-5 (1).png";
-import Pcard3 from "../Assets/product-cover-5 (2).png";
+import card1 from "../../Assets/card-cover-5.jpg";
+import Pcard1 from "../../Assets/product-cover-5.png";
+import Pcard2 from "../../Assets/product-cover-5 (1).png";
+import Pcard3 from "../../Assets/product-cover-5 (2).png";
 
 const ProductCards2 = () => {
   return (
-    <div className=" container m-auto">
-      <div className="flex flex-row-reverse">
-        <div className="ms-3">
-          <div className="relative w-[350px] ">
-            <img className="absolute h-[650px]" src={card1}></img>
-            <div className="absolute top-10 left-10">
-              <h6 className=" text-xs font-bold">FURNITURE</h6>
-              <h6 className=" text-xs font-normal">5 Items</h6>
-            </div>
-          </div>
-        </div>
+    <div>
+      <div className="flex w-auto py-12 gap-[60px]">
         <div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-[10px]">
             <div>
               <h3 id="section-title" className="font-bold text-sm">
                 BESTSELLER PRODUCTS
@@ -38,7 +29,7 @@ const ProductCards2 = () => {
               <nav className="flex list-none">
                 <li>
                   <button className="  me-3  w-[48.57px] h-[48px] ">
-                    <i class="bx bx-chevron-left-circle w-[8.57px] h-[15px] text-3xl font-thin"></i>
+                    <i class="bx bx-chevron-left-circle w-[8.57px] h-[15px] text-3xl  font-thin "></i>
                   </button>
                 </li>
                 <li>
@@ -50,7 +41,7 @@ const ProductCards2 = () => {
             </div>
           </div>
           <hr />
-          <div className="p-6">
+          <div className="pt-[25] pb-[35] px-[25]">
             <div className="flex pb-3">
               <div className="p-2 text-center">
                 <img src={Pcard1} className="py-2"></img>
@@ -150,6 +141,15 @@ const ProductCards2 = () => {
                   <span className="text-[#23856D] text-base">$16.48</span>
                 </div>{" "}
               </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="relative w-[350px] ">
+            <img className="absolute h-[650px]" src={card1}></img>
+            <div className="absolute top-10 left-10">
+              <h6 className=" text-xs font-bold">FURNITURE</h6>
+              <h6 className=" text-xs font-normal">5 Items</h6>
             </div>
           </div>
         </div>
