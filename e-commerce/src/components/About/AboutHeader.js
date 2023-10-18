@@ -1,4 +1,5 @@
 import about from "../../Assets/about/technology 1 (1).png";
+import { Link } from "react-router-dom";
 
 const AboutHeader = () => {
   return (
@@ -7,9 +8,12 @@ const AboutHeader = () => {
         <h5 className="text-[#252B42] text-base font-bold">ABOUT COMPANY</h5>
         <h1 className="text-[#252B42] text text-[58px] font-bold">ABOUT US</h1>
         <p>We know how large objects will act, but things on a small scale</p>
-        <button className="w-[190px] text-sm font-bold text-white py-[15px] px-10 bg-[#23A6F0]">
+        <Link
+          to="/team"
+          className="w-[190px] text-sm font-bold text-white py-[15px] px-10 bg-[#23A6F0]"
+        >
           Get Quote Now
-        </button>
+        </Link>
       </div>
       <div className="relative z-0">
         <div className="relative z-0 bg-[#FFE9EA] rounded-[100%]  p-52"></div>
