@@ -2,7 +2,7 @@ import about from "../../Assets/about/technology 1 (1).png";
 
 const AboutHeader = () => {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between py-28">
       <div className="flex flex-col gap-4 w-[356px]">
         <h5 className="text-[#252B42] text-base font-bold">ABOUT COMPANY</h5>
         <h1 className="text-[#252B42] text text-[58px] font-bold">ABOUT US</h1>
