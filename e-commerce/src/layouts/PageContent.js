@@ -3,6 +3,8 @@ import ProductListPage from "../pages/ProductListPage";
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
+import ProductPage from "../pages/ProductPage";
+import TeamPage from "../pages/TeamPage";
 
 export const PageContent = () => {
   return (
@@ -18,6 +20,12 @@ export const PageContent = () => {
       </Route>
       <Route path="/contact" exact>
         <ContactPage />
+      </Route>
+      <Route path="/product/:id" exact>
+        <ProductPage />
+      </Route>
+      <Route path="/team" exact>
+        <TeamPage />
       </Route>
     </Switch>
   );
