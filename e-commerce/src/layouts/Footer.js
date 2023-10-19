@@ -77,13 +77,13 @@ const Footer = () => {
         </p>
         <div className="flex justify-between items-center w-[100px]">
           <a href="">
-            <i class="bx bxl-facebook-circle text-[#23A6F0]"></i>
+            <i class="bx bxl-facebook-circle text-[#23A6F0] text-3xl"></i>
           </a>
           <a href="">
-            <i class="bx bxl-instagram text-[#23A6F0]"></i>
+            <i class="bx bxl-instagram text-[#23A6F0] text-3xl"></i>
           </a>
           <a href="">
-            <i class="bx bxl-twitter text-[#23A6F0]"></i>
+            <i class="bx bxl-twitter text-[#23A6F0] text-3xl"></i>
           </a>
         </div>
       </div>

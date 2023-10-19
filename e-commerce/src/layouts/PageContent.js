@@ -5,6 +5,7 @@ import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import ProductPage from "../pages/ProductPage";
 import TeamPage from "../pages/TeamPage";
+import PricingPage from "../pages/PricingPage";
 
 export const PageContent = () => {
   return (
@@ -26,6 +27,9 @@ export const PageContent = () => {
       </Route>
       <Route path="/team" exact>
         <TeamPage />
+      </Route>
+      <Route path="/pricing" exact>
+        <PricingPage />
       </Route>
     </Switch>
   );

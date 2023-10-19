@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { Carousel } from "@material-tailwind/react";
-import pic1 from "../../Assets/products/single-product-1-cover-1.png";
-import pic2 from "../../Assets/products/single-product-1-cover-2.png";
 
 export default function ProductCard({ myData }) {
   return (
@@ -26,25 +24,31 @@ export default function ProductCard({ myData }) {
                 )}
               >
                 <img
-                  src={pic2}
+                  src={myData.src}
                   alt="image 1"
                   className=" w-[506px] h-[450px]"
                 />
                 <img
-                  src={pic1}
+                  src={myData.src2}
                   alt="image 2"
-                  className=" w-[506px] h-[450px] object-cover"
+                  className=" w-[506px] h-[450px] "
                 />
               </Carousel>
               <div className="flex gap-4 w-[219px] h-[75px]">
-                <img src={pic1} className="opacity-50 w-24 h-[75px]"></img>
-                <img src={pic2} className="opacity-50 w-24 h-[75px]"></img>
+                <img
+                  src={myData.src}
+                  className="opacity-50 w-24 h-[75px]"
+                ></img>
+                <img
+                  src={myData.src2}
+                  className="opacity-50 w-24 h-[75px]"
+                ></img>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-7 w-[510px] h-[471px] ">
             <h4 className="font-normal text-xl text-[#252B42]">
-              Floating Phone
+              {myData?.heading}
             </h4>
             <div className="flex gap-2">
               <i className="bx bx-star"></i>

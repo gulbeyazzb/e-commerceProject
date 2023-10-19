@@ -2,6 +2,7 @@ import React from "react";
 import { TeamData } from "../../mocks/AboutData/TeamData";
 
 export const AboutTeam = () => {
+  const newData = TeamData.slice(0, 3);
   return (
     <div>
       <div className="flex flex-col gap-28 text-[#252B42] text-center items-center py-28">
@@ -13,7 +14,7 @@ export const AboutTeam = () => {
           </h6>
         </div>
         <div className="flex gap-6  ">
-          {TeamData.map((data) => (
+          {newData.map((data) => (
             <div className="w-[316px] m-auto font-bold">
               <img className="w-[316px] h-[231px]" src={data.img}></img>
               <div className="flex flex-col gap-[10px] p-[30px]">

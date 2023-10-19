@@ -15,61 +15,73 @@ export let data = [
   {
     id: 0,
     src: Pcard1,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 1,
     src: Pcard2,
+    src2: Pcard11,
     heading: " Graphic Design",
   },
   {
     id: 2,
     src: Pcard3,
+    src2: Pcard6,
     heading: " Graphic Design",
   },
   {
     id: 3,
     src: Pcard4,
+    src2: Pcard8,
     heading: " Graphic Design",
   },
   {
     id: 4,
     src: Pcard5,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 5,
     src: Pcard6,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 6,
     src: Pcard7,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 7,
     src: Pcard8,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 8,
     src: Pcard9,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 9,
     src: Pcard10,
+    src2: Pcard8,
     heading: " Graphic Design",
   },
   {
     id: 10,
     src: Pcard11,
+    src2: Pcard2,
     heading: " Graphic Design",
   },
   {
     id: 11,
     src: Pcard12,
+    src2: Pcard10,
     heading: " Graphic Design",
   },
 ];

@@ -4,7 +4,7 @@ import ProductListShopCards from "../components/ProductList/ProductListShopCards
 import Products from "../components/ProductList/Products";
 import NavBarDark from "../layouts/NavBarDark";
 import NavBar from "../layouts/Navbar";
-import ProductHeader from "../layouts/ProductHeader";
+import ProductHeader from "../components/ProductList/ProductHeader";
 
 const ProductListPage = () => {
   return (

@@ -104,8 +104,11 @@ const NavBar = () => {
           <NavLink to="/contact" className="mr-6" exact>
             Contact
           </NavLink>
-          <NavLink to="/pages" exact>
-            Pages
+          <NavLink to="/team" className="mr-6" exact>
+            Team
+          </NavLink>
+          <NavLink to="/pricing" exact>
+            Pricing
           </NavLink>
         </div>
         <div className="flex gap-4 text-[#23A6F0] font-bold text-sm">

@@ -11,7 +11,7 @@ import { data } from "../mocks/data";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const myData = data.find((product) => product.id === id);
+  const myData = data.find((product) => product.id === Number(id));
 
   return (
     <>
