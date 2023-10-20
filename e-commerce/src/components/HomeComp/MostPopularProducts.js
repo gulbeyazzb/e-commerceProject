@@ -5,7 +5,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 export default function MostPopularProducts() {
   return (
     <div className="flex flex-col gap-[30px] py-12">
-      <div className="flex ">
+      <div className="mobile-col-flex ">
         <div>
           <img className="w-[600px] h-[630px]" src={most}></img>
         </div>
@@ -30,8 +30,8 @@ export default function MostPopularProducts() {
           </div>
         </div>
       </div>
-      <div className="flex justify-evenly items-center ">
-        <div className="flex">
+      <div className="mobile-col-flex sm:justify-evenly items-center ">
+        <div className="flex gap-4 p-4 sm:p-0">
           <div className="text-[#E74040] font-bold text-[40px] me-2">1.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
@@ -40,7 +40,7 @@ export default function MostPopularProducts() {
             </p>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-4 p-4 sm:p-0">
           <div className="text-[#E74040] font-bold text-[40px] me-2">2.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
@@ -49,7 +49,7 @@ export default function MostPopularProducts() {
             </p>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-4 p-4 sm:p-0">
           <div className="text-[#E74040] font-bold text-[40px] me-2">3.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
@@ -58,7 +58,7 @@ export default function MostPopularProducts() {
             </p>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex gap-4 p-4 sm:p-0">
           <div className="text-[#E74040] font-bold text-[40px] me-2">4.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>

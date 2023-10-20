@@ -6,7 +6,7 @@ import img3 from "../../Assets/featuredPosts/unsplash_tVEqStC2uz8.png";
 const FeaturedPosts = () => {
   return (
     <div className="pb-16">
-      <div className="w-[1050px] mx-auto ">
+      <div className="sm:w-[1050px] mx-auto ">
         <div className="text-center py-16">
           <h6 className="text-primary-color font-bold text-sm font-[Montserrat]">
             Practice Advice
@@ -15,8 +15,8 @@ const FeaturedPosts = () => {
             Featured Posts
           </h3>
         </div>
-        <div className="flex gap-4">
-          <div className="relative shadow-xl">
+        <div className="mobile-col-flex gap-4">
+          <div className="relative shadow-xl w-[328px] m-auto">
             <img className=" w-[348px] h-[300px]" src={img1}></img>
             <p className="absolute top-5 left-5 font-bold text-sm px-[10px] text-[#FFFFFF] bg-[#E74040] shadow-sm">
               NEW
@@ -53,7 +53,7 @@ const FeaturedPosts = () => {
               </NavLink>
             </div>
           </div>
-          <div className="relative shadow-xl">
+          <div className="relative shadow-xl w-[328px] m-auto">
             <img className=" w-[348px] h-[300px]" src={img2}></img>
             <p className="absolute top-5 left-5 font-bold text-sm px-[10px] text-[#FFFFFF] bg-[#E74040] shadow-sm">
               NEW
@@ -90,7 +90,7 @@ const FeaturedPosts = () => {
               </NavLink>
             </div>
           </div>
-          <div className="relative shadow-xl">
+          <div className="relative shadow-xl w-[328px] m-auto">
             <img className=" w-[348px] h-[300px]" src={img3}></img>
             <p className="absolute top-5 left-5 font-bold text-sm px-[10px] text-[#FFFFFF] bg-[#E74040] shadow-sm">
               NEW

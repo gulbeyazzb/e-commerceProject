@@ -1,29 +1,32 @@
 import card1 from "../../Assets/card-cover-5.png";
-import Pcard1 from "../../Assets/product-cover-5.png";
-import Pcard2 from "../../Assets/product-cover-5 (1).png";
-import Pcard3 from "../../Assets/product-cover-5 (2).png";
-
+import { bestSeller } from "../../mocks/homeData/bestSeller";
 const ProductCards = () => {
+  const bests = bestSeller.slice(0, 3);
+  const bests2 = bestSeller.slice(3, 6);
+
   return (
     <div>
-      <div className="flex py-12 gap-[30px]">
-        <div>
-          <div className="relative w-[350px] ">
-            <img className="absolute h-[650px]" src={card1}></img>
+      <div className="h-[2300px] sm:h-auto mobile-col-flex py-2 sm:py-12 gap-[30px]">
+        <div className="h-[600px] sm:h-auto">
+          <div className="relative w-[350px] m-auto">
+            <img className="absolute " src={card1}></img>
             <div className="absolute top-10 left-10">
               <h6 className=" text-xs font-bold">FURNITURE</h6>
               <h6 className=" text-xs font-normal">5 Items</h6>
             </div>
           </div>
         </div>
-        <div>
-          <div className="flex items-center gap-[10px]">
+        <div className="h-[1400px] my-auto sm:h-auto">
+          <div className="mobile-col-flex sm:items-center gap-[10px]">
             <div>
-              <h3 id="section-title" className="font-bold text-sm">
+              <h3
+                id="section-title"
+                className="font-bold text-sm text-center sm:text-left"
+              >
                 BESTSELLER PRODUCTS
               </h3>
             </div>
-            <div className="flex gap-16">
+            <div className="mobile-col-flex gap-10 sm:gap-16 items-center ">
               <nav className="flex items-center  font-bold text-sm gap-5 list-none">
                 <li>
                   <button className="btn-sm text-primary-color">Women</button>
@@ -53,105 +56,54 @@ const ProductCards = () => {
           </div>
           <hr />
           <div className="pt-[25] pb-[35] px-[25]">
-            <div className="flex pb-3">
-              <div className="p-2 text-center">
-                <img src={Pcard1} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="pb-3 font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                  <div className="pt-3">
-                    <span className="text-[#BDBDBD] text-base ">$16.48</span>
-                    <span className="text-[#23856D] text-base ">$16.48</span>
-                  </div>{" "}
-                </a>
-              </div>
-              <div className="p-2 text-center">
-                <img src={Pcard2} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                </a>
-                <div className="pt-3">
-                  <span className="text-[#BDBDBD] text-base">$16.48</span>
-                  <span className="text-[#23856D] text-base">$16.48</span>
+            <div className="mobile-col-flex sm:flex-wrap items-center ">
+              {bests.map((best) => (
+                <div className="p-2 text-center">
+                  <img
+                    src={best.src}
+                    className="py-0 sm:py-2 sm:w-auto w-[330px]"
+                  ></img>
+                  <h5 className="pb-3 text-center font-bold text-base">
+                    {best.heading}
+                  </h5>
+                  <a
+                    href=""
+                    className="pb-3 font-bold text-sm text-second-text text-center"
+                  >
+                    {best.subHeading}
+                    <div className="pt-3">
+                      <span className="text-[#BDBDBD] text-base ">
+                        {best.price}
+                      </span>
+                      <span className="text-[#23856D] text-base ">
+                        {best.pricebold}
+                      </span>
+                    </div>{" "}
+                  </a>
                 </div>
-              </div>
-              <div className="p-2 text-center">
-                <img src={Pcard3} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                  <div className="pt-3">
-                    <span className="text-[#BDBDBD] text-base">$16.48</span>
-                    <span className="text-[#23856D] text-base">$16.48</span>
-                  </div>{" "}
-                </a>
-              </div>
-            </div>
-            <div className=" flex pb-3">
-              <div className="p-2 text-center">
-                <img src={Pcard1} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                  <div className="pt-3">
-                    <span className="text-[#BDBDBD] text-base">$16.48</span>
-                    <span className="text-[#23856D] text-base">$16.48</span>
-                  </div>{" "}
-                </a>
-              </div>
-              <div className="p-2 text-center">
-                <img src={Pcard2} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                  <div className="pt-3">
-                    <span className="text-[#BDBDBD] text-base">$16.48</span>
-                    <span className="text-[#23856D] text-base">$16.48</span>
-                  </div>{" "}
-                </a>
-              </div>
-              <div className="p-2 text-center">
-                <img src={Pcard3} className="py-2"></img>
-                <h5 className="pb-3 text-center font-bold text-base">
-                  Graphic Design
-                </h5>
-                <a
-                  href=""
-                  className="font-bold text-sm text-second-text text-center"
-                >
-                  English Department
-                </a>
-                <div className="pt-3">
-                  <span className="text-[#BDBDBD] text-base">$16.48</span>
-                  <span className="text-[#23856D] text-base">$16.48</span>
-                </div>{" "}
-              </div>
+              ))}
+              {bests2.map((best) => (
+                <div className="hidden sm:inline-block p-2 text-center">
+                  <img src={best.src} className="py-2"></img>
+                  <h5 className="pb-3 text-center font-bold text-base">
+                    {best.heading}
+                  </h5>
+                  <a
+                    href=""
+                    className="pb-3 font-bold text-sm text-second-text text-center"
+                  >
+                    {best.subHeading}
+                    <div className="pt-3">
+                      <span className="text-[#BDBDBD] text-base ">
+                        {best.price}
+                      </span>
+                      <span className="text-[#23856D] text-base ">
+                        {best.pricebold}
+                      </span>
+                    </div>{" "}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </div>

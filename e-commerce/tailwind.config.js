@@ -8,6 +8,9 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      gap: {
+        10: "10px",
+      },
       colors: {
         second: {
           text: "#737373",
@@ -27,7 +30,7 @@ module.exports = withMT({
           text: "",
         },
         light: {
-          bg: "",
+          bg: "#FAFAFA",
           text: "",
           gray: "",
           gray1: "",

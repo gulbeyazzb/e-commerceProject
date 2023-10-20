@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="bg-[#252B42] py-10 font-[Montserrat]">
-      <div className="flex justify-between container m-auto pb-5">
-        <div>
-          <h3 className="font-bold text-2xl text-white mb-2">
+      <div className="mobile-col-flex sm:justify-between px-20 pb-20 gap-12 sm:gap-0 sm:px-36 m-auto sm:pb-5">
+        <div className="flex flex-col gap-6">
+          <h3 className="font-bold text-2xl text-white sm:mb-2">
             Consulting Agency For Your Business
           </h3>
           <p className="font-normal text-sm text-white">
@@ -22,7 +22,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className="flex justify-between container m-auto">
+      <div className="mobile-col-flex sm:justify-between px-20 sm:px-36 m-auto">
         <div className="flex flex-col gap-4 text-base font-bold text-white py-10">
           <Link className="text-base mb-3" to="/company-info">
             Company Info
@@ -63,27 +63,31 @@ const Footer = () => {
           <Link className="text-base mb-3" to="/company-info">
             Get In Touch
           </Link>
-          <a href="tel:5414558154">
-            <i class="bx bxs-phone-call me-2"></i>+90 (555) 555 55 55
+          <a href="tel:5455555555" className="flex gap-1 items-center">
+            <i class="bx bxs-phone-call "></i>+90 (555) 555 55 55
           </a>
-          <Link to="/location">
-            <i class="bx bx-current-location me-2"></i>Amsterdam,Netherlands
+          <Link to="/location" className="flex gap-1 items-center">
+            <i class="bx bx-current-location "></i>
+            Amsterdam,Netherlands
           </Link>
-          <a href="mailto:glbzbayram@gmail.com">
-            <i class="bx bx-envelope me-2"></i>glbzbayram@gmail.com
+          <a
+            href="mailto:glbzbayram@gmail.com"
+            className="flex gap-1 items-center"
+          >
+            <i class="bx bx-envelope "></i>glbzbayram@gmail.com
           </a>
         </div>
       </div>
-      <div className="flex justify-between container m-auto pt-5">
+      <div className="mobile-col-flex gap-6 sm:items-center sm:justify-between px-20 sm:px-36 m-auto pt-5">
         <p className="font-bold text-sm text-white">
           Made With Love By Finland All Right Reserved{" "}
         </p>
-        <div className="flex justify-between items-center w-[100px]">
+        <div className="flex gap-6 justify-between items-center w-[100px]">
           <a href="">
-            <i class="bx bxl-facebook-circle text-[#23A6F0] text-3xl"></i>
+            <i class="bx bxl-facebook-circle text-[#335BF5] text-3xl"></i>
           </a>
           <a href="">
-            <i class="bx bxl-instagram text-[#23A6F0] text-3xl"></i>
+            <i class="bx bxl-instagram text-[#E51F5A] text-3xl"></i>
           </a>
           <a href="">
             <i class="bx bxl-twitter text-[#23A6F0] text-3xl"></i>

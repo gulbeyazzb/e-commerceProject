@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <Header />
       <ShopCards />
-      <div className="w-[1050px] mx-auto">
+      <div className="w-[375px] sm:w-[1050px] sm:mx-auto">
         <ProductCards />
         <MostPopularProducts />
         <ProductCards2 />

@@ -5,7 +5,7 @@ import banner3 from "../../Assets/h5-baner-1 1 (1).png";
 const ShopCards = () => {
   return (
     <div className=" bg-[#FAFAFA]">
-      <div className="w-[1050px] m-auto flex py-20 justify-between items-center">
+      <div className="sm:w-[1050px] sm:m-auto mobile-col-flex gap-10 py-20 justify-between items-center">
         <div>
           <div className="relative">
             <img className="relative z-0" src={banner1}></img>

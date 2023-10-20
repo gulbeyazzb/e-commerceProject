@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 export default function MostPopularProducts2() {
   return (
     <div className="flex flex-col gap-[30px] py-12">
-      <div className="flex ">
-        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[630px] w-[400px] text-center bg-[#FAFAFA]">
+      <div className="mobile-col-flex ">
+        <div className="inline-block sm:hidden">
+          <img className="w-[600px] h-[630px]" src={most}></img>
+        </div>
+        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[630px] w-[400px] text-center sm:bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
           <p className="font-normal text-sm text-second-text w-[280px]">
             We focus on ergonomics and meeting you where you work. It's only a
@@ -45,7 +48,7 @@ export default function MostPopularProducts2() {
             </button>
           </div>
         </div>
-        <div>
+        <div className="hidden sm:inline-block">
           <img className="w-[600px] h-[630px]" src={most}></img>
         </div>
       </div>
