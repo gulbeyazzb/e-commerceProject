@@ -13,7 +13,7 @@ const NavBar = () => {
           </NavLink>
         </div>
 
-        <div className="flex text-[#737373] font-bold text-sm items-center">
+        <div className="flex text-second-text font-bold text-sm items-center">
           <NavLink to="/" className="mr-6" exact>
             Home
           </NavLink>
@@ -25,7 +25,7 @@ const NavBar = () => {
               <button
                 onClick={() => setToggle(!toggle)}
                 type="button"
-                class="inline-flex w-full justify-center rounded-md bg-white text-sm  text-[#737373] font-bold hover:bg-gray-50"
+                class="inline-flex w-full justify-center rounded-md bg-white text-sm  text-second-text font-bold hover:bg-gray-50"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
@@ -111,7 +111,7 @@ const NavBar = () => {
             Pricing
           </NavLink>
         </div>
-        <div className="flex gap-4 text-[#23A6F0] font-bold text-sm">
+        <div className="flex gap-4 text-primary-color font-bold text-sm">
           <NavLink to="/login" exact className="flex items-center">
             <box-icon
               name="user"

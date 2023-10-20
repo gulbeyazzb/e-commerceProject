@@ -21,7 +21,7 @@ const AboutTestimonials = () => {
           </Link>
         </div>
         <div>
-          <img className="w-[590px] h-[640px]" src={bgtestimonial}></img>
+          <img className="w-[590px] h-[637px]" src={bgtestimonial}></img>
         </div>
       </div>
     </div>

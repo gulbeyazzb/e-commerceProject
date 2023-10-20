@@ -14,7 +14,7 @@ export default function PricingFaq() {
         <div className=" flex flex-col gap-[30px]">
           <div className="flex gap-[30px]">
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="w-[408px]">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -27,35 +27,7 @@ export default function PricingFaq() {
               </div>
             </div>
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
-              <div className="w-[408px]">
-                <h5 className="text-[#252B42] text-base font-bold">
-                  the quick fox jumps over the lazy dog
-                </h5>
-                <p className="font-normal text-sm text-[#737373]">
-                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
-                  sent. RELIT official consequent door ENIM RELIT Mollie.
-                  Excitation venial consequent sent nostrum met.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="flex gap-[30px]">
-            <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
-              <div className="w-[408px]">
-                <h5 className="text-[#252B42] text-base font-bold">
-                  the quick fox jumps over the lazy dog
-                </h5>
-                <p className="font-normal text-sm text-[#737373]">
-                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
-                  sent. RELIT official consequent door ENIM RELIT Mollie.
-                  Excitation venial consequent sent nostrum met.
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="w-[408px]">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -70,7 +42,7 @@ export default function PricingFaq() {
           </div>
           <div className="flex gap-[30px]">
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="w-[408px]">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -83,7 +55,35 @@ export default function PricingFaq() {
               </div>
             </div>
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-[#23a6f0] text-3xl"></i>
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <div className="w-[408px]">
+                <h5 className="text-[#252B42] text-base font-bold">
+                  the quick fox jumps over the lazy dog
+                </h5>
+                <p className="font-normal text-sm text-[#737373]">
+                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                  sent. RELIT official consequent door ENIM RELIT Mollie.
+                  Excitation venial consequent sent nostrum met.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-[30px]">
+            <div className="flex gap-5 p-6">
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <div className="w-[408px]">
+                <h5 className="text-[#252B42] text-base font-bold">
+                  the quick fox jumps over the lazy dog
+                </h5>
+                <p className="font-normal text-sm text-[#737373]">
+                  Met minim Mollie non desert Alamo est sit cliquey dolor do met
+                  sent. RELIT official consequent door ENIM RELIT Mollie.
+                  Excitation venial consequent sent nostrum met.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-5 p-6">
+              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="w-[408px]">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog

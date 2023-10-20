@@ -25,7 +25,7 @@ const BestSeller = () => {
             </h5>
             <Link
               to="/english-department"
-              className="pb-3 font-bold text-sm text-[#737373] text-center"
+              className="pb-3 font-bold text-sm text-second-text text-center"
             >
               English Department
             </Link>
@@ -41,7 +41,7 @@ const BestSeller = () => {
             </h5>
             <Link
               to="/english-department"
-              className="pb-3 font-bold text-sm text-[#737373] text-center"
+              className="pb-3 font-bold text-sm text-second-text text-center"
             >
               English Department
             </Link>
@@ -57,7 +57,7 @@ const BestSeller = () => {
             </h5>
             <Link
               to="/english-department"
-              className="pb-3 font-bold text-sm text-[#737373] text-center"
+              className="pb-3 font-bold text-sm text-second-text text-center"
             >
               English Department
             </Link>
@@ -73,7 +73,7 @@ const BestSeller = () => {
             </h5>
             <Link
               to="/english-department"
-              className="pb-3 font-bold text-sm text-[#737373] text-center"
+              className="pb-3 font-bold text-sm text-second-text text-center"
             >
               English Department
             </Link>

@@ -1,4 +1,5 @@
 import { Carousel } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -31,21 +32,22 @@ const Header = () => {
           />
         </Carousel>
       </div>
-      <div className="w-[1050px] mx-auto absolute top-[30%] left-[19%]">
+      <div className="w-[1050px] mx-auto absolute top-[30%] left-[15%]">
         <div className="text-center">
-          <div>
-            <h1 className="font-bold text-6xl pb-3 text-white text-center">
+          <div className="flex flex-col gap-[10px]">
+            <h1 className="font-bold text-6xl text-white text-center">
               GROCERIES DELIVERY
             </h1>
-            <h4 className="w-1/2 m-auto font-normal pb-3 text-center text-white text-xl">
+            <h4 className="w-1/2 m-auto font-normal text-center text-white text-xl">
               We know how large objects will act, but things on a small scale
               just do not act that way.
             </h4>
-            <button className="rounded py-3.5 px-10  bg-[#23A6F0]">
-              <h3 className="font-bold text-base text-center text-white">
-                Start Now
-              </h3>
-            </button>
+            <Link
+              to="/product-list"
+              className="w-40 m-auto rounded py-[1rem] px-10  bg-primary-color font-bold text-base text-center text-white"
+            >
+              Start Now
+            </Link>
           </div>
         </div>
       </div>

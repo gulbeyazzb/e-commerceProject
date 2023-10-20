@@ -29,7 +29,7 @@ export default function Pricing() {
         <div className="flex gap-4 font-bold items-center">
           <p className="text-[#252B42] text-base">Monthly</p>
           <button
-            className={`md:w-14 md:h-7 w-7 h-2 flex items-center dark:bg-[#3A3A3A] bg-${bgClass} rounded-full sm:p-1 cursor-pointer duration-700 ease-in-out border border-[#23A6F0]`}
+            className={`md:w-14 md:h-7 w-7 h-2 flex items-center dark:bg-[#3A3A3A] bg-${bgClass} rounded-full sm:p-1 cursor-pointer duration-700 ease-in-out border border-primary-color`}
             onClick={changePricingType}
           >
             {pricingType === "Month" && (
@@ -50,18 +50,18 @@ export default function Pricing() {
             )}
           </button>
           <p className="text-[#252B42] text-base">Yearly</p>
-          <button className="flex gap-[10px] text-[#23A6F0] bg-[#B2E3FF] py-[10px] px-5 text-sm rounded-[37px]">
+          <button className="flex gap-[10px] text-primary-color bg-[#B2E3FF] py-[10px] px-5 text-sm rounded-[37px]">
             Save {save}
           </button>
         </div>
         <div className="flex items-end">
           <div className="h-[650px] w-[380px] flex-none">
-            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-[#23A6F0] rounded-lg">
+            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">FREE</h3>
               <h5 className="font-bold text-base text-[#737373]">
                 Organize across all apps by hand
               </h5>
-              <div className="flex gap-[10px] text-[#23A6F0]">
+              <div className="flex gap-[10px] text-primary-color">
                 <h2 className=" font-bold text-[40px]">0</h2>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-[] text-2xl font-bold">$</h3>
@@ -98,12 +98,12 @@ export default function Pricing() {
             </div>
           </div>
           <div className="w-[400px] flex-1">
-            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-white items-center bg-[#252B42] border border-[#23A6F0] rounded-lg">
+            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-white items-center bg-[#252B42] border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">STANDARD</h3>
               <h5 className="font-bold text-base text-[#737373]">
                 Organize across all apps by hand
               </h5>
-              <div className="flex gap-[10px] text-[#23A6F0]">
+              <div className="flex gap-[10px] text-primary-color">
                 <h2 className=" font-bold text-[40px]">9.99</h2>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-[] text-2xl font-bold">$</h3>
@@ -134,18 +134,18 @@ export default function Pricing() {
                   <h6>Unlimited product updates</h6>
                 </div>
               </div>
-              <div className="bg-[#23A6F0] text-white py-[15px] px-10 text-sm font-bold">
+              <div className="bg-primary-color text-white py-[15px] px-10 text-sm font-bold">
                 <button>Try for free</button>
               </div>
             </div>
           </div>
           <div className=" h-[650px] w-[380px] flex-none">
-            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-[#23A6F0] rounded-lg">
+            <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">PREMIUM</h3>
               <h5 className="font-bold text-base text-[#737373]">
                 Organize across all apps by hand
               </h5>
-              <div className="flex gap-[10px] text-[#23A6F0]">
+              <div className="flex gap-[10px] text-primary-color">
                 <h2 className=" font-bold text-[40px]">19.99</h2>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-[] text-2xl font-bold">$</h3>
@@ -176,7 +176,7 @@ export default function Pricing() {
                   <h6>Unlimited product updates</h6>
                 </div>
               </div>
-              <div className="bg-[#23A6F0] text-white py-[15px] px-10 text-sm font-bold">
+              <div className="bg-primary-color text-white py-[15px] px-10 text-sm font-bold">
                 <button>Try for free</button>
               </div>
             </div>

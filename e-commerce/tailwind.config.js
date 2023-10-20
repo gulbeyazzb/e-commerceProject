@@ -7,12 +7,46 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    container: {
-      padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
+    extend: {
+      colors: {
+        second: {
+          text: "#737373",
+        },
+        primary: {
+          color: "#23A6F0",
+          text: "",
+        },
+        secondary: {
+          1: "",
+          2: "",
+          text1: "",
+          text2: "",
+        },
+        dark: {
+          bg: "",
+          text: "",
+        },
+        light: {
+          bg: "",
+          text: "",
+          gray: "",
+          gray1: "",
+          gray2: "",
+        },
+        success: {
+          color: "",
+          text: "",
+        },
+        alert: { color: "", text: "" },
+        danger: { color: "", text: "" },
+        hover: { color: "", text: "" },
+        disabled: { color: "", text: "" },
+        muted: { color: "", text: "" },
+        faded: {
+          primary: "",
+          secondary: "",
+          secondary2: "",
+        },
       },
     },
   },

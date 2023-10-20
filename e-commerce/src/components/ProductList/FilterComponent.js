@@ -5,11 +5,11 @@ export const FilterComponent = () => {
   return (
     <div className="py-6 ">
       <div className="flex gap-20 justify-between items-center">
-        <div className="font-bold text-[#737373] text-sm">
+        <div className="font-bold text-second-text text-sm">
           <p>Showing all 12 results</p>
         </div>
         <div className=" flex gap-6 items-center">
-          <p className="font-bold text-[#737373] text-sm">Views:</p>
+          <p className="font-bold text-second-text text-sm">Views:</p>
           <button className="border border-[#ECECEC] p-3">
             <i class="bx bxs-category  text-2xl "></i>
           </button>
@@ -33,7 +33,7 @@ export const FilterComponent = () => {
             </div>
           </div>
           <div>
-            <button className="bg-[#23A6F0] text-[#FFFFFF]">Filter</button>
+            <button className="bg-primary-color text-[#FFFFFF]">Filter</button>
           </div>
         </div>
       </div>

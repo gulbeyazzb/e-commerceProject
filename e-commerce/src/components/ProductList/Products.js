@@ -16,7 +16,7 @@ const Products = () => {
               <h5 className="text-center font-bold text-base">{d.heading}</h5>
               <a
                 href=""
-                className="font-bold text-sm text-[#737373] text-center"
+                className="font-bold text-sm text-second-text text-center"
               >
                 English Department
                 <div className="pt-3">
@@ -26,7 +26,7 @@ const Products = () => {
               </a>
               <div>
                 <button>
-                  <i class="bx bxs-circle text-[#23A6F0]"></i>
+                  <i class="bx bxs-circle text-primary-color"></i>
                 </button>
                 <button>
                   <i class="bx bxs-circle text-[#23856D]"></i>

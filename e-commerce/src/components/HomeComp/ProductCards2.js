@@ -17,13 +17,15 @@ const ProductCards2 = () => {
             <div className="flex gap-16">
               <nav className="flex items-center  font-bold text-sm gap-5 list-none">
                 <li>
-                  <button className="btn-sm text-[#23A6F0]">Women</button>
+                  <button className="btn-sm text-primary-color">Women</button>
                 </li>
                 <li>
-                  <button className="btn-sm text-[#737373]">Men</button>
+                  <button className="btn-sm text-second-text">Men</button>
                 </li>
                 <li>
-                  <button className="btn-sm text-[#737373]">Accessories</button>
+                  <button className="btn-sm text-second-text">
+                    Accessories
+                  </button>
                 </li>
               </nav>
               <nav className="flex list-none">
@@ -50,7 +52,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="pb-3 font-bold text-sm text-[#737373] text-center"
+                  className="pb-3 font-bold text-sm text-second-text text-center"
                 >
                   English Department
                   <div className="pt-3">
@@ -66,7 +68,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="font-bold text-sm text-[#737373] text-center"
+                  className="font-bold text-sm text-second-text text-center"
                 >
                   English Department
                 </a>
@@ -82,7 +84,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="font-bold text-sm text-[#737373] text-center"
+                  className="font-bold text-sm text-second-text text-center"
                 >
                   English Department
                   <div className="pt-3">
@@ -100,7 +102,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="font-bold text-sm text-[#737373] text-center"
+                  className="font-bold text-sm text-second-text text-center"
                 >
                   English Department
                   <div className="pt-3">
@@ -116,7 +118,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="font-bold text-sm text-[#737373] text-center"
+                  className="font-bold text-sm text-second-text text-center"
                 >
                   English Department
                   <div className="pt-3">
@@ -132,7 +134,7 @@ const ProductCards2 = () => {
                 </h5>
                 <a
                   href=""
-                  className="font-bold text-sm text-[#737373] text-center"
+                  className="font-bold text-sm text-second-text text-center"
                 >
                   English Department
                 </a>

@@ -14,9 +14,12 @@ const Footer = () => {
           </p>
         </div>
         <div>
-          <button className="bg-[#23A6F0] text-white py-4 px-10 rounded-md">
+          <Link
+            to="/contact"
+            className="bg-[#23A6F0] text-white py-4 px-10 rounded-md"
+          >
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
       <div className="flex justify-between container m-auto">
@@ -24,7 +27,7 @@ const Footer = () => {
           <Link className="text-base mb-3" to="/company-info">
             Company Info
           </Link>
-          <Link to="/about-us">About Us</Link>
+          <Link to="/about">About Us</Link>
           <Link to="/carrier">Carrier</Link>
           <Link to="/we-are-hiring">We are hiring</Link>
           <Link to="/blog">Blog</Link>
@@ -33,7 +36,7 @@ const Footer = () => {
           <Link className="text-base mb-3" to="/company-info">
             Legal
           </Link>
-          <Link to="/about-us">About Us</Link>
+          <Link to="/about">About Us</Link>
           <Link to="/carrier">Carrier</Link>
           <Link to="/we-are-hiring">We are hiring</Link>
           <Link to="/blog">Blog</Link>
@@ -42,7 +45,7 @@ const Footer = () => {
           <Link className="text-base mb-3" to="/company-info">
             Features
           </Link>
-          <Link to="/about-us">About Us</Link>
+          <Link to="/about">About Us</Link>
           <Link to="/carrier">Carrier</Link>
           <Link to="/we-are-hiring">We are hiring</Link>
           <Link to="/blog">Blog</Link>

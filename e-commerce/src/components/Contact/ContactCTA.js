@@ -12,7 +12,7 @@ export default function ContactCTA() {
           <h2 className=" text-6xl">Let’s Talk</h2>
           <Link
             to="/pricing"
-            className="bg-[#23A6F0] text-white py-[15px] px-10 text-sm w-[186px] m-auto"
+            className="bg-primary-color text-white py-[15px] px-10 text-sm w-[186px] m-auto"
           >
             Try it free now
           </Link>

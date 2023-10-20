@@ -10,7 +10,7 @@ const ProductHeader = () => {
           </NavLink>
         </div>
 
-        <div className="flex text-[#737373] font-bold text-sm items-center">
+        <div className="flex text-second-text font-bold text-sm items-center">
           <NavLink to="/" className=" text-[#252B42]" exact>
             Home
           </NavLink>

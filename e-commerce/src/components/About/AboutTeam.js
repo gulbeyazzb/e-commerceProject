@@ -20,7 +20,7 @@ export const AboutTeam = () => {
               <div className="flex flex-col gap-[10px] p-[30px]">
                 <h5 className="text-base">{data.header}</h5>
                 <h6 className="text-sm">{data.role}</h6>
-                <div className="flex gap-5 justify-center text-[#23A6F0]">
+                <div className="flex gap-5 justify-center text-primary-color">
                   <a href={data.facebook}>
                     {" "}
                     <i class="bx bxl-facebook-circle text-2xl"></i>

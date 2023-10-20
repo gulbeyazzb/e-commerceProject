@@ -6,9 +6,9 @@ export default function MostPopularProducts2() {
   return (
     <div className="flex flex-col gap-[30px] py-12">
       <div className="flex ">
-        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[649px] w-[400px] text-center bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[630px] w-[400px] text-center bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
-          <p className="font-normal text-sm text-[#737373] w-[280px]">
+          <p className="font-normal text-sm text-second-text w-[280px]">
             We focus on ergonomics and meeting you where you work. It's only a
             keystroke away.
           </p>
@@ -22,7 +22,7 @@ export default function MostPopularProducts2() {
             English Department
           </Link>
 
-          <div className="flex items-center text-[#737373] gap-1">
+          <div className="flex items-center text-second-text gap-1">
             <i class="bx bx-download h-4 w-4"></i>
             <p className="font-bold text-sm ">15 Sales</p>
           </div>
@@ -32,7 +32,7 @@ export default function MostPopularProducts2() {
           </div>
           <div>
             <button>
-              <i class="bx bxs-circle text-[#23A6F0]"></i>
+              <i class="bx bxs-circle text-primary-color"></i>
             </button>
             <button>
               <i class="bx bxs-circle text-[#23856D]"></i>

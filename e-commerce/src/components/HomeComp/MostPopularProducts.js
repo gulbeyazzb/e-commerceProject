@@ -11,7 +11,7 @@ export default function MostPopularProducts() {
         </div>
         <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[649px] w-[400px] text-center bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
-          <p className="font-normal text-sm text-[#737373] w-[280px]">
+          <p className="font-normal text-sm text-second-text w-[280px]">
             We focus on ergonomics and meeting you where you work. It's only a
             keystroke away.
           </p>
@@ -35,7 +35,7 @@ export default function MostPopularProducts() {
           <div className="text-[#E74040] font-bold text-[40px] me-2">1.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
-            <p className="font-normal text-xs text-[#737373]">
+            <p className="font-normal text-xs text-second-text">
               Things on a very small that you have any direct
             </p>
           </div>
@@ -44,7 +44,7 @@ export default function MostPopularProducts() {
           <div className="text-[#E74040] font-bold text-[40px] me-2">2.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
-            <p className="font-normal text-xs text-[#737373]">
+            <p className="font-normal text-xs text-second-text">
               Things on a very small that you have any direct
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function MostPopularProducts() {
           <div className="text-[#E74040] font-bold text-[40px] me-2">3.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
-            <p className="font-normal text-xs text-[#737373]">
+            <p className="font-normal text-xs text-second-text">
               Things on a very small that you have any direct
             </p>
           </div>
@@ -62,7 +62,7 @@ export default function MostPopularProducts() {
           <div className="text-[#E74040] font-bold text-[40px] me-2">4.</div>
           <div className="flex flex-col gap-[5px]">
             <p className="font-bold text-sm text-[#252B42]">Easy to use</p>
-            <p className="font-normal text-xs text-[#737373]">
+            <p className="font-normal text-xs text-second-text">
               Things on a very small that you have any direct
             </p>
           </div>

@@ -57,7 +57,7 @@ export default function ProductCard({ myData }) {
             <h5 className="text-2xl font-bold text-[#252B42]">$1,139.33</h5>
             <div className="flex gap-1">
               <p className="text-[#737373] font-bold text-sm">Availability :</p>
-              <p className="text-[#23A6F0] font-bold text-sm">In Stock </p>
+              <p className="text-primary-color font-bold text-sm">In Stock </p>
             </div>
             <p className="text-[#737373] font-normal text-sm w-[464px]">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
@@ -67,7 +67,7 @@ export default function ProductCard({ myData }) {
             <hr className="text-[#BDBDBD] border border-1" />
             <div className="flex gap-[10px]">
               <button>
-                <i class="bx bxs-circle text-3xl text-[#23A6F0]"></i>
+                <i class="bx bxs-circle text-3xl text-primary-color"></i>
               </button>
               <button>
                 <i class="bx bxs-circle text-3xl text-[#23856D]"></i>
@@ -80,7 +80,7 @@ export default function ProductCard({ myData }) {
               </button>
             </div>
             <div className="flex gap-[10px]">
-              <button className="bg-[#23A6F0] py-[10px] px-5 font-bold text-sm text-white">
+              <button className="bg-primary-color py-[10px] px-5 font-bold text-sm text-white">
                 Select Options
               </button>
               <i class="bx bx-heart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>

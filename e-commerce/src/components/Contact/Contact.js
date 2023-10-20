@@ -15,39 +15,39 @@ export default function Contact() {
         <div className="flex cards">
           <div className="h-[343px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 text-[#252B42]">
-              <i class="bx bx-phone text-[#23A6F0] text-5xl"></i>
+              <i class="bx bx-phone text-primary-color text-5xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>
               </div>
               <h5 className="font-bold text-base ">Get Support</h5>
-              <button className="text-[#23A6F0] border border-1 border-[#23A6F0] rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
+              <button className="text-primary-color border border-1 border-primary-color rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
                 Submit Request
               </button>
             </div>
           </div>
           <div className="h-[403px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 bg-[#252B42] text-white">
-              <i class="bx bx-current-location text-[#23A6F0] text-5xl"></i>
+              <i class="bx bx-current-location text-primary-color text-5xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>
               </div>
               <h5 className="font-bold text-base ">Get Support</h5>
-              <button className="text-[#23A6F0] border border-1 border-[#23A6F0] rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
+              <button className="text-primary-color border border-1 border-primary-color rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
                 Submit Request
               </button>
             </div>
           </div>
           <div className="h-[343px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 text-[#252B42]">
-              <i class="bx bxs-envelope text-[#23A6F0] text-5xl"></i>
+              <i class="bx bxs-envelope text-primary-color text-5xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>
               </div>
               <h5 className="font-bold text-base ">Get Support</h5>
-              <button className="text-[#23A6F0] border border-1 border-[#23A6F0] rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
+              <button className="text-primary-color border border-1 border-primary-color rounded-[37px] py-[15px] px-[36px] font-bold text-sm">
                 Submit Request
               </button>
             </div>

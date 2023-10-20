@@ -12,7 +12,7 @@ export default function TeamCTA() {
             Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
             RELIT official consequent.
           </p>
-          <button className="bg-[#23A6F0] py-[15px] px-10 font-bold text-sm">
+          <button className="bg-primary-color py-[15px] px-10 font-bold text-sm">
             Try it free now
           </button>
           <div className="w-[242px] flex p-[10px] gap-[34px]">

@@ -10,7 +10,7 @@ const AboutHeader = () => {
         <p>We know how large objects will act, but things on a small scale</p>
         <Link
           to="/team"
-          className="w-[190px] text-sm font-bold text-white py-[15px] px-10 bg-[#23A6F0]"
+          className="w-[190px] text-sm font-bold text-white py-[15px] px-10 bg-primary-color"
         >
           Get Quote Now
         </Link>
