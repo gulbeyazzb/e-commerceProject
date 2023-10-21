@@ -1,6 +1,6 @@
 export default function NavBarDark() {
   return (
-    <div className=" absolute bg-[#23856D] w-full top-0   ">
+    <div className="hidden sm:flex absolute bg-[#23856D] w-full top-0   ">
       <div className="flex justify-evenly container mx-auto p-4 h-14 items-center text-white">
         <div className="flex font-normal text-sm gap-6 ">
           {" "}

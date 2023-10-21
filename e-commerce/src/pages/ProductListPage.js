@@ -10,10 +10,9 @@ const ProductListPage = () => {
   return (
     <>
       <NavBarDark />
-      <NavBar />
       <ProductHeader />
       <ProductListShopCards />
-      <div className="w-[1050px] mx-auto">
+      <div className="sm:w-[1050px] mx-auto">
         <FilterComponent />
         <Products />
       </div>

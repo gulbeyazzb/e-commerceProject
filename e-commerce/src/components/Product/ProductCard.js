@@ -4,10 +4,10 @@ import { Carousel } from "@material-tailwind/react";
 export default function ProductCard({ myData }) {
   return (
     <div className="bg-[#FAFAFA] w-full">
-      <div className="pb-12 w-[1050px] mx-auto">
-        <div className="flex gap-[30px]">
-          <div className="w-[510px] h-[550px] ">
-            <div className="flex flex-col gap-4 w-[506px] h-[546px] rounded">
+      <div className="sm:pb-12 sm:w-[1050px] mx-auto">
+        <div className="mobile-col-flex gap-[30px] p-3 sm:p-0">
+          <div className=" sm:w-[510px] sm:h-[550px] ">
+            <div className="flex flex-col gap-4 sm:w-[506px] sm:h-[546px] rounded">
               <Carousel
                 navigation={({ setActiveIndex, activeIndex, length }) => (
                   <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
@@ -34,7 +34,7 @@ export default function ProductCard({ myData }) {
                   className=" w-[506px] h-[450px] "
                 />
               </Carousel>
-              <div className="flex gap-4 w-[219px] h-[75px]">
+              <div className="flex gap-4 sm:w-[219px] sm:h-[75px]">
                 <img
                   src={myData.src}
                   className="opacity-50 w-24 h-[75px]"
@@ -59,7 +59,7 @@ export default function ProductCard({ myData }) {
               <p className="text-[#737373] font-bold text-sm">Availability :</p>
               <p className="text-primary-color font-bold text-sm">In Stock </p>
             </div>
-            <p className="text-[#737373] font-normal text-sm w-[464px]">
+            <p className="text-[#737373] font-normal text-sm w-[340px] sm:w-[464px]">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
               sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
               venial consequent sent nostrum met.

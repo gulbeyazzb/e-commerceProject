@@ -7,19 +7,18 @@ import ProductDescription from "../components/Product/ProductDescription";
 import ProductBestSeller from "../components/Product/ProductBestSeller";
 import Clients from "../components/ProductList/Clients";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { data } from "../mocks/data";
+import { products } from "../mocks/productList/products";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const myData = data.find((product) => product.id === Number(id));
+  const myData = products.find((product) => product.id === Number(id));
 
   return (
     <>
       <NavBarDark />
-      <Navbar />
       <ProductHeader />
       <ProductCard myData={myData} />
-      <div className="w-[1050px] mx-auto">
+      <div className="sm:w-[1050px] mx-auto">
         <ProductDescription />
       </div>
       <ProductBestSeller />

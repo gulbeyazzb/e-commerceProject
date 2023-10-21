@@ -5,8 +5,8 @@ const NavBar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className=" bg-white ">
-      <div className="mobile-col-flex  sm:justify-between fixed-width sm:mx-auto  sm:px-0 py-4 sm:h-14 h-[600px]">
+    <div className="bg-white ">
+      <div className="mobile-col-flex  sm:justify-between fixed-width sm:mx-auto  sm:px-0 py-4 sm:h-14 ">
         <div>
           <NavLink to="/" exact className="font-bold text-2xl px-4 sm:px-0">
             Bandage
@@ -114,7 +114,7 @@ const NavBar = () => {
           </NavLink>
         </div>
 
-        <div className="hidden md:flex gap-4 text-primary-color font-bold text-sm">
+        <div className="mobile-col-flex items-center gap-4 text-primary-color font-bold text-sm">
           <NavLink to="/login" exact className="flex items-center">
             <box-icon
               name="user"

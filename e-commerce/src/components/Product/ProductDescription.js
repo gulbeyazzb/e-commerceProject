@@ -4,12 +4,14 @@ import pic1 from "../../Assets/products/unsplash_QANOF9iJlFs.png";
 export default function ProductDescription() {
   return (
     <div>
-      <div className="flex gap-6 justify-center">
-        <a className="p-6 text-[#737373] text-sm font-semibold">Description</a>
-        <a className="p-6 text-[#737373] text-sm font-bold">
+      <div className="flex sm:gap-6 gap-2 py-6 sm:py-0 justify-center">
+        <a className="sm:p-6 text-[#737373] text-sm font-semibold">
+          Description
+        </a>
+        <a className="sm:p-6 text-[#737373] text-sm font-bold">
           Additional Information
         </a>
-        <a className="flex gap-4 p-6 text-[#737373] text-sm font-semibold">
+        <a className="flex gap-4 sm:p-6 text-[#737373] text-sm font-semibold">
           Reviews
           <p className="text-[#23856D]">(0)</p>
         </a>
@@ -17,11 +19,9 @@ export default function ProductDescription() {
       <hr className="text-[#BDBDBD]  py-4" />
       <div>
         <div>
-          <div className="flex gap-[30px]">
-            <div>
-              <img className="h-[392px] shadow-xl" src={pic1}></img>
-            </div>
-            <div className="flex flex-col gap-[30px] w-[332px] h-[427px]">
+          <div className="mobile-col-flex items-center sm:items-start gap-[30px]">
+            <img className="h-[392px] shadow-xl" src={pic1}></img>
+            <div className="flex flex-col gap-[30px] w-[332px] sm:h-[427px]">
               <h5 className="text-2xl font-bold text-[#252B42]">
                 the quick fox jumps over{" "}
               </h5>

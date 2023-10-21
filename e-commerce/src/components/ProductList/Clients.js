@@ -9,12 +9,12 @@ const Clients = () => {
   return (
     <div className=" p-12 bg-[#FAFAFA]">
       <div className="mobile-col-flex sm:justify-center items-center  gap-[60px]">
-        <img className="w-[80px] h-[33.81px]" src={brand1}></img>
-        <img className="w-[83px] h-[59px]" src={brand2}></img>
-        <img className="w-[102px] h-[75px]" src={brand3}></img>
-        <img className="w-[103px] h-[42px]" src={brand4}></img>
-        <img className="w-[104px] h-[62px]" src={brand5}></img>
-        <img className="w-[76px] h-[72px] " src={brand6}></img>
+        <img className="sm:w-[80px] sm:h-[33.81px]" src={brand1}></img>
+        <img className="sm:w-[83px] sm:h-[59px]" src={brand2}></img>
+        <img className="sm:w-[102px] sm:h-[75px]" src={brand3}></img>
+        <img className="sm:w-[103px] sm:h-[42px]" src={brand4}></img>
+        <img className="sm:w-[104px] sm:h-[62px]" src={brand5}></img>
+        <img className="sm:w-[76px] sm:h-[72px] " src={brand6}></img>
       </div>
     </div>
   );
