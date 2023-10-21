@@ -7,16 +7,16 @@ import hero5 from "../../Assets/team/hero5.png";
 
 export default function TeamHeroPictures() {
   return (
-    <div className="w-full">
-      <div className="flex gap-2">
-        <img src={hero1} className="w-[700px] h-[530px]"></img>
-        <div className="flex flex-col gap-2">
-          <img src={hero2} className="w-[400px] h-[260px]"></img>
-          <img src={hero3} className="w-[400px] h-[260px]"></img>
+    <div>
+      <div className="mobile-col-flex gap-2">
+        <img src={hero1}></img>
+        <div className="flex flex-row sm:flex-col flex-1 sm:gap-2 gap-1">
+          <img src={hero2} className=""></img>
+          <img src={hero3} className=""></img>
         </div>
-        <div className="flex flex-col gap-2">
-          <img src={hero4} className="w-[400px] h-[260px]"></img>
-          <img src={hero5} className="w-[400px] h-[260px]"></img>
+        <div className="flex flex-row sm:flex-col flex-1 sm:gap-2 gap-1">
+          <img src={hero4} className=""></img>
+          <img src={hero5} className=""></img>
         </div>
       </div>
     </div>

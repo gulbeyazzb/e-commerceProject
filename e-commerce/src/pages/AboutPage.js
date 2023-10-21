@@ -9,7 +9,7 @@ import AboutTestimonials from "../components/About/AboutTestimonials";
 const AboutPage = () => {
   return (
     <>
-      <div className=" w-[1000px] m-auto">
+      <div className="sm:w-[1000px] m-auto">
         <AboutHeader />
         <AboutContent />
         <AboutStats />

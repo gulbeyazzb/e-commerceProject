@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutStats = () => {
   return (
-    <div className="flex items-center justify-evenly text-center py-20">
+    <div className="mobile-col-flex gap-12 items-center justify-evenly text-center py-20">
       <div>
         <p className="font-bold  text-[58px] text-[#252B42]">15K</p>
         <p className="font-bold  text-base text-[#737373]">Happy Customers</p>

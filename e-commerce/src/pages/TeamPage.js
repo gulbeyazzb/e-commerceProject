@@ -1,20 +1,16 @@
 import React from "react";
-import Team from "../components/team/Team";
-import TeamHeader from "../components/team/TeamHeader";
-import TeamHeroPictures from "../components/team/TeamHeroPictures";
-import TeamCTA from "../components/team/TeamCTA";
+import Team from "../components/Team/Team";
+import TeamHeader from "../components/Team/TeamHeader";
+import TeamHeroPictures from "../components/Team/TeamHeroPictures";
+import TeamCTA from "../components/Team/TeamCTA";
 
 export default function TeamPage() {
   return (
     <>
-      <div className="w-[1050px] mx-auto">
-        <TeamHeader />
-      </div>
+      <TeamHeader />
       <TeamHeroPictures />
-      <div className="w-[1050px] mx-auto">
-        <Team />
-        <TeamCTA />
-      </div>
+      <Team />
+      <TeamCTA />
     </>
   );
 }

@@ -16,11 +16,11 @@ export default function Pricing() {
   };
   return (
     <div className="bg-[#FAFAFA]">
-      <div className="flex flex-col gap-12 w-[1050px] mx-auto py-28 px-12 text-center items-center">
+      <div className="flex flex-col gap-12  py-28 sm:px-12 text-center items-center">
         <div className="header">
           <div className="flex flex-col gap-[10px] ">
             <h6 className="text-4xl font-bold text-[#252B42]">Pricing</h6>
-            <h2 className="w-[460px] text-sm text-[#737373] font-normal ">
+            <h2 className="px-10 sm:px-96 text-sm text-[#737373] font-normal ">
               Problems trying to resolve the conflict between the two major
               realms of Classical physics: Newtonian mechanics
             </h2>
@@ -54,8 +54,8 @@ export default function Pricing() {
             Save {save}
           </button>
         </div>
-        <div className="flex items-end">
-          <div className="h-[650px] w-[380px] flex-none">
+        <div className="mobile-col-flex gap-6 sm:gap-0 sm:items-end">
+          <div className="sm:h-[650px] sm:w-[380px] flex-none">
             <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">FREE</h3>
               <h5 className="font-bold text-base text-[#737373]">
@@ -97,7 +97,7 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div className="w-[400px] flex-1">
+          <div className="sm:w-[400px] sm:flex-1">
             <div className="flex flex-col gap-[35px] py-[50px] px-10 text-white items-center bg-[#252B42] border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">STANDARD</h3>
               <h5 className="font-bold text-base text-[#737373]">
@@ -139,7 +139,7 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div className=" h-[650px] w-[380px] flex-none">
+          <div className="sm:h-[650px] sm:w-[380px] flex-none">
             <div className="flex flex-col gap-[35px] py-[50px] px-10 text-[#252B42] items-center bg-white border border-primary-color rounded-lg">
               <h3 className="font-bold text-2xl">PREMIUM</h3>
               <h5 className="font-bold text-base text-[#737373]">

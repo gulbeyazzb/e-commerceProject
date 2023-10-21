@@ -5,9 +5,9 @@ export default function TeamHeader() {
   return (
     <div>
       <div className="py-[50px]">
-        <div className="flex flex-col gap-4 items-center">
+        <div className="flex flex-col gap-4 items-center text-center">
           <h5 className="font-bold text-base text-[#737373]">WHAT WE DO</h5>
-          <h5 className="font-bold text-6xl text-[#252B42]">
+          <h5 className="px-12 sm:px-0 font-bold text-4xl sm:text-6xl text-[#252B42]">
             Innovation tailored for you
           </h5>
           <div className="flex gap-[15px] py-[10px] justify-center">

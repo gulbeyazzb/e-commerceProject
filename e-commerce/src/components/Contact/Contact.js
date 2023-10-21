@@ -7,15 +7,15 @@ export default function Contact() {
         <div className="header">
           <div className="flex flex-col gap-[10px] font-bold">
             <h6 className="text-sm">VISIT OUR OFFICE</h6>
-            <h2 className="w-[500px] text-4xl">
+            <h2 className="px-9 text-[40px]">
               We help small businesses with big ideas
             </h2>
           </div>
         </div>
-        <div className="flex cards">
+        <div className="mobile-col-flex cards">
           <div className="h-[343px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 text-[#252B42]">
-              <i class="bx bx-phone text-primary-color text-5xl"></i>
+              <i class="bx bx-phone text-primary-color text-7xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>
@@ -28,7 +28,7 @@ export default function Contact() {
           </div>
           <div className="h-[403px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 bg-[#252B42] text-white">
-              <i class="bx bx-current-location text-primary-color text-5xl"></i>
+              <i class="bx bx-current-location text-primary-color text-7xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>
@@ -41,7 +41,7 @@ export default function Contact() {
           </div>
           <div className="h-[343px] ">
             <div className="flex flex-col gap-[15px] py-[50px] px-10 text-[#252B42]">
-              <i class="bx bxs-envelope text-primary-color text-5xl"></i>
+              <i class="bx bxs-envelope text-primary-color text-7xl"></i>
               <div className="text-sm font-bold ">
                 <p>georgia.young@example.com</p>
                 <p>georgia.young@ple.com</p>

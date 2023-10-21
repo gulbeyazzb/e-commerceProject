@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const AboutTestimonials = () => {
   return (
     <div className="bg-[#2A7CC7] h-[637px]">
-      <div className="flex justify-between">
-        <div className="flex flex-col gap-6 w-[500px] py-28 m-auto text-white">
+      <div className="mobile-col-flex sm:justify-between">
+        <div className="flex flex-col items-center sm:items-start px-20 sm:px-0 text-center sm:text-start gap-6 sm:w-[500px] py-28 m-auto text-white">
           <h5 className="font-bold text-base">WORK WITH US</h5>
           <h2 className="font-bold text-[40px]">Now Let’s grow Yours</h2>
           <p className="font-normal text-sm ">
@@ -15,12 +15,12 @@ const AboutTestimonials = () => {
           </p>
           <Link
             to="/contact"
-            className="py-[15px] w-[130px] rounded-md border border-1 border-[#FAFAFA] text-center text-[#FAFAFA]"
+            className="py-[15px] w-[130px]  rounded-md border border-1 border-[#FAFAFA] text-center text-[#FAFAFA]"
           >
             Contact
           </Link>
         </div>
-        <div>
+        <div className="invisible sm:visible">
           <img className="w-[590px] h-[637px]" src={bgtestimonial}></img>
         </div>
       </div>

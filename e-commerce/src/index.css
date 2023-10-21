@@ -31,3 +31,7 @@ code {
 .mobile-width {
   @apply w-[375px];
 }
+
+.activeNav {
+  @apply active:bg-second-text hover:bg-primary-color;
+}
