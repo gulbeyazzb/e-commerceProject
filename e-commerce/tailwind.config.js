@@ -20,10 +20,13 @@ module.exports = withMT({
           text: "",
         },
         secondary: {
-          1: "",
+          1: "#23856D",
           2: "",
           text1: "",
           text2: "",
+        },
+        text: {
+          color: "#252B42",
         },
         dark: {
           bg: "",
@@ -43,8 +46,8 @@ module.exports = withMT({
         alert: { color: "", text: "" },
         danger: { color: "", text: "" },
         hover: { color: "", text: "" },
-        disabled: { color: "", text: "" },
-        muted: { color: "", text: "" },
+        disabled: { color: "#8EC2F2", text: "" },
+        muted: { color: "#BDBDBD", text: "" },
         faded: {
           primary: "",
           secondary: "",

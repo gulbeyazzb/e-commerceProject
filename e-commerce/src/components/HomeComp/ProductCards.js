@@ -1,109 +1,111 @@
 import card1 from "../../Assets/card-cover-5.png";
 import { bestSeller } from "../../mocks/homeData/bestSeller";
+import { IoIosArrowDropleft } from "react-icons/fa";
+
 const ProductCards = () => {
   const bests = bestSeller.slice(0, 3);
   const bests2 = bestSeller.slice(3, 6);
 
   return (
     <div>
-      <div className="h-[2300px] sm:h-auto mobile-col-flex py-2 sm:py-12 gap-[30px]">
-        <div className="h-[600px] sm:h-auto">
-          <div className="relative w-[350px] m-auto">
-            <img className="absolute " src={card1}></img>
-            <div className="absolute top-10 left-10">
-              <h6 className=" text-xs font-bold">FURNITURE</h6>
-              <h6 className=" text-xs font-normal">5 Items</h6>
+      <div className="mobile-col-flex container m-auto justify-center py-12">
+        <div className="pt-12">
+          <div className=" gap-6">
+            <div className=" p-4">
+              <img src={card1} className="flex flex-1"></img>
+            </div>
+            <div className="hidden p-6 gap-[5px]">
+              <h6 className="font-bold text-sm text-text-color">FURNITURE</h6>
+              <h6 className="font-bold text-sm text-second-text">5 Items</h6>
             </div>
           </div>
         </div>
-        <div className="h-[1400px] my-auto sm:h-auto">
-          <div className="mobile-col-flex sm:items-center gap-[10px]">
+        <div className="flex flex-col">
+          <div className="mobile-col-flex items-center gap-6 pt-20 sm:pt-12 justify-center">
             <div>
-              <h3
-                id="section-title"
-                className="font-bold text-sm text-center sm:text-left"
-              >
-                BESTSELLER PRODUCTS
-              </h3>
+              <div className="flex flex-col gap-[10px]">
+                <h3 className="text-2xl font-bold text-text-color">
+                  BESTSELLER PRODUCTS
+                </h3>
+              </div>
             </div>
-            <div className="mobile-col-flex gap-10 sm:gap-16 items-center ">
-              <nav className="flex items-center  font-bold text-sm gap-5 list-none">
-                <li>
-                  <button className="btn-sm text-primary-color">Women</button>
-                </li>
-                <li>
-                  <button className="btn-sm text-second-text">Men</button>
-                </li>
-                <li>
-                  <button className="btn-sm text-second-text">
-                    Accessories
-                  </button>
-                </li>
-              </nav>
-              <nav className="flex list-none">
-                <li>
-                  <button className="  me-3  w-[48.57px] h-[48px] ">
-                    <i class="bx bx-chevron-left-circle w-[8.57px] h-[15px] text-3xl  font-thin "></i>
-                  </button>
-                </li>
-                <li>
-                  <button className=" me-3 w-[48.57px] h-[48px] ">
-                    <i class="bx bx-chevron-right-circle text-3xl  font-thin"></i>
-                  </button>
-                </li>
-              </nav>
+            <div>
+              <div className="mobile-col-flex items-center py-6 gap-6">
+                <div className="flex ">
+                  <div>
+                    <button className="py-[10px] px-5 text-primary-color text-sm font-bold">
+                      Men
+                    </button>
+                  </div>
+                  <div>
+                    <button className="py-[10px] px-5 text-second-text text-sm font-bold">
+                      Women
+                    </button>
+                  </div>
+                  <div>
+                    <button className="py-[10px] px-5 text-second-text text-sm font-bold">
+                      Accessories
+                    </button>
+                  </div>
+                </div>
+                <div className="flex gap-[15px]">
+                  <i class="bx bx-chevron-left py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px]"></i>
+                  <i class="bx bx-chevron-right py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px]"></i>
+                </div>
+              </div>
             </div>
           </div>
-          <hr />
-          <div className="pt-[25] pb-[35] px-[25]">
-            <div className="mobile-col-flex sm:flex-wrap items-center ">
-              {bests.map((best) => (
-                <div className="p-2 text-center">
-                  <img
-                    src={best.src}
-                    className="py-0 sm:py-2 sm:w-auto w-[330px]"
-                  ></img>
-                  <h5 className="pb-3 text-center font-bold text-base">
-                    {best.heading}
-                  </h5>
-                  <a
-                    href=""
-                    className="pb-3 font-bold text-sm text-second-text text-center"
-                  >
-                    {best.subHeading}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {best.price}
-                      </span>
-                      <span className="text-[#23856D] text-base ">
-                        {best.pricebold}
-                      </span>
-                    </div>{" "}
-                  </a>
-                </div>
-              ))}
-              {bests2.map((best) => (
-                <div className="hidden sm:inline-block p-2 text-center">
-                  <img src={best.src} className="py-2"></img>
-                  <h5 className="pb-3 text-center font-bold text-base">
-                    {best.heading}
-                  </h5>
-                  <a
-                    href=""
-                    className="pb-3 font-bold text-sm text-second-text text-center"
-                  >
-                    {best.subHeading}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {best.price}
-                      </span>
-                      <span className="text-[#23856D] text-base ">
-                        {best.pricebold}
-                      </span>
-                    </div>{" "}
-                  </a>
-                </div>
-              ))}
+          <hr className="pb-20" />
+          <div>
+            <div className="flex flex-col  gap-[15px]">
+              <div className="mobile-col-flex gap-[30px] items-center justify-center">
+                {bests.map((best) => (
+                  <div className="">
+                    <div>
+                      <img src={best.src}></img>
+                      <div className="flex flex-col gap-[10px] pt-[25px] px-[25px] pb-[35px]">
+                        <h5 className="font-bold text-base text-text-color">
+                          {best.heading}
+                        </h5>
+                        <a
+                          href="#"
+                          className="font-bold text-sm text-second-text"
+                        >
+                          {best.subHeading}
+                        </a>
+                        <div className="flex gap-[5px] py-[5px] px-[3px] font-bold text-base">
+                          <h5 className="text-muted-color">{best.price}</h5>
+                          <h5 className="text-secondary-1">{best.pricebold}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="hidden sm:flex gap-[30px] items-center justify-center">
+                {bests2.map((best) => (
+                  <div className="">
+                    <div>
+                      <img src={best.src}></img>
+                      <div className="flex flex-col gap-[10px] pt-[25px] px-[25px] pb-[35px]">
+                        <h5 className="font-bold text-base text-text-color">
+                          {best.heading}
+                        </h5>
+                        <a
+                          href="#"
+                          className="font-bold text-sm text-second-text"
+                        >
+                          {best.subHeading}
+                        </a>
+                        <div className="flex gap-[5px] py-[5px] px-[3px] font-bold text-base">
+                          <h5 className="text-muted-color">{best.price}</h5>
+                          <h5 className="text-secondary-1">{best.pricebold}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -13,12 +13,10 @@ export default function HomePage() {
     <>
       <Header />
       <ShopCards />
-      <div className="w-[375px] sm:w-[1050px] sm:mx-auto">
-        <ProductCards />
-        <MostPopularProducts />
-        <ProductCards2 />
-        <MostPopularProducts2 />
-      </div>
+      <ProductCards />
+      <MostPopularProducts />
+      <ProductCards2 />
+      <MostPopularProducts2 />
       <BestSeller />
       <Clients />
       <FeaturedPosts />
