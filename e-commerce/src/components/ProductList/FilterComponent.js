@@ -4,7 +4,7 @@ import { Select, Option } from "@material-tailwind/react";
 export const FilterComponent = () => {
   return (
     <div className="py-6 ">
-      <div className="mobile-col-flex sm:gap-20 gap-6 sm:justify-between justify-center items-center">
+      <div className="mobile-col-flex justify-center items-center gap-6 sm:gap-[12rem] py-6 sm:py-0">
         <div className="font-bold text-second-text text-sm">
           <p>Showing all 12 results</p>
         </div>

@@ -3,8 +3,8 @@ import { shopCards } from "../../mocks/productList/shopCards";
 const ProductListShopCards = () => {
   return (
     <div className="bg-[#FAFAFA]">
-      <div className="sm:w-[1050px] mx-auto py-6">
-        <div className="mobile-col-flex sm:gap-[15px] gap-[18px] sm:pb-12 items-center text-white text-center">
+      <div className=" flex justify-center">
+        <div className="mobile-col-flex sm:gap-[10px] gap-[18px] sm:pb-12 items-center text-white text-center ">
           {shopCards.map((card) => (
             <div>
               <div className="relative">

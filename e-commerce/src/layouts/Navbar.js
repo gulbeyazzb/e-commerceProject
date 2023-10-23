@@ -18,7 +18,7 @@ const NavBar = () => {
 
   return (
     <div className="bg-white ">
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center py-6 ">
         <div className="flex gap-[2rem] sm:gap-[6rem] items-center">
           <div>
             {" "}

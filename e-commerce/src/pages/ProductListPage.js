@@ -9,13 +9,10 @@ import ProductHeader from "../components/ProductList/ProductHeader";
 const ProductListPage = () => {
   return (
     <>
-      <NavBarDark />
       <ProductHeader />
       <ProductListShopCards />
-      <div className="sm:w-[1050px] mx-auto">
-        <FilterComponent />
-        <Products />
-      </div>
+      <FilterComponent />
+      <Products />
       <Clients />
     </>
   );

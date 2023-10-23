@@ -6,8 +6,8 @@ const Products = () => {
   const mobileProducts = products.slice(0, 4);
   return (
     <div className="py-12">
-      <div className="flex flex-col gap-12 ">
-        <div className="hidden sm:flex flex-wrap gap-[30px] ">
+      <div className="flex flex-col gap-12 px-28">
+        <div className="hidden sm:flex flex-wrap gap-[30px] justify-center items-center ">
           {products.map((product) => (
             <Link
               to={`/product/${product.id}`}
@@ -54,7 +54,7 @@ const Products = () => {
               to={`/product/${product.id}`}
               className="flex flex-col text-center gap-[10px]"
             >
-              <img src={product.src} className="w-[300px] m-auto"></img>
+              <img src={product.src} className="w-full m-auto"></img>
               <h5 className="text-center font-bold text-base">
                 {product.heading}
               </h5>

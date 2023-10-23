@@ -2,7 +2,7 @@ import { TeamData } from "../../../mocks/AboutData/TeamData";
 
 const TeamCompound = () => {
   return (
-    <div className="flex flex-wrap gap-[30px]  ">
+    <div className="flex flex-wrap gap-[30px] justify-center items-center container px-0 sm:px-28 ">
       {TeamData.map((data) => (
         <div className="w-[316px] m-auto font-bold mb-10">
           <img className="w-[316px] h-[231px]" src={data.img}></img>

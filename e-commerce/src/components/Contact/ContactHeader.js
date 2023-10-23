@@ -8,7 +8,7 @@ export default function ContactHeader() {
       <div className="flex flex-col gap-[35px] text-[#252B42] py-28 sm:pl-[16.5rem] ">
         <h5 className="font-bold text-base">CONTACT US</h5>
         <h1 className="font-bold text-[58px]">Get in touch today!</h1>{" "}
-        <h4 className="text-[#737373] px-12">
+        <h4 className="text-[#737373] px-12 sm:px-0">
           We know how large objects will act, but things on a small scale{" "}
         </h4>{" "}
         <div className="flex flex-col gap-4 font-bold text-2xl">

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function MostPopularProducts() {
   return (
-    <div className="flex flex-col gap-[30px] py-12 sm:py-28">
+    <div className="flex flex-col container m-auto justify-center items-center py-12 sm:px-20 px-0">
       <div className="mobile-col-flex ">
         <div>
-          <img className="w-[600px] h-[630px]" src={most}></img>
+          <img className="" src={most}></img>
         </div>
-        <div className="flex flex-col items-center justify-center py-20 gap-[19px] h-[649px] w-[400px] text-center bg-[#FAFAFA]">
+        <div className="flex flex-col items-center justify-center py-20 gap-[19px] text-center bg-[#FAFAFA]">
           <h5 className="text-[#252B42] font-bold text-2xl">MOST POPULAR</h5>
-          <p className="font-normal text-sm text-second-text w-[280px]">
+          <p className="font-normal text-sm text-second-text ">
             We focus on ergonomics and meeting you where you work. It's only a
             keystroke away.
           </p>
