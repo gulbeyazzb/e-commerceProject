@@ -3,7 +3,7 @@ import React from "react";
 const AboutContent = () => {
   return (
     <div className="mobile-col-flex sm:justify-between sm:gap-0 gap-12 items-center text-center sm:text-start py-6">
-      <div className="w-[390px] flex flex-col sm:items-start items-center sm:gap-6 gap-12">
+      <div className="sm:w-[390px] flex flex-col sm:items-start items-center sm:gap-6 gap-12">
         <p className="text-[#E74040] text-sm font-normal">Problems trying</p>
         <p className="text-[#252B42] text-3xl font-bold">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.

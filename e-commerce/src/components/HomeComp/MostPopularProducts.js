@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function MostPopularProducts() {
   return (
-    <div className="flex flex-col container m-auto justify-center items-center py-12 sm:px-20 px-0">
+    <div className="flex flex-col container m-auto justify-center items-center py-12 sm:px-20 px-0 sm:gap-4 gap-1">
       <div className="mobile-col-flex ">
         <div>
           <img className="" src={most}></img>

@@ -9,7 +9,7 @@ const BestSeller = () => {
         <div>
           <h3
             id="section-title"
-            className="font-bold text-sm mb-6 text-[#252B42]"
+            className="font-bold  mb-6 text-[#252B42] text-2xl"
           >
             BESTSELLER PRODUCTS
           </h3>

@@ -11,7 +11,7 @@ const ProductCards2 = () => {
       <div className="mobile-col-flex container m-auto justify-center py-12">
         <div className="sm:hidden flex pt-12">
           <div className=" gap-6">
-            <div className=" p-4">
+            <div className=" ">
               <img src={card1} className="flex flex-1"></img>
             </div>
             <div className="hidden p-6 gap-[5px]">
@@ -49,8 +49,8 @@ const ProductCards2 = () => {
                   </div>
                 </div>
                 <div className="flex gap-[15px]">
-                  <i class="bx bx-chevron-left py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px]"></i>
-                  <i class="bx bx-chevron-right py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px]"></i>
+                  <i class="bx bx-chevron-left py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
+                  <i class="bx bx-chevron-right py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
                 </div>
               </div>
             </div>
