@@ -38,7 +38,7 @@ const NavBar = () => {
               Home
             </NavLink>
             <div className="flex items-center">
-              <NavLink to="/product-list" className="">
+              <NavLink to="/shopping" className="">
                 Shop
               </NavLink>
               <div class="relative inline-block text-left">
@@ -135,7 +135,7 @@ const NavBar = () => {
           </div>
           <div className="flex items-center gap-4 text-black sm:text-primary-color font-bold ">
             <NavLink
-              to="/login"
+              to="/signup"
               exact
               className={`${
                 visibleItem ? "flex" : "flex sm:hidden "
@@ -146,7 +146,8 @@ const NavBar = () => {
             <input
               type="text"
               name="searchingItem"
-              className="border border-orange-700 rounded"
+              className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-[#DADADA] p-2 sm:w-72"
+              placeholder="Search"
               hidden={visibleItem}
             ></input>
             <button onClick={searchHandle} className="flex items-center ">
@@ -171,51 +172,53 @@ const NavBar = () => {
               <p hidden={!visibleItem}>1</p>
             </NavLink>
             <div className="flex sm:hidden text-5xl">
-              <Menu>
-                <MenuHandler>
-                  <Button className="p-0 shadow-none bg-transparent">
-                    {" "}
-                    <i class="bx bx-menu text-black text-3xl"></i>
-                  </Button>
-                </MenuHandler>
-                <MenuList className="">
-                  <NavLink to="/" className="" exact>
-                    {" "}
-                    <MenuItem className=""> Home</MenuItem>{" "}
-                  </NavLink>
-                  <NavLink to="/product-list" className="">
-                    {" "}
-                    <MenuItem>Shop</MenuItem>
-                  </NavLink>
-                  <NavLink to="/about" className="" exact>
-                    {" "}
-                    <MenuItem>About</MenuItem>{" "}
-                  </NavLink>
-                  <NavLink to="/team" className="" exact>
-                    {" "}
-                    <MenuItem> Team</MenuItem>
-                  </NavLink>
-                  <NavLink to="/pricing" exact>
-                    <MenuItem> Pricing</MenuItem>{" "}
-                  </NavLink>
-                  <NavLink to="/contact" className="" exact>
-                    {" "}
-                    <MenuItem>Contact</MenuItem>
-                  </NavLink>
-                  <NavLink to="/login" exact className="flex items-center">
-                    {" "}
-                    <MenuItem>
+              {visibleItem && (
+                <Menu>
+                  <MenuHandler>
+                    <Button className="p-0 shadow-none bg-transparent">
                       {" "}
-                      <box-icon
-                        name="user"
-                        color="#23a6f0"
-                        className="w-3 h-3"
-                      ></box-icon>{" "}
-                      Login / Register
-                    </MenuItem>{" "}
-                  </NavLink>
-                </MenuList>
-              </Menu>
+                      <i class="bx bx-menu text-black text-3xl"></i>
+                    </Button>
+                  </MenuHandler>
+                  <MenuList className="">
+                    <NavLink to="/" className="" exact>
+                      {" "}
+                      <MenuItem className=""> Home</MenuItem>{" "}
+                    </NavLink>
+                    <NavLink to="/shopping" className="">
+                      {" "}
+                      <MenuItem>Shop</MenuItem>
+                    </NavLink>
+                    <NavLink to="/about" className="" exact>
+                      {" "}
+                      <MenuItem>About</MenuItem>{" "}
+                    </NavLink>
+                    <NavLink to="/team" className="" exact>
+                      {" "}
+                      <MenuItem> Team</MenuItem>
+                    </NavLink>
+                    <NavLink to="/pricing" exact>
+                      <MenuItem> Pricing</MenuItem>{" "}
+                    </NavLink>
+                    <NavLink to="/contact" className="" exact>
+                      {" "}
+                      <MenuItem>Contact</MenuItem>
+                    </NavLink>
+                    <NavLink to="/signup" exact className="flex items-center">
+                      {" "}
+                      <MenuItem>
+                        {" "}
+                        <box-icon
+                          name="user"
+                          color="#23a6f0"
+                          className="w-3 h-3"
+                        ></box-icon>{" "}
+                        Login / Register
+                      </MenuItem>{" "}
+                    </NavLink>
+                  </MenuList>
+                </Menu>
+              )}
             </div>
           </div>
         </div>
