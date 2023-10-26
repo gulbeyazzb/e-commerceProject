@@ -6,6 +6,8 @@ import ContactPage from "../pages/ContactPage";
 import ProductPage from "../pages/ProductPage";
 import TeamPage from "../pages/TeamPage";
 import PricingPage from "../pages/PricingPage";
+import Login from "../components/Login/Login";
+import SignUp from "../components/Login/SignUp";
 
 export const PageContent = () => {
   return (
@@ -13,7 +15,7 @@ export const PageContent = () => {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/product-list" exact>
+      <Route path="/shopping" exact>
         <ProductListPage />
       </Route>
       <Route path="/about" exact>
@@ -30,6 +32,12 @@ export const PageContent = () => {
       </Route>
       <Route path="/pricing" exact>
         <PricingPage />
+      </Route>
+      <Route path="/signin" exact>
+        <Login />
+      </Route>
+      <Route path="/signup" exact>
+        <SignUp />
       </Route>
     </Switch>
   );
