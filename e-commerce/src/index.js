@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import "boxicons";
 import { ThemeProvider } from "@material-tailwind/react";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
