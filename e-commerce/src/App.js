@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
@@ -6,6 +7,8 @@ function App() {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>

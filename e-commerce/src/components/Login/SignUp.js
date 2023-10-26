@@ -3,15 +3,20 @@ import { Form, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import { Spinner } from "@material-tailwind/react";
 import FormInput from "../atoms/FormInput";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import { loginData } from "../../mocks/loginData/loginData";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useAxios } from "../../hooks/useAxios";
+import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 
 const Signup = () => {
   const [sellerRole, setSellerRole] = useState(false);
   const [roles, setRoles] = useState();
   const [spinner, setSpinner] = useState(false);
+  const [getRoles, roleData, loading, err] = useAxios({
+    reqType: "get",
+    endPoint: "/roles",
+  });
 
   const push = useHistory();
   const {
@@ -38,19 +43,25 @@ const Signup = () => {
       push.push("/");
     }, 2000);
 
-    // axios
-    //   .post("olmayan-bir-url.com", formData)
-    //   .then((res) => {})
-    //   .catch((err) => {
-    //     toast.error("Login olurken bir hata ile karşılaşıldı!");
-    //   });
+    axiosWithAuth()
+      .post("signup", formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Login olurken bir hata ile karşılaşıldı!");
+      });
   };
 
-  useEffect(() => {
-    // fetch("url/roles")
-    //   .then((res) => res.json)
-    //   .then((val) => setRoles(val));
-  }, []);
+  // useEffect(() => {
+  //   getRoles()
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setRoles(res.data);
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   const changeOptionHandle = (e) => {
     const selectedId = e.target.value;
