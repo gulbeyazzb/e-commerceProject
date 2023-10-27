@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { axiosWithAuth } from "../utilities/axiosWithAuth";
 
-export const useAxios = ({ reqType, endpoint, payload, config }) => {
-  const [data, setData] = useState();
+export const useAxios = ({
+  reqType,
+  endpoint,
+  payload,
+  config,
+  initialValue,
+}) => {
+  const [data, setData] = useState(initialValue);
   const [err, setErr] = useState();
   const [loading, setLoading] = useState(false);
 

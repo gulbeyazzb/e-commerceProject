@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
     baseURL: "https://workintech-fe-ecommerce.onrender.com/",
     headers: token
       ? {
-          Authorization: token,
+          authorization: token,
         }
       : {},
   });

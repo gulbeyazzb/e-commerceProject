@@ -46,7 +46,7 @@ const NavBar = () => {
                   <button
                     onClick={() => setToggle(!toggle)}
                     type="button"
-                    class="inline-flex w-full justify-center rounded-md bg-white text-sm  text-second-text font-bold hover:bg-gray-50"
+                    className="inline-flex w-full justify-center rounded-md bg-white text-sm  text-second-text font-bold hover:bg-gray-50"
                     id="menu-button"
                     aria-expanded="true"
                     aria-haspopup="true"
@@ -58,9 +58,9 @@ const NavBar = () => {
                       aria-hidden="true"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>
@@ -76,7 +76,7 @@ const NavBar = () => {
                     <div class="py-1" role="none">
                       <a
                         href="#"
-                        class="text-gray-700 block px-4 py-2 text-sm"
+                        className="text-gray-700 block px-4 py-2 text-sm"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-0"
@@ -85,7 +85,7 @@ const NavBar = () => {
                       </a>
                       <a
                         href="#"
-                        class="text-gray-700 block px-4 py-2 text-sm"
+                        className="text-gray-700 block px-4 py-2 text-sm"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-1"
@@ -94,7 +94,7 @@ const NavBar = () => {
                       </a>
                       <a
                         href="#"
-                        class="text-gray-700 block px-4 py-2 text-sm"
+                        className="text-gray-700 block px-4 py-2 text-sm"
                         role="menuitem"
                         tabindex="-1"
                         id="menu-item-2"
@@ -104,7 +104,7 @@ const NavBar = () => {
                       <form method="POST" action="#" role="none">
                         <button
                           type="submit"
-                          class="text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                          className="text-gray-700 block w-full px-4 py-2 text-left text-sm"
                           role="menuitem"
                           tabindex="-1"
                           id="menu-item-3"

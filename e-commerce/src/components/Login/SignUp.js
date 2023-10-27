@@ -15,10 +15,11 @@ const Signup = () => {
   const [spinner, setSpinner] = useState(false);
   const [getRoles, roleData, loading, err] = useAxios({
     reqType: "get",
-    endPoint: "/roles",
+    endPoint: "roles",
   });
 
   const push = useHistory();
+
   const {
     register,
     handleSubmit,
@@ -29,14 +30,13 @@ const Signup = () => {
       email: "",
       password: "",
       role_id: "",
-      storeName: "",
-      taxId: "",
-      iban: "",
+      store: { name: "", tax_no: "", bank_account: "" },
     },
     mode: "onChange",
   });
 
   const onFormSubmit = (formData) => {
+    console.log(formData);
     setSpinner(true);
     toast("logging in...");
     setTimeout(() => {
@@ -54,14 +54,14 @@ const Signup = () => {
       });
   };
 
-  // useEffect(() => {
-  //   getRoles()
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setRoles(res.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
+  useEffect(() => {
+    getRoles()
+      .then((res) => {
+        console.log(res);
+        setRoles(res);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   const changeOptionHandle = (e) => {
     const selectedId = e.target.value;
@@ -84,20 +84,20 @@ const Signup = () => {
             <div className="flex gap-4">
               <FormGroup className="w-[17rem] flex flex-col">
                 <Label className="font-bold text-xl p-3">First Name:</Label>
-                <FormInput
+                <input
                   autoFocus
                   placeholder="First Name"
                   className="p-4 rounded-md border border-[#DADADA] text-black"
                   type="firstname"
-                  register={register}
-                  name={"firstname"}
-                  validations={{
-                    required: "firstname is required!",
-                    minLength: {
-                      value: 3,
-                      message: "At least 3 char is must be",
+                  {...register("name", {
+                    validations: {
+                      required: "firstname is required!",
+                      minLength: {
+                        value: 3,
+                        message: "At least 3 char is must be",
+                      },
                     },
-                  }}
+                  })}
                   invalid={!!errors.firstname?.message}
                 />
                 <FormFeedback className="text-red-600">
@@ -165,12 +165,12 @@ const Signup = () => {
             </FormGroup>
             <FormGroup className="flex flex-col w-[35rem]">
               <Label className="font-bold text-xl p-3">Role:</Label>
-              <FormInput
+
+              <select
                 className="p-4 rounded-md border border-[#DADADA] text-black"
-                type="select"
-                name="role_id"
-                register={register}
                 onChange={(e) => changeOptionHandle(e)}
+                register={register}
+                name={"role_id"}
               >
                 {loginData.map((roleData) => (
                   <option
@@ -181,42 +181,47 @@ const Signup = () => {
                     {roleData.role}
                   </option>
                 ))}
-              </FormInput>
+              </select>
             </FormGroup>
             {sellerRole && (
               <div>
                 <FormGroup className=" flex flex-col w-[35rem]">
                   <Label className="font-bold text-xl p-3">Store Name:</Label>
-                  <FormInput
+                  <input
                     placeholder="Store Name"
                     className="p-4 rounded-md border border-[#DADADA] text-black"
                     type="text"
-                    register={register}
-                    name={"storeName"}
-                    validations={{
-                      required: "Store name is required!",
-                      minLength: {
-                        value: 3,
-                        message: "At least 3 characters must be entered",
+                    name={"name"}
+                    {...register("store.name", {
+                      validations: {
+                        required: "Store name is required!",
+                        minLength: {
+                          value: 3,
+                          message: "At least 3 characters must be entered",
+                        },
                       },
-                    }}
+                    })}
                   />
+                  <FormFeedback className="text-red-600">
+                    {errors.storeName?.message}
+                  </FormFeedback>
                 </FormGroup>
                 <FormGroup className=" flex flex-col w-[35rem]">
                   <Label className="font-bold text-xl p-3">Store Tax ID:</Label>
-                  <FormInput
+                  <input
                     placeholder="Tax ID"
                     className="p-4 rounded-md border border-[#DADADA] text-black"
                     type="text"
-                    register={register}
-                    name={"taxId"}
-                    validations={{
-                      required: "Tax ID is required!",
-                      pattern: {
-                        value: "TXXXXVXXXXXX",
-                        message: "TAX ID is not valid",
+                    name={"tax_no"}
+                    {...register("store.tax_no", {
+                      validations: {
+                        required: "Tax ID is required!",
+                        pattern: {
+                          value: "TXXXXVXXXXXX",
+                          message: "TAX ID is not valid",
+                        },
                       },
-                    }}
+                    })}
                     invalid={!!errors.taxId?.message}
                   />
                   <FormFeedback className="text-red-600">
@@ -225,19 +230,19 @@ const Signup = () => {
                 </FormGroup>
                 <FormGroup className=" flex flex-col w-[35rem]">
                   <Label className="font-bold text-xl p-3">Iban:</Label>
-                  <FormInput
+                  <input
                     placeholder="Iban"
                     className="p-4 rounded-md border border-[#DADADA] text-black"
                     type="text"
-                    register={register}
-                    name={"iban"}
-                    validations={{
-                      required: "Iban is required!",
-                      pattern: {
-                        value: "TRXXXXXXXXXXXXXXXXXXXXXXXX",
-                        message: "Iban is not valid",
+                    {...register("store.bank_account", {
+                      validations: {
+                        required: "Iban is required!",
+                        pattern: {
+                          value: "TRXXXXXXXXXXXXXXXXXXXXXXXX",
+                          message: "Iban is not valid",
+                        },
                       },
-                    }}
+                    })}
                     invalid={!!errors.iban?.message}
                   />
                   <FormFeedback className="text-red-600">
