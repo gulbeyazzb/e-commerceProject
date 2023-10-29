@@ -1,30 +1,18 @@
-const userInitial = {
-  customer: {
-    name: "",
-    email: "",
-    password: "",
-    role_id: "",
-  },
-  store: {
-    name: "",
-    email: "",
-    password: "",
-    role_id: "",
-    name: "",
-    tax_no: "",
-    bank_account: "",
-  },
+import { SET_USER } from "../actions/userAction";
+
+const user = {
+  name: "",
+  email: "",
+  password: "",
+  role_id: "3",
 };
 
-export function userReducer(state = userInitial, action) {
+export function userReducer(state = user, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case "SET_USER_CUSTOMER":
+    case SET_USER:
       return { ...state, customer: payload };
-
-    case "SET_USER_SELLER":
-      return { ...state, store: payload };
 
     default:
       return state;

@@ -6,7 +6,7 @@ export default function ProductCard({ myData }) {
     <div className="bg-[#FAFAFA] w-full">
       <div className="sm:pb-12 sm:w-[1050px] mx-auto">
         <div className="mobile-col-flex gap-[30px] p-3 sm:p-0">
-          <div className=" sm:w-[510px] sm:h-[550px] ">
+          <div className="w-full sm:w-[510px] sm:h-[550px] ">
             <div className="flex flex-col gap-4 sm:w-[506px] sm:h-[546px] rounded">
               <Carousel
                 navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -46,7 +46,7 @@ export default function ProductCard({ myData }) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-7 w-[510px] h-[471px] ">
+          <div className="flex flex-col gap-7 w-full sm:w-[510px] h-[471px] ">
             <h4 className="font-normal text-xl text-[#252B42]">
               {myData?.heading}
             </h4>

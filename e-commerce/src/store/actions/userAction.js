@@ -1,12 +1,6 @@
-export const SET_USER_CUSTOMER = "";
-export const SET_USER_SELLER = "";
+export const SET_USER = "SET_USER";
 
-export const setUserCustomerAction = (customer) => ({
-  type: "SET_USER_CUSTOMER",
-  payload: customer,
-});
-
-export const setUserSellerAction = (seller) => ({
-  type: "SET_USER_SELLER",
-  payload: seller,
+export const setUserCustomerAction = (user) => ({
+  type: SET_USER,
+  payload: user,
 });

@@ -2,15 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
-import { axiosWithAuth } from "./utilities/axiosWithAuth";
-import { useAxios } from "./hooks/useAxios";
 
 function App() {
-  const [getUserData, userData, userLoading, userError] = useAxios({
-    reqType: "get",
-    endPoint: "signup",
-  });
-
   const scrollToTop = () => {
     scroll.scrollToTop();
   };

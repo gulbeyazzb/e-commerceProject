@@ -5,8 +5,8 @@ import Pagination from "./Pagination";
 const Products = () => {
   const mobileProducts = products.slice(0, 4);
   return (
-    <div className="py-12">
-      <div className="flex flex-col gap-12 px-28">
+    <div className="py-12 w-full ">
+      <div className="flex flex-col gap-12 sm:px-28 w-full">
         <div className="hidden sm:flex flex-wrap gap-[30px] justify-center items-center ">
           {products.map((product) => (
             <Link
@@ -48,11 +48,11 @@ const Products = () => {
             </Link>
           ))}
         </div>
-        <div className="sm:hidden flex flex-col gap-[30px] ">
+        <div className="sm:hidden flex flex-col gap-[30px] w-full px-4">
           {mobileProducts.map((product) => (
             <Link
               to={`/product/${product.id}`}
-              className="flex flex-col text-center gap-[10px]"
+              className="flex flex-col text-center gap-[10px] "
             >
               <img src={product.src} className="w-full m-auto"></img>
               <h5 className="text-center font-bold text-base">

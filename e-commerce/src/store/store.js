@@ -1,4 +1,5 @@
-import { legacy_createStore as createStore } from "redux";
-import { userReducer } from "../store/reducers/userReducer";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import thunk from "redux-thunk";
+import { reducers } from "./reducers";
 
-export const store = createStore(userReducer);
+export const store = createStore(reducers, applyMiddleware(thunk));

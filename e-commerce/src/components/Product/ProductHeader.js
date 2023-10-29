@@ -9,7 +9,7 @@ export default function ProductHeader() {
           Home
         </NavLink>
         <i class="bx bxs-chevron-right text-[#BDBDBD] text-2xl"></i>
-        <NavLink to="/product-list" className="mr-1">
+        <NavLink to="/shopping" className="mr-1">
           Shop
         </NavLink>
       </div>
