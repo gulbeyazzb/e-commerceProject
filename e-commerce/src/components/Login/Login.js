@@ -21,14 +21,19 @@ export default function Login() {
 
   const onFormSubmit = (formData) => {
     dispatch(fetchUserActionCreator(formData));
-    setTimeout(() => {
-      push.push("/");
-    }, 2000);
   };
 
   const userLoading = useSelector(
     (store) => store.user.fetchState === FETCH_STATES.Fetching
   );
+
+  const userLoaded = useSelector(
+    (store) => store.user.fetchState === FETCH_STATES.Fetched
+  );
+
+  if (userLoaded) {
+    push.push("/");
+  }
 
   return (
     <div className="sm:w-[800px] m-auto w-full  ">
@@ -93,7 +98,7 @@ export default function Login() {
             type="submit"
             formNoValidate="formnovalidate"
           >
-            {userLoading ? <Spinner /> : "Sign Up"}
+            {userLoading ? <Spinner /> : "Sign In"}
           </button>
         </form>
       </div>
