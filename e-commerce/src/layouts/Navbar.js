@@ -7,6 +7,8 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
+import { useSelector } from "react-redux";
+import { FETCH_STATES } from "../store/reducers/productReducer";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
@@ -15,6 +17,16 @@ const NavBar = () => {
     setVisibleItem(!visibleItem);
   };
   const [toggle, setToggle] = useState(false);
+
+  const userInfo = useSelector((store) => store.user);
+  localStorage.setItem("token", userInfo.userInfo.token);
+  const userNotFetched = useSelector(
+    (store) => store.user.fetchState === FETCH_STATES.NotFetched
+  );
+  const userFetched = useSelector(
+    (store) => store.user.fetchState === FETCH_STATES.Fetched
+  );
+  console.log(userInfo);
 
   return (
     <div className="bg-white ">
@@ -134,15 +146,35 @@ const NavBar = () => {
             </NavLink>
           </div>
           <div className="flex items-center gap-4 text-black sm:text-primary-color font-bold ">
-            <NavLink
-              to="/signup"
-              exact
-              className={`${
-                visibleItem ? "flex" : "flex sm:hidden "
-              } font-bold text-lg px-4 sm:px-0 hidden sm:flex items-center `}
-            >
-              <i class="bx bx-user text-[#23a6f0]"></i> Login / Register
-            </NavLink>
+            {userNotFetched && (
+              <div className="flex">
+                {" "}
+                <i
+                  class={`${
+                    visibleItem ? "flex" : "flex sm:hidden "
+                  } bx bx-user text-[#23a6f0] text-2xl `}
+                ></i>
+                <NavLink
+                  to="/login"
+                  exact
+                  className={`${
+                    visibleItem ? "flex" : "flex sm:hidden "
+                  } font-bold text-lg px-4 sm:px-0 hidden sm:flex items-center `}
+                >
+                  Login /
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  exact
+                  className={`${
+                    visibleItem ? "flex" : "flex sm:hidden "
+                  } font-bold text-lg px-4 sm:px-0 hidden sm:flex items-center `}
+                >
+                  Register
+                </NavLink>
+              </div>
+            )}
+
             <input
               type="text"
               name="searchingItem"
@@ -171,6 +203,13 @@ const NavBar = () => {
               <i class="bx bx-heart text-2xl" hidden={!visibleItem}></i>{" "}
               <p hidden={!visibleItem}>1</p>
             </NavLink>
+
+            {userFetched && (
+              <div>
+                <p> {userInfo.userInfo.name}</p>
+              </div>
+            )}
+
             <div className="flex sm:hidden text-5xl">
               {visibleItem && (
                 <Menu>
