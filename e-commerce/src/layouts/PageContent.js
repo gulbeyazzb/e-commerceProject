@@ -33,7 +33,7 @@ export const PageContent = () => {
       <Route path="/pricing" exact>
         <PricingPage />
       </Route>
-      <Route path="/signin" exact>
+      <Route path="/login" exact>
         <Login />
       </Route>
       <Route path="/signup" exact>
