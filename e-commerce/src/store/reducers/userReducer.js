@@ -15,7 +15,14 @@ export function userReducer(state = user, action) {
 
   switch (type) {
     case SET_USER:
-      return { ...state, userInfo: payload };
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          email: payload.email,
+          name: payload.name,
+        },
+      };
 
     case SET_USER_FETCH_STATE:
       return { ...state, fetchState: payload };
