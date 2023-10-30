@@ -12,6 +12,8 @@
     "boxicons": "^2.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-gravatar": "^2.6.3",
+    "react-gravatar-image": "^1.0.2",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-redux": "^8.1.3",
