@@ -2,26 +2,28 @@ import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
+import { axiosWithAuth } from "./utilities/axiosWithAuth";
+import { useDispatch } from "react-redux";
+import { fetchUserActionCreator } from "./store/actions/userAction";
 
 function App() {
   const scrollToTop = () => {
     scroll.scrollToTop();
   };
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   getUserData().then((user) => {
-  //     console.log("userdata: ", user);
-  //   });
-
-  //   axiosWithAuth()
-  //     .get("verify/me")
-  //     .then((res) => {
-  //       localStorage.setItem("token", res.token);
-  //     })
-  //     .catch((err) => {
-  //       localStorage.removeItem("token");
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("verify")
+      .then((res) => {
+        console.log(res);
+        dispatch(fetchUserActionCreator(res.data));
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+      });
+  }, []);
 
   return (
     <>
