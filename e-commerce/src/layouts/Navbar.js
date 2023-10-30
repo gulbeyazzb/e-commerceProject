@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Menu,
@@ -7,26 +7,25 @@ import {
   MenuItem,
   Button,
 } from "@material-tailwind/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
+import MD5 from "crypto-js/md5";
+import { API, renewAPI } from "../api/api";
+import { fetchUserActionCreator } from "../store/actions/userAction";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
-
-  const searchHandle = () => {
-    setVisibleItem(!visibleItem);
-  };
   const [toggle, setToggle] = useState(false);
 
   const userInfo = useSelector((store) => store.user);
-  localStorage.setItem("token", userInfo.userInfo.token);
+  console.log("user info on navbar:", userInfo);
+
   const userNotFetched = useSelector(
     (store) => store.user.fetchState === FETCH_STATES.NotFetched
   );
   const userFetched = useSelector(
     (store) => store.user.fetchState === FETCH_STATES.Fetched
   );
-  console.log(userInfo);
 
   return (
     <div className="bg-white ">
@@ -182,7 +181,10 @@ const NavBar = () => {
               placeholder="Search"
               hidden={visibleItem}
             ></input>
-            <button onClick={searchHandle} className="flex items-center ">
+            <button
+              onClick={() => setVisibleItem(!visibleItem)}
+              className="flex items-center "
+            >
               <i class="bx bx-search  text-2xl"></i>
             </button>
             <NavLink
@@ -205,8 +207,14 @@ const NavBar = () => {
             </NavLink>
 
             {userFetched && (
-              <div>
+              <div className="flex gap-2 items-center">
                 <p> {userInfo.userInfo.name}</p>
+                <img
+                  className="rounded-full"
+                  src={`https://www.gravatar.com/avatar/${MD5(
+                    userInfo.userInfo.email
+                  )}?s=35`}
+                />
               </div>
             )}
 
