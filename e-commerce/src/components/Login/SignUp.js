@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Form, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import { Spinner } from "@material-tailwind/react";
-import FormInput from "../atoms/FormInput";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -9,19 +7,14 @@ import { fetchRolesActionCreator } from "../../store/actions/globalAction";
 import { useDispatch, useSelector } from "react-redux";
 
 import { axiosWithAuth } from "../../utilities/axiosWithAuth";
-import { useAxios } from "../../hooks/useAxios";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 const Signup = () => {
   const [sellerRole, setSellerRole] = useState(false);
   const [spinner, setSpinner] = useState(false);
-  // const dispatch = useDispatch();
-  const [getRoles, roleData, loading, err] = useAxios({
-    reqType: "get",
-    endpoint: "roles",
-  });
-  const [roles, setRoles] = useState();
+  const dispatch = useDispatch();
 
-  // const roles = useSelector((store) => store.global.roles);
+  const roles = useSelector((store) => store.global.roles);
 
   const {
     register,
@@ -29,10 +22,10 @@ const Signup = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      name: [],
+      name: "",
       email: "",
       password: "",
-      role_id: "3",
+      role_id: "1",
       store: { name: "", tax_no: "", bank_account: "" },
     },
     mode: "onChange",
@@ -49,7 +42,7 @@ const Signup = () => {
         console.log(res);
         toast(res.data.message);
         setTimeout(() => {
-          push.push("/");
+          push.push("/login");
         }, 2000);
       })
       .catch((err) => {
@@ -65,195 +58,176 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    getRoles()
-      .then((res) => {
-        console.log(res);
-        setRoles(res);
-      })
-      .catch((err) => console.error(err));
+    dispatch(fetchRolesActionCreator());
   }, []);
 
   return (
-    <div className="sm:w-[1050px] w-full m-auto py-12 flex flex-col justify-center items-center gap-4">
+    <div className="sm:w-[800px] w-full m-auto ">
       <ToastContainer />
-
-      <i className="bx bx-lock px-4 py-3 bg-primary-color rounded-full text-3xl text-center"></i>
-      <h1 className="font-bold text-2xl ">Sign Up</h1>
-      <form
-        onSubmit={handleSubmit(onFormSubmit)}
-        className=" container m-auto  flex flex-col justify-center items-center px-2 "
-      >
-        <div className="flex sm:flex-row flex-col gap-4 w-full container m-auto justify-center items-center">
-          <FormGroup className="sm:w-[35rem] w-full flex flex-col ">
-            <Label className="font-bold text-xl p-3">Name:</Label>
-            <FormInput
-              autoFocus
-              placeholder="Name"
-              className="p-4 rounded-md border border-[#DADADA] text-black"
-              type="text"
-              name={"name"}
-              register={register}
-              validations={{
-                required: "Name is required!",
-                minLength: {
-                  value: 3,
-                  message: "At least 3 char is must be",
-                },
-              }}
-              invalid={!!errors.name?.message}
-            />
-            <FormFeedback className="text-red-600">
-              {errors.name?.message}
-            </FormFeedback>
-          </FormGroup>
-        </div>
-        <FormGroup className=" flex flex-col sm:w-[35rem] w-full ">
-          <Label className="font-bold text-xl p-3">E-mail:</Label>
-          <FormInput
-            placeholder="E-mail"
-            className="p-4 rounded-md border border-[#DADADA] text-black"
-            type="email"
-            register={register}
-            name={"email"}
-            validations={{
-              required: "Email is required!",
-              pattern: {
-                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                message: "Email is not valid",
-              },
-            }}
-            invalid={!!errors.email?.message}
-          />
-          <FormFeedback className="text-red-600">
-            {errors.email?.message}
-          </FormFeedback>
-        </FormGroup>
-        <FormGroup className=" flex flex-col sm:w-[35rem] w-full ">
-          <Label className="font-bold text-xl p-3">Password:</Label>
-          <FormInput
-            placeholder="Password"
-            className="p-4 rounded-md border border-[#DADADA] text-black"
-            type="password"
-            name={"password"}
-            register={register}
-            validations={{
-              required: "Password is required.",
-              minLength: {
-                value: 8,
-                message: "Must be at least 8 characters",
-              },
-              pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/,
-                message:
-                  "Your password must contain uppercase letters, lowercase letters, numbers and special characters.",
-              },
-            }}
-            invalid={!!errors.password?.message}
-          />
-          <FormFeedback className="text-red-600">
-            {errors.password?.message}
-          </FormFeedback>
-        </FormGroup>
-
-        <FormGroup className="flex flex-col sm:w-[35rem] w-full ">
-          <Label className="font-bold text-xl p-3">Role:</Label>
-
-          <select
-            className="p-4 rounded-md border border-[#DADADA] text-black"
-            {...register("role_id")}
-            onClick={(e) => changeOptionHandle(e)}
+      <div className="shadow-xl shadow-blue-gray-300 border-light-green-50 flex flex-col justify-center items-center gap-4 py-28 m-10">
+        <i className="bx bx-lock px-4 py-3 bg-primary-color rounded-full text-3xl text-center"></i>
+        <div className="w-[35rem] flex justify-center items-center gap-20 ">
+          {" "}
+          <NavLink
+            to="/login"
+            className="font-bold text-2xl hover:text-primary-color underline "
           >
-            {roles?.map((roleData) => (
-              <option
-                key={roleData.id}
-                value={roleData.id}
-                className=" text-lg font-bold"
-              >
-                {roleData.name}
-              </option>
-            ))}
-          </select>
-        </FormGroup>
-        {sellerRole && (
-          <div className="sm:w-[1050px] w-full flex flex-col justify-center items-center gap-4">
-            <FormGroup className=" flex flex-col sm:w-[35rem] w-full ">
-              <Label className="font-bold text-xl p-3">Store Name:</Label>
+            Login
+          </NavLink>
+          <NavLink
+            to="/signup"
+            className="font-bold text-2xl hover:text-primary-color underline "
+          >
+            Sign Up
+          </NavLink>
+        </div>
+
+        <form
+          onSubmit={handleSubmit(onFormSubmit)}
+          className=" container m-auto  flex flex-col justify-center items-center px-2 "
+        >
+          <div className="flex sm:flex-row flex-col gap-4 w-full container m-auto justify-center items-center">
+            <div className="sm:w-[35rem] w-full flex flex-col ">
+              <label className="font-bold text-xl p-3">Name:</label>
               <input
-                placeholder="Store Name"
+                autoFocus
+                placeholder="Name"
                 className="p-4 rounded-md border border-[#DADADA] text-black"
-                type="text"
-                name={"name"}
-                {...register("store.name", {
-                  validations: {
+                {...register("name", {
+                  required: "Name is required!",
+                  minLength: {
+                    value: 3,
+                    message: "At least 3 char is must be",
+                  },
+                })}
+                invalid={!!errors.name?.message}
+              />
+              <div className="text-red-600">{errors.name?.message}</div>
+            </div>
+          </div>
+          <div className=" flex flex-col sm:w-[35rem] w-full ">
+            <label className="font-bold text-xl p-3">E-mail:</label>
+            <input
+              placeholder="E-mail"
+              className="p-4 rounded-md border border-[#DADADA] text-black"
+              type="email"
+              {...register("email", {
+                required: "Email is required!",
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Email is not valid",
+                },
+              })}
+              invalid={!!errors.email?.message}
+            />
+            <div className="text-red-600">{errors.email?.message}</div>
+          </div>
+          <div className=" flex flex-col sm:w-[35rem] w-full ">
+            <label className="font-bold text-xl p-3">Password:</label>
+            <input
+              placeholder="Password"
+              className="p-4 rounded-md border border-[#DADADA] text-black"
+              type="password"
+              {...register("password", {
+                required: "Password is required.",
+                minLength: {
+                  value: 8,
+                  message: "Must be at least 8 characters",
+                },
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/,
+                  message:
+                    "Your password must contain uppercase letters, lowercase letters, numbers and special characters.",
+                },
+              })}
+              invalid={!!errors.password?.message}
+            />
+            <div className="text-red-600">{errors.password?.message}</div>
+          </div>
+
+          <div className="flex flex-col sm:w-[35rem] w-full ">
+            <label className="font-bold text-xl p-3">Role:</label>
+
+            <select
+              className="p-4 rounded-md border border-[#DADADA] text-black"
+              {...register("role_id")}
+              onClick={(e) => changeOptionHandle(e)}
+            >
+              {roles?.map((roleData) => (
+                <option
+                  key={roleData.id}
+                  value={roleData.id}
+                  className=" text-lg font-bold"
+                >
+                  {roleData.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {sellerRole && (
+            <div className="sm:w-[1050px] w-full flex flex-col justify-center items-center gap-4">
+              <div className=" flex flex-col sm:w-[35rem] w-full ">
+                <label className="font-bold text-xl p-3">Store Name:</label>
+                <input
+                  placeholder="Store Name"
+                  className="p-4 rounded-md border border-[#DADADA] text-black"
+                  {...register("store.name", {
                     required: "Store name is required!",
                     minLength: {
                       value: 3,
                       message: "At least 3 characters must be entered",
                     },
-                  },
-                })}
-              />
-              <FormFeedback className="text-red-600">
-                {errors.storeName?.message}
-              </FormFeedback>
-            </FormGroup>
-            <FormGroup className=" flex flex-col sm:w-[35rem] w-full ">
-              <Label className="font-bold text-xl p-3">Store Tax ID:</Label>
-              <input
-                placeholder="TXXXXVXXXXXX"
-                className="p-4 rounded-md border border-[#DADADA] text-black"
-                type="text"
-                name={"tax_no"}
-                {...register("store.tax_no", {
-                  validations: {
+                  })}
+                />
+                <div className="text-red-600">{errors.storeName?.message}</div>
+              </div>
+              <div className=" flex flex-col sm:w-[35rem] w-full ">
+                <label className="font-bold text-xl p-3">Store Tax ID:</label>
+                <input
+                  placeholder="TXXXXVXXXXXX"
+                  className="p-4 rounded-md border border-[#DADADA] text-black"
+                  {...register("store.tax_no", {
                     required: "Tax ID is required!",
                     pattern: {
-                      value: "/^Td{4}Vd{6}$/",
+                      value: /*/^Td{4}Vd{6}$/,*/ /[1-9](\d{9})([0,2,4,6,8]{1})/,
                       message: "TAX ID is not valid",
                     },
-                  },
-                })}
-                invalid={!!errors.tax_no?.message}
-              />
-              <FormFeedback className="text-red-600">
-                {errors.tax_no?.message}
-              </FormFeedback>
-            </FormGroup>
-            <FormGroup className=" flex flex-col sm:w-[35rem] w-full ">
-              <Label className="font-bold text-xl p-3">Iban:</Label>
-              <input
-                placeholder="TRXXXXXXXXXXXXXXXXXXXXXXXX"
-                className="p-4 rounded-md border border-[#DADADA] text-black"
-                type="text"
-                {...register("store.bank_account", {
-                  validations: {
+                  })}
+                />
+                <div className="text-red-600">{errors.tax_no?.message}</div>
+              </div>
+              <div className=" flex flex-col sm:w-[35rem] w-full ">
+                <label className="font-bold text-xl p-3">Iban:</label>
+                <input
+                  placeholder="TRXXXXXXXXXXXXXXXXXXXXXXXX"
+                  className="p-4 rounded-md border border-[#DADADA] text-black"
+                  {...register("store.bank_account", {
                     required: "Iban is required!",
                     pattern: {
                       value:
-                        "/TR[a-zA-Z0-9]{2}s?([0-9]{4}s?){1}([0-9]{1})([a-zA-Z0-9]{3}s?)([a-zA-Z0-9]{4}s?){3}([a-zA-Z0-9]{2})s?/",
+                        /TR[a-zA-Z0-9]{2}s?([0-9]{4}s?){1}([0-9]{1})([a-zA-Z0-9]{3}s?)([a-zA-Z0-9]{4}s?){3}([a-zA-Z0-9]{2})s?/,
                       message: "Iban is not valid",
                     },
-                  },
-                })}
-                invalid={!!errors.bank_account?.message}
-              />
-              <FormFeedback className="text-red-600">
-                {errors.bank_account?.message}
-              </FormFeedback>
-            </FormGroup>
-          </div>
-        )}
+                  })}
+                />
+                <div className="text-red-600">
+                  {errors.bank_account?.message}
+                </div>
+              </div>
+            </div>
+          )}
 
-        <button
-          className="flex justify-center items-center bg-primary-color px-6 py-3 rounded-md text-xl sm:w-[35rem] w-full  mt-6 hover:bg-[rgba(35,165,240,0.79)] cursor-pointer text-center"
-          type="submit"
-          formNoValidate="formnovalidate"
-          disabled={spinner}
-        >
-          {spinner ? <Spinner className="text-center" /> : "Sign Up"}
-        </button>
-      </form>
+          <button
+            className="flex justify-center items-center bg-primary-color px-6 py-3 rounded-md text-xl sm:w-[35rem] w-full  mt-6 hover:bg-[rgba(35,165,240,0.79)] cursor-pointer text-center"
+            type="submit"
+            formNoValidate="formnovalidate"
+            disabled={spinner}
+          >
+            {spinner ? <Spinner className="text-center" /> : "Sign Up"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
