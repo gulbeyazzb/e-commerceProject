@@ -6,10 +6,21 @@ import { useHistory } from "react-router-dom";
 import { fetchRolesActionCreator } from "../../store/actions/globalAction";
 import { useDispatch, useSelector } from "react-redux";
 
-import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { API } from "../../api/api";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 const Signup = () => {
+  const validationSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+    confirmPassword: Yup.string()
+      .required("Confirm Password is required")
+      .oneOf([Yup.ref("password")], "Passwords must match"),
+  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
   const [sellerRole, setSellerRole] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const dispatch = useDispatch();
@@ -24,7 +35,7 @@ const Signup = () => {
     defaultValues: {
       name: "",
       email: "",
-      password: "",
+      resolver: yupResolver(validationSchema),
       role_id: "1",
       store: { name: "", tax_no: "", bank_account: "" },
     },
@@ -35,11 +46,10 @@ const Signup = () => {
 
   const onFormSubmit = (formData) => {
     setSpinner(true);
-    console.log(formData);
-    axiosWithAuth()
-      .post("signup", formData)
+    console.log("signup onsubmit formdata:", formData);
+    API.post("signup", formData)
       .then((res) => {
-        console.log(res);
+        console.log("signup onsubmit res:", res);
         toast(res.data.message);
         setTimeout(() => {
           push.push("/login");
@@ -126,7 +136,9 @@ const Signup = () => {
             <label className="font-bold text-xl p-3">Password:</label>
             <input
               placeholder="Password"
-              className="p-4 rounded-md border border-[#DADADA] text-black"
+              className={`form-control ${
+                errors.password ? "is-invalid" : ""
+              } p-4 rounded-md border border-[#DADADA] text-black`}
               type="password"
               {...register("password", {
                 required: "Password is required.",
@@ -141,9 +153,26 @@ const Signup = () => {
                     "Your password must contain uppercase letters, lowercase letters, numbers and special characters.",
                 },
               })}
-              invalid={!!errors.password?.message}
+              // invalid={!!errors.password?.message}
             />
-            <div className="text-red-600">{errors.password?.message}</div>
+            <div className="text-red-600 invalid-feedback">
+              {errors.password?.message}
+            </div>
+          </div>
+          <div className=" flex flex-col sm:w-[35rem] w-full ">
+            <label className="font-bold text-xl p-3">Confirm Password:</label>
+            <input
+              placeholder="Password"
+              className={`form-control ${
+                errors.confirmPassword ? "is-invalid" : ""
+              } p-4 rounded-md border border-[#DADADA] text-black`}
+              type="password"
+              {...register("confirmPassword")}
+              // invalid={!!errors.confirmPassword?.message}
+            />
+            <div className="text-red-600 invalid-feedback">
+              {errors.confirmPassword?.message}
+            </div>
           </div>
 
           <div className="flex flex-col sm:w-[35rem] w-full ">

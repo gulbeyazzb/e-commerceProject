@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
-import { axiosWithAuth } from "./utilities/axiosWithAuth";
 import { useDispatch } from "react-redux";
+import { API, renewAPI } from "./api/api";
 import { fetchUserActionCreator } from "./store/actions/userAction";
 
 function App() {
@@ -13,15 +13,15 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("verify")
+    API.get("verify")
       .then((res) => {
-        console.log(res);
-        dispatch(fetchUserActionCreator(res.data));
+        console.log("verify res(signup verileri geliyor):", res.data);
         localStorage.setItem("token", res.data.token);
+        renewAPI();
       })
       .catch((err) => {
         localStorage.removeItem("token");
+        renewAPI();
       });
   }, []);
 

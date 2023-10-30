@@ -1,5 +1,5 @@
 import axios from "axios";
-import { axiosWithAuth } from "../../utilities/axiosWithAuth";
+import { API } from "../../api/api";
 
 export const SET_ROLES = "SET_ROLES";
 export const SET_CATEGORY = "SET_CATEGORY";
@@ -19,8 +19,7 @@ export const changeLanguagAction = (language) => {
 };
 
 export const fetchRolesActionCreator = () => (dispatch) => {
-  axiosWithAuth()
-    .get("roles")
+  API.get("roles")
     .then((res) => {
       dispatch({ type: SET_ROLES, payload: res.data.reverse() });
     })
