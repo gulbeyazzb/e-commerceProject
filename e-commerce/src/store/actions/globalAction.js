@@ -1,4 +1,5 @@
-import { useAxios } from "../../hooks/useAxios";
+import axios from "axios";
+import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 
 export const SET_ROLES = "SET_ROLES";
 export const SET_CATEGORY = "SET_CATEGORY";
@@ -18,14 +19,10 @@ export const changeLanguagAction = (language) => {
 };
 
 export const fetchRolesActionCreator = () => (dispatch) => {
-  const [getRoles, roleData, loading, err] = useAxios({
-    reqType: "get",
-    endpoint: "roles",
-  });
-  getRoles()
+  axiosWithAuth()
+    .get("roles")
     .then((res) => {
-      dispatch({ type: SET_ROLES, payload: res });
-      console.log(res);
+      dispatch({ type: SET_ROLES, payload: res.data.reverse() });
     })
     .catch((err) => {
       console.error(err);
