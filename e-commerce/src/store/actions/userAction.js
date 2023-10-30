@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { axiosWithAuth } from "../../utilities/axiosWithAuth";
 import { FETCH_STATES } from "../reducers/productReducer";
+import { API, renewAPI } from "../../api/api";
 
 export const SET_USER = "SET_USER";
 export const SET_USER_FETCH_STATE = "SET_USER_FETCH_STATE";
@@ -9,14 +9,17 @@ export const fetchUserActionCreator =
   (userFormData) => (dispatch, getState) => {
     if (getState().user.fetchState === FETCH_STATES.NotFetched) {
       dispatch({ type: SET_USER_FETCH_STATE, payload: FETCH_STATES.Fetching });
-      axiosWithAuth()
-        .post("login", userFormData)
+      API.post("login", userFormData)
         .then((res) => {
           dispatch({ type: SET_USER, payload: res.data });
+          localStorage.setItem("token", res.data.token);
+          console.log("thunk res(signup verileri dönüyor):", res);
           dispatch({
             type: SET_USER_FETCH_STATE,
             payload: FETCH_STATES.Fetched,
           });
+          renewAPI();
+
           console.log("action:", res);
           toast.success(res.data.message);
         })
