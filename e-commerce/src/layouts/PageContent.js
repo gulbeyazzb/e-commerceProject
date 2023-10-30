@@ -8,6 +8,8 @@ import TeamPage from "../pages/TeamPage";
 import PricingPage from "../pages/PricingPage";
 import Login from "../components/Login/Login";
 import SignUp from "../components/Login/SignUp";
+import ProtectedPage from "../pages/ProductedPage";
+import CartPage from "../pages/CartPage";
 
 export const PageContent = () => {
   return (
@@ -38,6 +40,9 @@ export const PageContent = () => {
       </Route>
       <Route path="/signup" exact>
         <SignUp />
+      </Route>
+      <Route path="/cart" exact>
+        <ProtectedPage PageComponent={CartPage} fromURL={"/cart"} />
       </Route>
     </Switch>
   );
