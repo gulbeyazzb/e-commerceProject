@@ -17,7 +17,7 @@ export const PageContent = () => {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/shopping" exact>
+      <Route path="/shopping/:category" exact>
         <ProductListPage />
       </Route>
       <Route path="/about" exact>
