@@ -12,15 +12,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 const Signup = () => {
-  const validationSchema = Yup.object().shape({
-    password: Yup.string()
-      .required("Password is required")
-      .min(6, "Password must be at least 6 characters"),
-    confirmPassword: Yup.string()
-      .required("Confirm Password is required")
-      .oneOf([Yup.ref("password")], "Passwords must match"),
-  });
-  const formOptions = { resolver: yupResolver(validationSchema) };
   const [sellerRole, setSellerRole] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const dispatch = useDispatch();
@@ -31,12 +22,13 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    watch,
   } = useForm({
     defaultValues: {
       name: "",
       email: "",
-      resolver: yupResolver(validationSchema),
-      role_id: "1",
+      password: "",
+      role_id: "3",
       store: { name: "", tax_no: "", bank_account: "" },
     },
     mode: "onChange",
@@ -45,9 +37,32 @@ const Signup = () => {
   const push = useHistory();
 
   const onFormSubmit = (formData) => {
+    let postData = {};
+    if (formData.role_id !== "2") {
+      postData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role_id: formData.role_id,
+      };
+    } else if (formData.role_id === "2") {
+      console.log("else");
+      postData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role_id: formData.role_id,
+        store: {
+          name: formData.store.name,
+          tax_no: formData.store.tax_no,
+          bank_account: formData.store.bank_account,
+        },
+      };
+    }
+
     setSpinner(true);
-    console.log("signup onsubmit formdata:", formData);
-    API.post("signup", formData)
+    console.log("signup onsubmit formdata:", postData);
+    API.post("signup", postData)
       .then((res) => {
         console.log("signup onsubmit res:", res);
         toast(res.data.message);
@@ -136,9 +151,7 @@ const Signup = () => {
             <label className="font-bold text-xl p-3">Password:</label>
             <input
               placeholder="Password"
-              className={`form-control ${
-                errors.password ? "is-invalid" : ""
-              } p-4 rounded-md border border-[#DADADA] text-black`}
+              className={`p-4 rounded-md border border-[#DADADA] text-black`}
               type="password"
               {...register("password", {
                 required: "Password is required.",
@@ -153,22 +166,27 @@ const Signup = () => {
                     "Your password must contain uppercase letters, lowercase letters, numbers and special characters.",
                 },
               })}
-              // invalid={!!errors.password?.message}
             />
             <div className="text-red-600 invalid-feedback">
               {errors.password?.message}
             </div>
           </div>
+
           <div className=" flex flex-col sm:w-[35rem] w-full ">
             <label className="font-bold text-xl p-3">Confirm Password:</label>
             <input
-              placeholder="Password"
-              className={`form-control ${
-                errors.confirmPassword ? "is-invalid" : ""
-              } p-4 rounded-md border border-[#DADADA] text-black`}
-              type="password"
-              {...register("confirmPassword")}
-              // invalid={!!errors.confirmPassword?.message}
+              type={"password"}
+              id="password2"
+              {...register("confirmPassword", {
+                required: "Password needs to match exactly!!",
+                validate: (value) => {
+                  return (
+                    value === watch("password") || "Passwords do not match!!"
+                  );
+                },
+              })}
+              className="p-4 rounded-md border border-[#DADADA] text-black"
+              placeholder="***************"
             />
             <div className="text-red-600 invalid-feedback">
               {errors.confirmPassword?.message}
@@ -209,7 +227,9 @@ const Signup = () => {
                     },
                   })}
                 />
-                <div className="text-red-600">{errors.storeName?.message}</div>
+                <div className="text-red-600">
+                  {errors.store?.name?.message}
+                </div>
               </div>
               <div className=" flex flex-col sm:w-[35rem] w-full ">
                 <label className="font-bold text-xl p-3">Store Tax ID:</label>
@@ -219,12 +239,14 @@ const Signup = () => {
                   {...register("store.tax_no", {
                     required: "Tax ID is required!",
                     pattern: {
-                      value: /*/^Td{4}Vd{6}$/,*/ /[1-9](\d{9})([0,2,4,6,8]{1})/,
+                      value: /^T\d{4}V\d{6}$/ /*[1-9](\d{9})([0,2,4,6,8]{1})*/,
                       message: "TAX ID is not valid",
                     },
                   })}
                 />
-                <div className="text-red-600">{errors.tax_no?.message}</div>
+                <div className="text-red-600">
+                  {errors.store?.tax_no?.message}
+                </div>
               </div>
               <div className=" flex flex-col sm:w-[35rem] w-full ">
                 <label className="font-bold text-xl p-3">Iban:</label>
@@ -241,7 +263,7 @@ const Signup = () => {
                   })}
                 />
                 <div className="text-red-600">
-                  {errors.bank_account?.message}
+                  {errors.store?.bank_account?.message}
                 </div>
               </div>
             </div>
