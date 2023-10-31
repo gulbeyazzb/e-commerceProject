@@ -5,14 +5,23 @@ import Products from "../components/ProductList/Products";
 import NavBarDark from "../layouts/NavBarDark";
 import NavBar from "../layouts/Navbar";
 import ProductHeader from "../components/ProductList/ProductHeader";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchCategoryActionCreator } from "../store/actions/globalAction";
 
 const ProductListPage = () => {
+  useEffect(() => {
+    dispatch(fetchCategoryActionCreator());
+  }, []);
+  const categories = useSelector((store) => store.global.categories);
+
+  const dispatch = useDispatch();
   return (
     <>
       <ProductHeader />
-      <ProductListShopCards />
+      <ProductListShopCards categories={categories} />
       <FilterComponent />
-      <Products />
+      <Products categories={categories} />
       <Clients />
     </>
   );
