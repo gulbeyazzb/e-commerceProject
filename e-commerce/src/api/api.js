@@ -14,7 +14,11 @@ export const axiosWithAuth = () => {
 };
 export let API;
 
-export const renewAPI = () => {
+export const renewAPI = (token) => {
+  console.log("token1:", token);
+  token
+    ? localStorage.setItem("token", token)
+    : localStorage.removeItem("token");
   API = axiosWithAuth();
 };
 
