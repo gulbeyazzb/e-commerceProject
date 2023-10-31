@@ -17,7 +17,7 @@ export const globalReducer = (state = global, action) => {
       return { ...state, roles: payload };
 
     case SET_CATEGORY:
-      return { ...state, categories: [...state.categories, payload] };
+      return { ...state, categories: payload };
 
     case CHANGE_THEME:
       return { ...state, theme: payload };
