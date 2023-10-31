@@ -6,6 +6,8 @@ const user = {
   userInfo: {
     name: "",
     email: "",
+    password: "",
+    role_id: "",
   },
   fetchState: FETCH_STATES.NotFetched,
 };
