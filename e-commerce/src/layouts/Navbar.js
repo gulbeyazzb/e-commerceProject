@@ -10,8 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import MD5 from "crypto-js/md5";
-import { API, renewAPI } from "../api/api";
-import { fetchUserActionCreator } from "../store/actions/userAction";
+import { fetchCategoryActionCreator } from "../store/actions/globalAction";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
@@ -25,6 +24,19 @@ const NavBar = () => {
   );
   const userFetched = useSelector(
     (store) => store.user.fetchState === FETCH_STATES.Fetched
+  );
+  useEffect(() => {
+    dispatch(fetchCategoryActionCreator());
+  }, []);
+  const categories = useSelector((store) => store.global.categories);
+
+  const dispatch = useDispatch();
+
+  const womanCategories = categories.filter((category) =>
+    category.code.includes("k:")
+  );
+  const manCategories = categories.filter((category) =>
+    category.code.includes("e:")
   );
 
   return (
@@ -49,7 +61,7 @@ const NavBar = () => {
               Home
             </NavLink>
             <div className="flex items-center">
-              <NavLink to="/shopping" className="">
+              <NavLink to="/shopping" className="" exact>
                 Shop
               </NavLink>
               <div class="relative inline-block text-left">
@@ -85,44 +97,30 @@ const NavBar = () => {
                     tabindex="-1"
                   >
                     <div class="py-1" role="none">
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="menu-item-0"
-                      >
-                        Dress
-                      </a>
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="menu-item-1"
-                      >
-                        Skirt
-                      </a>
-                      <a
-                        href="#"
-                        className="text-gray-700 block px-4 py-2 text-sm"
-                        role="menuitem"
-                        tabindex="-1"
-                        id="menu-item-2"
-                      >
-                        T-shirt
-                      </a>
-                      <form method="POST" action="#" role="none">
-                        <button
-                          type="submit"
-                          className="text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                      <p className="font-bold text-black text-xl p-2">Woman</p>
+                      {womanCategories.map((category) => (
+                        <NavLink
+                          to={`/shopping/${category.code}`}
+                          className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
-                          id="menu-item-3"
+                          id={category.id}
                         >
-                          Home Decoration
-                        </button>
-                      </form>
+                          {category.title}
+                        </NavLink>
+                      ))}
+                      <p className="font-bold text-black text-xl p-2">Men</p>
+                      {manCategories.map((category) => (
+                        <NavLink
+                          to={`/shopping/${category.code}`}
+                          className="text-gray-700 block px-4 py-2 text-sm"
+                          role="menuitem"
+                          tabindex="-1"
+                          id={category.id}
+                        >
+                          {category.title}
+                        </NavLink>
+                      ))}
                     </div>
                   </div>
                 )}
