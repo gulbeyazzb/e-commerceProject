@@ -27,3 +27,13 @@ export const fetchRolesActionCreator = () => (dispatch) => {
       console.error(err);
     });
 };
+
+export const fetchCategoryActionCreator = () => (dispatch) => {
+  API.get("categories")
+    .then((res) => {
+      dispatch({ type: SET_CATEGORY, payload: res.data });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
