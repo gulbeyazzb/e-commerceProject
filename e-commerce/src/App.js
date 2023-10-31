@@ -3,8 +3,11 @@ import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
 import { useDispatch } from "react-redux";
+import {
+  fetchUserActionCreator,
+  getUserVerifyAction,
+} from "./store/actions/userAction";
 import { API, renewAPI } from "./api/api";
-import { fetchUserActionCreator } from "./store/actions/userAction";
 
 function App() {
   const scrollToTop = () => {
@@ -13,14 +16,13 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //todo: thunk action ile yapılacak
     API.get("verify")
       .then((res) => {
-        console.log("verify res(signup verileri geliyor):", res.data);
-        localStorage.setItem("token", res.data.token);
-        renewAPI();
+        renewAPI(res.data.token);
       })
       .catch((err) => {
-        localStorage.removeItem("token");
+        console.error("verifythunaction error:", err);
         renewAPI();
       });
   }, []);
