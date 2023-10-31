@@ -148,8 +148,8 @@ const NavBar = () => {
                 {" "}
                 <i
                   class={`${
-                    visibleItem ? "flex" : "flex sm:hidden "
-                  } bx bx-user text-[#23a6f0] text-2xl `}
+                    visibleItem ? "flex" : "flex sm:hidden"
+                  } hidden sm:flex bx bx-user text-[#23a6f0] text-2xl `}
                 ></i>
                 <NavLink
                   to="/login"

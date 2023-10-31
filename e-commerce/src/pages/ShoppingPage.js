@@ -8,9 +8,8 @@ import ProductHeader from "../components/ProductList/ProductHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
-import { fetchProductListeActionCreator } from "../store/actions/productAction";
 
-const ProductListPage = () => {
+const ShoppingPage = () => {
   useEffect(() => {
     dispatch(fetchCategoryActionCreator());
   }, []);
@@ -22,9 +21,9 @@ const ProductListPage = () => {
       <ProductHeader />
       <ProductListShopCards categories={categories} />
       <FilterComponent />
-      <Products categories={categories} />
+      <Products />
       <Clients />
     </>
   );
 };
-export default ProductListPage;
+export default ShoppingPage;

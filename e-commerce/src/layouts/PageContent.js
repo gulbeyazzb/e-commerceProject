@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/Login/SignUp";
 import ProtectedPage from "../pages/ProductedPage";
 import CartPage from "../pages/CartPage";
+import ShoppingPage from "../pages/ShoppingPage";
 
 export const PageContent = () => {
   return (
@@ -19,6 +20,9 @@ export const PageContent = () => {
       </Route>
       <Route path="/shopping/:category" exact>
         <ProductListPage />
+      </Route>
+      <Route path="/shopping" exact>
+        <ShoppingPage />
       </Route>
       <Route path="/about" exact>
         <AboutPage />

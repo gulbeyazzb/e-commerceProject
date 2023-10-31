@@ -1,3 +1,6 @@
+import { API } from "../../api/api";
+import { FETCH_STATES } from "../reducers/productReducer";
+
 export const SET_PRODUCT = "SET_PRODUCT";
 export const SET_ACTIVEPAGE = "SET_ACTIVEPAGE";
 export const ADD_PAGECOUNT = "ADD_PAGECOUNT";
@@ -5,10 +8,6 @@ export const DELETE_PAGECOUNT = "DELETE_PAGECOUNT";
 export const CHANGE_FETCH_STATE = "CHANGE_FETCH_STATE ";
 export const ADD_COUNT = "ADD_COUNT ";
 export const REMOVE_COUNT = "REMOVE_COUNT ";
-
-export const setProductAction = (product) => {
-  return { type: SET_PRODUCT, payload: product };
-};
 
 export const setActivePageAction = (page) => {
   return { type: SET_ACTIVEPAGE, payload: page };
@@ -32,4 +31,19 @@ export const addCountAction = () => {
 
 export const removeCountAction = () => {
   return { type: REMOVE_COUNT };
+};
+
+export const fetchProductActionCreator = () => (dispatch, getState) => {
+  if (getState().product.fetchState === FETCH_STATES.NotFetched) {
+    dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
+    API.get("products")
+      .then((res) => {
+        dispatch({ type: SET_PRODUCT, payload: res.data });
+        dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
+      })
+      .catch((err) => {
+        dispatch(changeFetchStateAction(FETCH_STATES.FetchFailed));
+        console.error(err);
+      });
+  }
 };

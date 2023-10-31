@@ -2,27 +2,36 @@ import { Link } from "react-router-dom";
 import { products } from "../../mocks/productList/products";
 import Pagination from "./Pagination";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProductActionCreator,
+  fetchProductListeActionCreator,
+} from "../../store/actions/productAction";
+import { useEffect } from "react";
+import { API } from "../../api/api";
 
 const Products = ({ categories }) => {
   const mobileProducts = products.slice(0, 4);
-  const { category } = useParams();
-  console.log(categories);
-  const categoryData = categories.filter((product) => {
-    console.log(category);
-    return product.code === category;
-  });
+  // const { category } = useParams();
+  // console.log(categories);
+  // const categoryData = categories.filter((product) => {
+  //   console.log(category);
+  //   return product.code === category;
+  // });
+  const dispatch = useDispatch();
+  dispatch(fetchProductActionCreator());
   return (
     <div className="py-12 w-full ">
       <div className="flex flex-col gap-12 sm:px-28 w-full">
         <div className="hidden sm:flex flex-wrap gap-[30px] justify-center items-center ">
-          {categoryData.map((product) => (
+          {products?.map((product) => (
             <Link
               to={`/product/${product.id}`}
               className="flex flex-col text-center gap-[10px]"
             >
-              <img src={product.img} className="h-[15rem]"></img>
+              <img src={product.src} className="h-[15rem]"></img>
               <h5 className="text-center font-bold text-base">
-                {product.title}
+                {product.heading}
               </h5>
               <a
                 href=""
