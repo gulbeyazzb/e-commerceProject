@@ -37,10 +37,19 @@ export const getUserVerifyAction = () => (dispatch) => {
   API.get("verify")
     .then((res) => {
       dispatch({ type: SET_USER, payload: res.data });
+      dispatch({
+        type: SET_USER_FETCH_STATE,
+        payload: FETCH_STATES.Fetched,
+      });
       renewAPI(res.data.token);
     })
     .catch((err) => {
       console.error("verifythunaction error:", err);
+      localStorage.removeItem("token");
+      dispatch({
+        type: SET_USER_FETCH_STATE,
+        payload: FETCH_STATES.FetchFailed,
+      });
       renewAPI();
     });
 };
