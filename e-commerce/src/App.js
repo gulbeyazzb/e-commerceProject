@@ -3,10 +3,7 @@ import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
 import { useDispatch } from "react-redux";
-import {
-  fetchUserActionCreator,
-  getUserVerifyAction,
-} from "./store/actions/userAction";
+import { getUserVerifyAction } from "./store/actions/userAction";
 import { API, renewAPI } from "./api/api";
 
 function App() {
@@ -17,14 +14,9 @@ function App() {
 
   useEffect(() => {
     //todo: thunk action ile yapılacak
-    API.get("verify")
-      .then((res) => {
-        renewAPI(res.data.token);
-      })
-      .catch((err) => {
-        console.error("verifythunaction error:", err);
-        renewAPI();
-      });
+    if (localStorage.getItem("token")) {
+      dispatch(getUserVerifyAction());
+    }
   }, []);
 
   return (
