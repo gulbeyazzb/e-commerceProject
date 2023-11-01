@@ -38,6 +38,7 @@ export const fetchProductActionCreator = () => (dispatch, getState) => {
     dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
     API.get("products")
       .then((res) => {
+        console.log("thunk pro:", res.data);
         dispatch({ type: SET_PRODUCT, payload: res.data });
         dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
       })

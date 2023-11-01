@@ -6,7 +6,7 @@ const ProductHeader = () => {
       <div className="flex justify-center py-6 ">
         <div className="mobile-col-flex gap-[2rem] sm:gap-[52rem] items-center">
           <div>
-            <NavLink to="/product-list" exact className="font-bold text-2xl">
+            <NavLink to="/shopping" exact className="font-bold text-2xl">
               Shop
             </NavLink>
           </div>
@@ -16,7 +16,7 @@ const ProductHeader = () => {
               Home
             </NavLink>
             <i class="bx bxs-chevron-right text-[#BDBDBD] text-2xl"></i>
-            <NavLink to="/product-list" className="mr-1">
+            <NavLink to="/shopping" className="mr-1">
               Shop
             </NavLink>
           </div>

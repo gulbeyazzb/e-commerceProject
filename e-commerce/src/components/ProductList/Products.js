@@ -1,49 +1,29 @@
 import { Link } from "react-router-dom";
-import { products } from "../../mocks/productList/products";
 import Pagination from "./Pagination";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProductActionCreator,
-  fetchProductListeActionCreator,
-} from "../../store/actions/productAction";
-import { useEffect } from "react";
-import { API } from "../../api/api";
 
-const Products = ({ categories }) => {
-  const mobileProducts = products.slice(0, 4);
-  // const { category } = useParams();
-  // console.log(categories);
-  // const categoryData = categories.filter((product) => {
-  //   console.log(category);
-  //   return product.code === category;
-  // });
-  const dispatch = useDispatch();
-  dispatch(fetchProductActionCreator());
+const Products = ({ products }) => {
+  const mobileProducts = products.products?.slice(0, 4);
   return (
     <div className="py-12 w-full ">
       <div className="flex flex-col gap-12 sm:px-28 w-full">
-        <div className="hidden sm:flex flex-wrap gap-[30px] justify-center items-center ">
-          {products?.map((product) => (
+        <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center ">
+          {products.products?.map((product) => (
             <Link
               to={`/product/${product.id}`}
-              className="flex flex-col text-center gap-[10px]"
+              className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
             >
-              <img src={product.src} className="h-[15rem]"></img>
+              {/* <img src={product.src} className="h-[15rem]"></img> */}
               <h5 className="text-center font-bold text-base">
-                {product.heading}
+                {product.name}
               </h5>
               <a
                 href=""
                 className="font-bold text-sm text-second-text text-center"
               >
-                {product.department}
+                {product.description}
                 <div className="pt-3">
                   <span className="text-[#BDBDBD] text-base ">
-                    {product.price1}
-                  </span>
-                  <span className="text-[#23856D] text-base ">
-                    {product.price2}
+                    {product.price}₺
                   </span>
                 </div>{" "}
               </a>
@@ -70,21 +50,17 @@ const Products = ({ categories }) => {
               to={`/product/${product.id}`}
               className="flex flex-col text-center gap-[10px] "
             >
-              <img src={product.src} className="w-full m-auto"></img>
               <h5 className="text-center font-bold text-base">
-                {product.heading}
+                {product.name}
               </h5>
               <a
                 href=""
                 className="font-bold text-sm text-second-text text-center"
               >
-                {product.department}
+                {product.description}
                 <div className="pt-3">
                   <span className="text-[#BDBDBD] text-base ">
-                    {product.price1}
-                  </span>
-                  <span className="text-[#23856D] text-base ">
-                    {product.price2}
+                    {product.price}
                   </span>
                 </div>{" "}
               </a>

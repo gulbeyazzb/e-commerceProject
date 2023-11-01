@@ -1,28 +1,16 @@
 import Clients from "../components/ProductList/Clients";
 import { FilterComponent } from "../components/ProductList/FilterComponent";
 import ProductListShopCards from "../components/ProductList/ProductListShopCards";
-import Products from "../components/ProductList/Products";
-import NavBarDark from "../layouts/NavBarDark";
-import NavBar from "../layouts/Navbar";
+import CategorilizeProducts from "../components/ProductList/CategorilizeProducts";
 import ProductHeader from "../components/ProductList/ProductHeader";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchCategoryActionCreator } from "../store/actions/globalAction";
-import { fetchProductListeActionCreator } from "../store/actions/productAction";
 
-const ProductListPage = () => {
-  useEffect(() => {
-    dispatch(fetchCategoryActionCreator());
-  }, []);
-  const categories = useSelector((store) => store.global.categories);
-
-  const dispatch = useDispatch();
+const ProductListPage = ({ products }) => {
   return (
     <>
       <ProductHeader />
-      <ProductListShopCards categories={categories} />
+      <ProductListShopCards />
       <FilterComponent />
-      <Products categories={categories} />
+      <CategorilizeProducts products={products} />
       <Clients />
     </>
   );

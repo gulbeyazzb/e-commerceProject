@@ -16,7 +16,7 @@ const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
   const [toggle, setToggle] = useState(false);
 
-  const userInfo = useSelector((store) => store.user);
+  const userInfo = useSelector((store) => store.user.userInfo);
   console.log("user info on navbar:", userInfo);
 
   const userNotFetched = useSelector(
@@ -41,8 +41,8 @@ const NavBar = () => {
 
   return (
     <div className="bg-white ">
-      <div className="flex justify-center py-6 ">
-        <div className="flex gap-[2rem] sm:gap-[6rem] items-center">
+      <div className="py-6 sm:w-[90rem] m-auto">
+        <div className="flex gap-[2rem] sm:gap-[11rem] justify-center items-center">
           <div>
             {" "}
             <NavLink
@@ -100,7 +100,7 @@ const NavBar = () => {
                       <p className="font-bold text-black text-xl p-2">Woman</p>
                       {womanCategories.map((category) => (
                         <NavLink
-                          to={`/shopping/${category.code}`}
+                          to={`/shopping/${category.id}`}
                           className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
@@ -112,7 +112,7 @@ const NavBar = () => {
                       <p className="font-bold text-black text-xl p-2">Men</p>
                       {manCategories.map((category) => (
                         <NavLink
-                          to={`/shopping/${category.code}`}
+                          to={`/shopping/${category.id}`}
                           className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
@@ -142,7 +142,7 @@ const NavBar = () => {
               Pricing
             </NavLink>
           </div>
-          <div className="flex items-center gap-4 text-black sm:text-primary-color font-bold ">
+          <div className="flex items-center gap-2 text-black sm:text-primary-color font-bold ">
             {userNotFetched && (
               <div className="flex">
                 {" "}
@@ -205,12 +205,11 @@ const NavBar = () => {
             </NavLink>
 
             {userFetched && (
-              <div className="flex gap-2 items-center">
-                <p> {userInfo.userInfo.name}</p>
+              <div className="hidden sm:flex gap-2 items-center">
                 <img
                   className="rounded-full"
                   src={`https://www.gravatar.com/avatar/${MD5(
-                    userInfo.userInfo.email
+                    userInfo.email
                   )}?s=35`}
                 />
               </div>
@@ -265,6 +264,17 @@ const NavBar = () => {
                 </Menu>
               )}
             </div>
+
+            {userFetched && (
+              <div className="flex sm:hidden gap-2 items-center">
+                <img
+                  className="rounded-full"
+                  src={`https://www.gravatar.com/avatar/${MD5(
+                    userInfo.email
+                  )}?s=35`}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

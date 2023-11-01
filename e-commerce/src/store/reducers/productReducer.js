@@ -24,7 +24,7 @@ const product = {
 export const productReducer = (state = product, action) => {
   switch (action.type) {
     case SET_PRODUCT:
-      return { ...state, productList: action.payload };
+      return { ...state, productList: { ...action.payload } };
 
     case SET_ACTIVEPAGE:
       return { ...state, activePage: action.payload };

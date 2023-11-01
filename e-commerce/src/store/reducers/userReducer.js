@@ -6,7 +6,6 @@ const user = {
   userInfo: {
     name: "",
     email: "",
-    password: "",
     role_id: "",
   },
   fetchState: FETCH_STATES.NotFetched,
@@ -20,9 +19,7 @@ export function userReducer(state = user, action) {
       return {
         ...state,
         userInfo: {
-          ...state.userInfo,
-          email: payload.email,
-          name: payload.name,
+          ...payload,
         },
       };
 
