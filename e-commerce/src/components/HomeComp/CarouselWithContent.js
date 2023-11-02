@@ -29,7 +29,7 @@ export function CarouselWithContent() {
             </Typography>
             <div className="flex justify-center gap-2">
               <Link
-                to="/product-list"
+                to="/shopping"
                 className="w-40 m-auto rounded py-[1rem] px-10  bg-primary-color font-bold text-base text-center text-white"
               >
                 Start Now

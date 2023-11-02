@@ -5,6 +5,8 @@ import { DELETE_PAGECOUNT } from "../actions/productAction";
 import { CHANGE_FETCH_STATE } from "../actions/productAction";
 import { ADD_COUNT } from "../actions/productAction";
 import { REMOVE_COUNT } from "../actions/productAction";
+import { SET_FILTER } from "../actions/productAction";
+import { SET_SEARCH } from "../actions/productAction";
 
 export const FETCH_STATES = {
   NotFetched: "NOT_FETCHED",
@@ -19,12 +21,20 @@ const product = {
   pageCount: 0,
   activePage: 0,
   fetchState: FETCH_STATES.NotFetched,
+  filter: "",
+  searchItem: "",
 };
 
 export const productReducer = (state = product, action) => {
   switch (action.type) {
     case SET_PRODUCT:
       return { ...state, productList: { ...action.payload } };
+
+    case SET_FILTER:
+      return { ...state, filter: action.payload };
+
+    case SET_SEARCH:
+      return { ...state, searchItem: action.payload };
 
     case SET_ACTIVEPAGE:
       return { ...state, activePage: action.payload };

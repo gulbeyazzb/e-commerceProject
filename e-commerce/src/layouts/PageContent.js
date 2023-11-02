@@ -11,30 +11,18 @@ import SignUp from "../components/Login/SignUp";
 import ProtectedPage from "../pages/ProductedPage";
 import CartPage from "../pages/CartPage";
 import ShoppingPage from "../pages/ShoppingPage";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchProductActionCreator } from "../store/actions/productAction";
 
 export const PageContent = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProductActionCreator());
-  }, []);
-
-  const products = useSelector((store) => store.product.productList);
-  console.log("pro:", products);
-
   return (
     <Switch>
       <Route path="/" exact>
         <HomePage />
       </Route>
       <Route path="/shopping/:categoryID" exact>
-        <ProductListPage products={products} />
+        <ProductListPage />
       </Route>
       <Route path="/shopping" exact>
-        <ShoppingPage products={products} />
+        <ShoppingPage />
       </Route>
       <Route path="/about" exact>
         <AboutPage />

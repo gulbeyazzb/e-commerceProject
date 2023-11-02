@@ -5,14 +5,15 @@ import Products from "../components/ProductList/Products";
 import NavBarDark from "../layouts/NavBarDark";
 import NavBar from "../layouts/Navbar";
 import ProductHeader from "../components/ProductList/ProductHeader";
+import { useState } from "react";
 
-const ShoppingPage = ({ products }) => {
+const ShoppingPage = () => {
   return (
     <>
       <ProductHeader />
       <ProductListShopCards />
       <FilterComponent />
-      <Products products={products} />
+      <Products />
       <Clients />
     </>
   );

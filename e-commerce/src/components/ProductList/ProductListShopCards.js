@@ -14,7 +14,6 @@ const ProductListShopCards = () => {
   const mostRating = categories.sort((a, b) => {
     return b.rating - a.rating;
   });
-  console.log("most:", mostRating);
 
   return (
     <div className="bg-[#FAFAFA]">

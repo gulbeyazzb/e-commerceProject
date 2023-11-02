@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import MD5 from "crypto-js/md5";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
+import { setSearchAction } from "../store/actions/productAction";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
@@ -39,6 +40,10 @@ const NavBar = () => {
     category.code.includes("e:")
   );
 
+  const searchHandle = (e) => {
+    dispatch(setSearchAction(e.target.value));
+  };
+
   return (
     <div className="bg-white ">
       <div className="py-6 sm:w-[90rem] m-auto">
@@ -57,11 +62,16 @@ const NavBar = () => {
           </div>
           <div className="hidden sm:flex gap-[1rem] text-second-text font-bold text-sm">
             {" "}
-            <NavLink to="/" className="" exact>
+            <NavLink to="/" className="" activeClassName="text-black" exact>
               Home
             </NavLink>
             <div className="flex items-center">
-              <NavLink to="/shopping" className="" exact>
+              <NavLink
+                to="/shopping"
+                className=""
+                activeClassName="text-black"
+                exact
+              >
                 Shop
               </NavLink>
               <div class="relative inline-block text-left">
@@ -126,19 +136,29 @@ const NavBar = () => {
                 )}
               </div>
             </div>
-            <NavLink to="/about" className="" exact>
+            <NavLink
+              to="/about"
+              className=""
+              activeClassName="text-black"
+              exact
+            >
               About
             </NavLink>
-            <NavLink to="/blog" className="" exact>
+            <NavLink to="/blog" className="" activeClassName="text-black" exact>
               Blog
             </NavLink>
-            <NavLink to="/contact" className="" exact>
+            <NavLink
+              to="/contact"
+              className=""
+              activeClassName="text-black"
+              exact
+            >
               Contact
             </NavLink>
-            <NavLink to="/team" className="" exact>
+            <NavLink to="/team" className="" activeClassName="text-black" exact>
               Team
             </NavLink>
-            <NavLink to="/pricing" exact>
+            <NavLink to="/pricing" activeClassName="text-black" exact>
               Pricing
             </NavLink>
           </div>
@@ -175,9 +195,10 @@ const NavBar = () => {
             <input
               type="text"
               name="searchingItem"
-              className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-[#DADADA] p-2 sm:w-72"
+              className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
               placeholder="Search"
               hidden={visibleItem}
+              onChange={searchHandle}
             ></input>
             <button
               onClick={() => setVisibleItem(!visibleItem)}

@@ -8,6 +8,8 @@ export const DELETE_PAGECOUNT = "DELETE_PAGECOUNT";
 export const CHANGE_FETCH_STATE = "CHANGE_FETCH_STATE ";
 export const ADD_COUNT = "ADD_COUNT ";
 export const REMOVE_COUNT = "REMOVE_COUNT ";
+export const SET_FILTER = "SET_FILTER ";
+export const SET_SEARCH = "SET_SEARCH ";
 
 export const setActivePageAction = (page) => {
   return { type: SET_ACTIVEPAGE, payload: page };
@@ -31,6 +33,14 @@ export const addCountAction = () => {
 
 export const removeCountAction = () => {
   return { type: REMOVE_COUNT };
+};
+
+export const setFilterAction = (selectedFilter) => {
+  return { type: SET_FILTER, payload: selectedFilter };
+};
+
+export const setSearchAction = (searchItem) => {
+  return { type: SET_SEARCH, payload: searchItem };
 };
 
 export const fetchProductActionCreator = () => (dispatch, getState) => {

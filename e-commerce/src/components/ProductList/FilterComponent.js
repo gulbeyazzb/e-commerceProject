@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { Select, Option } from "@material-tailwind/react";
+import { useDispatch } from "react-redux";
+import {
+  setFilterAction,
+  setSearchAction,
+} from "../../store/actions/productAction";
 
 export const FilterComponent = () => {
-  const [filter, setFilter] = useState();
+  const dispatch = useDispatch();
+
   const changeOptionHandle = (e) => {
     const selectedFilter = e.target.value;
-    setFilter(selectedFilter);
+    dispatch(setFilterAction(selectedFilter));
   };
-
+  const searchHandle = (e) => {
+    dispatch(setSearchAction(e.target.value));
+  };
   return (
     <div className="py-6 ">
       <div className="mobile-col-flex justify-center items-center gap-6 sm:gap-[12rem] py-6 sm:py-0">
@@ -15,13 +23,14 @@ export const FilterComponent = () => {
           <p>Showing all 12 results</p>
         </div>
         <div className="flex gap-[15px] justify-center items-center">
-          <p className="font-bold text-second-text text-sm">Views:</p>
-          <button className="border border-[#ECECEC] p-3">
-            <i class="bx bxs-category  text-2xl "></i>
-          </button>
-          <button className="border border-[#ECECEC] p-3 ">
-            <i class="bx bx-menu text-2xl "></i>
-          </button>
+          <p className="font-bold text-second-text text-sm">search:</p>
+          <input
+            type="text"
+            name="searchingItem"
+            className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
+            placeholder="Search"
+            onChange={searchHandle}
+          ></input>
         </div>
         <div className="flex items-center gap-10">
           <div>
@@ -59,9 +68,9 @@ export const FilterComponent = () => {
               </option>
             </select>
           </div>
-          <button className="bg-primary-color py-[10px] px-5 rounded text-[#FFFFFF]">
+          {/* <button className="bg-primary-color py-[10px] px-5 rounded text-[#FFFFFF]">
             Filter
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
