@@ -8,7 +8,7 @@ import ProductCards2 from "../components/HomeComp/ProductCards2";
 import ShopCards from "../components/HomeComp/ShopCards";
 import Header from "../layouts/Header";
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Header />
@@ -22,4 +22,5 @@ export default function HomePage() {
       <FeaturedPosts />
     </>
   );
-}
+};
+export default HomePage;
