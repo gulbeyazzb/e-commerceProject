@@ -66,12 +66,7 @@ const NavBar = () => {
               Home
             </NavLink>
             <div className="flex items-center">
-              <NavLink
-                to="/shopping"
-                className=""
-                activeClassName="text-black"
-                exact
-              >
+              <NavLink to="/shopping" className="" activeClassName="text-black">
                 Shop
               </NavLink>
               <div class="relative inline-block text-left">
@@ -115,6 +110,7 @@ const NavBar = () => {
                           role="menuitem"
                           tabindex="-1"
                           id={category.id}
+                          onClick={() => setToggle(false)}
                         >
                           {category.title}
                         </NavLink>

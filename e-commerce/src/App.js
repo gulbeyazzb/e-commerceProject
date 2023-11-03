@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserVerifyAction } from "./store/actions/userAction";
-import { API, renewAPI } from "./api/api";
+import { fetchProductActionCreator } from "./store/actions/productAction";
 
 function App() {
   const scrollToTop = () => {
@@ -17,7 +17,9 @@ function App() {
     if (localStorage.getItem("token")) {
       dispatch(getUserVerifyAction());
     }
+    dispatch(fetchProductActionCreator());
   }, []);
+  const products = useSelector((store) => store.product.productList);
 
   return (
     <>

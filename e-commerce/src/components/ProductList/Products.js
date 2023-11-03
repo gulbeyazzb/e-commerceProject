@@ -5,12 +5,9 @@ import { useEffect } from "react";
 import { fetchProductActionCreator } from "../../store/actions/productAction";
 import { FETCH_STATES } from "../../store/reducers/productReducer";
 import { Spinner } from "@material-tailwind/react";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const { location } = useLocation();
-  console.log("location:", location);
 
   useEffect(() => {
     dispatch(fetchProductActionCreator());
@@ -26,7 +23,7 @@ const Products = () => {
     (store) => store.product.fetchState === FETCH_STATES.Fetched
   );
   const mobileProducts = products.products?.slice(0, 4);
-
+  const totalProducts = products.total;
   let searchProducts = products.products.filter((product) => {
     if (searchItem) {
       return product.description
@@ -262,7 +259,7 @@ const Products = () => {
             </Link>
           ))}
         </div>
-        <Pagination />
+        <Pagination totalProducts={totalProducts} />
       </div>
     </div>
   );

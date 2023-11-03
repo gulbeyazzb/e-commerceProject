@@ -4,7 +4,7 @@ import Footer from "../layouts/Footer";
 
 const Main = ({}) => {
   return (
-    <div className="font-[Montserrat]">
+    <div className="font-['Montserrat',sans-serif]">
       <NavBar />
       <PageContent />
       <Footer />
