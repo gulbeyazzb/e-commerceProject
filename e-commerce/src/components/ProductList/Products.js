@@ -11,6 +11,14 @@ import { FETCH_STATES } from "../../store/reducers/productReducer";
 import { Spinner, useSelect } from "@material-tailwind/react";
 import useQueryParams from "../../hooks/useQueryParams";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 import {
   useLocation,
@@ -25,6 +33,11 @@ const Products = () => {
     productName: "",
     productId: "",
   });
+
+  const scrollParams = {
+    limit: 24,
+    offset: 24,
+  };
 
   const clickProductHandle = (e) => {
     const childName = e.target.querySelector("h5");
@@ -41,32 +54,33 @@ const Products = () => {
 
   const [hasMore, setHasMore] = useState(true);
 
-  const [page, setPage] = useState(
-    useSelector((store) => store.product.activePage)
-  );
+  const products = useSelector((store) => store.product.productList);
 
-  useEffect(() => {
-    dispatch(fetchProductActionCreator({ ...queryParams, page }));
-    setQueryParams({ page: page });
-  }, [page]);
+  const [scrollProducts, setScrollProducts] = useState([]);
 
-  const pros = useSelector((store) => store.product.productList);
+  const [loadMore, setLoadMore] = useState(true);
 
-  const [products, setProducts] = useState(pros);
-
-  const [pageCount, setPageCount] = useState(
-    useSelector((store) => store.product.pageCount)
-  );
+  const totalProducts = useSelector((store) => store.product.totalProductCount);
 
   const fetchMoreData = () => {
-    setProducts(pros);
-    if (page < pageCount) {
-      setPage(page + 1);
-    } else {
+    setLoadMore(true);
+    dispatch(fetchProductActionCreator({ ...queryParams, ...scrollParams }));
+    if (
+      totalProducts &&
+      products?.products?.length + scrollParams.offset > totalProducts
+    ) {
       setHasMore(false);
     }
   };
-  const totalProducts = useSelector((store) => store.product.totalProductCount);
+
+  useEffect(() => {
+    if (loadMore) {
+      setScrollProducts(scrollProducts.concat(products.products));
+    } else {
+      setScrollProducts(products.products);
+    }
+  }, [products.products]);
+
   const filter = queryParams.filter;
   const searchItem = queryParams.search;
 
@@ -78,7 +92,7 @@ const Products = () => {
   const categories = useSelector((store) => store.global.categories);
   const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
 
-  const categorilizedProducts = products?.products?.filter(
+  const categorilizedProducts = scrollProducts.filter(
     (p) => p.category_id === categoryID
   );
 
@@ -89,9 +103,9 @@ const Products = () => {
     (store) => store.product.fetchState === FETCH_STATES.Fetched
   );
 
-  const mobileProducts = products?.products?.slice(0, 4);
+  const mobileProducts = scrollProducts.slice(0, 4);
 
-  let searchProducts = products?.products?.filter((product) => {
+  let searchProducts = scrollProducts.filter((product) => {
     if (searchItem) {
       return product.description
         .toLowerCase()
@@ -99,7 +113,7 @@ const Products = () => {
     }
   });
 
-  let filterProducts = products?.products?.sort((a, b) => {
+  let filterProducts = scrollProducts.sort((a, b) => {
     if (filter === "priceAsc") {
       return a.price - b.price;
     }
@@ -191,7 +205,7 @@ const Products = () => {
       dispatch(setProductCount(filterProductsCount));
     }
     if (!category && !filter && !searchItem) {
-      const productCount = products?.products?.length;
+      const productCount = scrollProducts.length;
       dispatch(setProductCount(productCount));
     }
   }, [category, filter, searchItem]);
@@ -200,414 +214,835 @@ const Products = () => {
   const categoryPath = pathname.slice(10, pathname.length);
 
   return (
-    <div className="py-12 w-full ">
+    <div className=" w-full ">
       <div className="flex flex-col gap-12 sm:px-28 w-full">
         <div className="flex justify-center items-center">
           {productFetching && <Spinner />}
         </div>
-        {/* <InfiniteScroll
-          dataLength={totalProducts}
+        <InfiniteScroll
+          dataLength={products?.products?.length}
           next={fetchMoreData}
           hasMore={hasMore}
-          loader={<p>loading...</p>}
-          endMessage={<p>There is not any product.</p>}
-        > */}
-        {productFetched && !category && (
-          <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center ">
-            {!filter &&
-              !searchItem &&
-              products?.products?.map((product) => (
-                <Link
-                  to={`/product/${categoryPath}${product.name}${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                  onClick={clickProductHandle}
-                  key={product.id}
-                  id={product.id}
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    className="text-center font-bold text-base"
-                    id={product.name}
+          loader={<p className="text-center">loading...</p>}
+          endMessage={<p>You have seen it all</p>}
+          className="infiniteScroll"
+        >
+          {productFetched && !category && (
+            <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center items-center">
+              {!filter &&
+                !searchItem &&
+                scrollProducts.map((product) => (
+                  <Link
+                    to={`/product/${categoryPath}${product.name}${product.id}`}
+                    className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
+                    onClick={clickProductHandle}
+                    key={product.id}
+                    id={product.id}
                   >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
+                    <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                      <div className="rounded-md justify-center items-center">
+                        <img
+                          src={product.images[0].url}
+                          alt="card-image"
+                          className="rounded-xl h-[18rem] w-[full] object-contain items-center"
+                        />
+                      </div>
+                      <CardBody>
+                        <Typography
+                          variant="h5"
+                          color="blue-gray"
+                          className="mb-2"
+                          id={product.name}
+                        >
+                          {product.name}
+                        </Typography>
+                        <Typography className="text-start line-clamp-1">
+                          {product.description}
+                        </Typography>
+                        <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                          {" "}
+                          <div>
+                            <button>
+                              <i class="bx bxs-circle text-primary-color"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#23856D]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#E77C40]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#252B42]"></i>
+                            </button>
+                          </div>
+                          {product.price}₺
+                        </Typography>
+                      </CardBody>
+                      <CardFooter className="flex justify-between gap-2">
+                        <div>
+                          {" "}
+                          <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                            <option
+                              key="worstRated"
+                              value="worstRated"
+                              className=" text-lg font-bold"
+                            >
+                              M
+                            </option>
+                            <option
+                              key="bestRated"
+                              value="bestRated"
+                              className=" text-lg font-bold"
+                            >
+                              S
+                            </option>
+                            <option
+                              key="priceAsc"
+                              value="priceAsc"
+                              className=" text-lg font-bold"
+                            >
+                              L
+                            </option>
+                            <option
+                              key="priceDesc"
+                              value="priceDesc"
+                              className=" text-lg font-bold"
+                            >
+                              XL
+                            </option>
+                          </select>
+                        </div>
+                        <Button className="w-52 bg-orange-500">
+                          Sepete Ekle
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                ))}
+              {filter &&
+                !searchItem &&
+                filterProducts?.map((product) => (
+                  <Link
+                    to={`/product/${categoryPath}${product.name}${product.id}`}
+                    className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
+                    onClick={clickProductHandle}
+                    key={product.id}
+                    id={product.id}
                   >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {filter &&
-              !searchItem &&
-              filterProducts?.map((product) => (
-                <Link
-                  to={`/product/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                  onClick={clickProductHandle}
-                  key={product.id}
-                  id={product.id}
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    className="text-center font-bold text-base"
-                    id={product.name}
+                    <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                      <CardHeader className=" justify-center items-center">
+                        <img
+                          src={product.images[0].url}
+                          alt="card-image"
+                          className="h-[25rem] w-[full] object-contain items-center"
+                        />
+                      </CardHeader>
+                      <CardBody>
+                        <Typography
+                          variant="h5"
+                          color="blue-gray"
+                          className="mb-2"
+                          id={product.name}
+                        >
+                          {product.name}
+                        </Typography>
+                        <Typography className="text-start">
+                          {product.description}
+                        </Typography>
+                        <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                          {" "}
+                          <div>
+                            <button>
+                              <i class="bx bxs-circle text-primary-color"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#23856D]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#E77C40]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#252B42]"></i>
+                            </button>
+                          </div>
+                          {product.price}₺
+                        </Typography>
+                      </CardBody>
+                      <CardFooter className="flex justify-between gap-2">
+                        <div>
+                          {" "}
+                          <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                            <option
+                              key="worstRated"
+                              value="worstRated"
+                              className=" text-lg font-bold"
+                            >
+                              M
+                            </option>
+                            <option
+                              key="bestRated"
+                              value="bestRated"
+                              className=" text-lg font-bold"
+                            >
+                              S
+                            </option>
+                            <option
+                              key="priceAsc"
+                              value="priceAsc"
+                              className=" text-lg font-bold"
+                            >
+                              L
+                            </option>
+                            <option
+                              key="priceDesc"
+                              value="priceDesc"
+                              className=" text-lg font-bold"
+                            >
+                              XL
+                            </option>
+                          </select>
+                        </div>
+                        <Button className="w-52 bg-orange-500">
+                          Sepete Ekle
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                ))}
+              {searchItem &&
+                !filter &&
+                searchProducts?.map((product) => (
+                  <Link
+                    to={`/product/${categoryPath}${product.name}${product.id}`}
+                    className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
+                    onClick={clickProductHandle}
+                    key={product.id}
+                    id={product.id}
                   >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
+                    <Card className=" flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                      <CardHeader className="justify-center items-center">
+                        <img
+                          src={product.images[0].url}
+                          alt="card-image"
+                          className="h-[25rem] w-[full] object-contain items-center"
+                        />
+                      </CardHeader>
+                      <CardBody>
+                        <Typography
+                          variant="h5"
+                          color="blue-gray"
+                          className="mb-2"
+                          id={product.name}
+                        >
+                          {product.name}
+                        </Typography>
+                        <Typography className="text-start">
+                          {product.description}
+                        </Typography>
+                        <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                          {" "}
+                          <div>
+                            <button>
+                              <i class="bx bxs-circle text-primary-color"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#23856D]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#E77C40]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#252B42]"></i>
+                            </button>
+                          </div>
+                          {product.price}₺
+                        </Typography>
+                      </CardBody>
+                      <CardFooter className="flex justify-between gap-2">
+                        <div>
+                          {" "}
+                          <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                            <option
+                              key="worstRated"
+                              value="worstRated"
+                              className=" text-lg font-bold"
+                            >
+                              M
+                            </option>
+                            <option
+                              key="bestRated"
+                              value="bestRated"
+                              className=" text-lg font-bold"
+                            >
+                              S
+                            </option>
+                            <option
+                              key="priceAsc"
+                              value="priceAsc"
+                              className=" text-lg font-bold"
+                            >
+                              L
+                            </option>
+                            <option
+                              key="priceDesc"
+                              value="priceDesc"
+                              className=" text-lg font-bold"
+                            >
+                              XL
+                            </option>
+                          </select>
+                        </div>
+                        <Button className="w-52 bg-orange-500">
+                          Sepete Ekle
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                ))}
+              {filter &&
+                searchItem &&
+                filterSearchProducts?.map((product) => (
+                  <Link
+                    to={`/product/${categoryPath}${product.name}${product.id}`}
+                    className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
+                    onClick={clickProductHandle}
+                    key={product.id}
+                    id={product.id}
                   >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {searchItem &&
-              !filter &&
-              searchProducts?.map((product) => (
-                <Link
-                  onClick={clickProductHandle}
-                  key={product.id}
-                  id={product.id}
-                  to={`/product/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    className="text-center font-bold text-base"
-                    id={product.name}
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {filter &&
-              searchItem &&
-              filterSearchProducts?.map((product) => (
-                <Link
-                  onClick={clickProductHandle}
-                  key={product.id}
-                  id={product.id}
-                  to={`/product/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    id={product.name}
-                    className="text-center font-bold text-base"
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-          </div>
-        )}
+                    <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                      <CardHeader className=" justify-center items-center">
+                        <img
+                          src={product.images[0].url}
+                          alt="card-image"
+                          className="h-[25rem] w-[full] object-contain items-center"
+                        />
+                      </CardHeader>
+                      <CardBody>
+                        <Typography
+                          variant="h5"
+                          color="blue-gray"
+                          className="mb-2"
+                          id={product.name}
+                        >
+                          {product.name}
+                        </Typography>
+                        <Typography className="text-start">
+                          {product.description}
+                        </Typography>
+                        <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                          {" "}
+                          <div>
+                            <button>
+                              <i class="bx bxs-circle text-primary-color"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#23856D]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#E77C40]"></i>
+                            </button>
+                            <button>
+                              <i class="bx bxs-circle text-[#252B42]"></i>
+                            </button>
+                          </div>
+                          {product.price}₺
+                        </Typography>
+                      </CardBody>
+                      <CardFooter className="flex justify-between gap-2">
+                        <div>
+                          {" "}
+                          <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                            <option
+                              key="worstRated"
+                              value="worstRated"
+                              className=" text-lg font-bold"
+                            >
+                              M
+                            </option>
+                            <option
+                              key="bestRated"
+                              value="bestRated"
+                              className=" text-lg font-bold"
+                            >
+                              S
+                            </option>
+                            <option
+                              key="priceAsc"
+                              value="priceAsc"
+                              className=" text-lg font-bold"
+                            >
+                              L
+                            </option>
+                            <option
+                              key="priceDesc"
+                              value="priceDesc"
+                              className=" text-lg font-bold"
+                            >
+                              XL
+                            </option>
+                          </select>
+                        </div>
+                        <Button className="w-52 bg-orange-500">
+                          Sepete Ekle
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  </Link>
+                ))}
+            </div>
+          )}
+        </InfiniteScroll>
+
         {productFetched && category && (
-          <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center ">
+          <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center items-center">
             {!filter &&
               !searchItem &&
               categorilizedProducts.map((product) => (
                 <Link
+                  to={`/product/${categoryPath}${product.name}${product.id}`}
+                  className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
                   onClick={clickProductHandle}
                   key={product.id}
                   id={product.id}
-                  to={`/product/${categoryPath}/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
                 >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    id={product.name}
-                    className="text-center font-bold text-base"
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
+                  <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                    <CardHeader className=" justify-center items-center">
+                      <img
+                        src={product.images[0].url}
+                        alt="card-image"
+                        className="h-[25rem] w-[full] object-contain items-center"
+                      />
+                    </CardHeader>
+                    <CardBody>
+                      <Typography
+                        variant="h5"
+                        color="blue-gray"
+                        className="mb-2"
+                        id={product.name}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Typography className="text-start">
+                        {product.description}
+                      </Typography>
+                      <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                        {" "}
+                        <div>
+                          <button>
+                            <i class="bx bxs-circle text-primary-color"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#23856D]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#E77C40]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#252B42]"></i>
+                          </button>
+                        </div>
                         {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
+                      </Typography>
+                    </CardBody>
+                    <CardFooter className="flex justify-between gap-2">
+                      <div>
+                        {" "}
+                        <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                          <option
+                            key="worstRated"
+                            value="worstRated"
+                            className=" text-lg font-bold"
+                          >
+                            M
+                          </option>
+                          <option
+                            key="bestRated"
+                            value="bestRated"
+                            className=" text-lg font-bold"
+                          >
+                            S
+                          </option>
+                          <option
+                            key="priceAsc"
+                            value="priceAsc"
+                            className=" text-lg font-bold"
+                          >
+                            L
+                          </option>
+                          <option
+                            key="priceDesc"
+                            value="priceDesc"
+                            className=" text-lg font-bold"
+                          >
+                            XL
+                          </option>
+                        </select>
+                      </div>
+                      <Button className="w-52 bg-orange-500">
+                        Sepete Ekle
+                      </Button>
+                    </CardFooter>
+                  </Card>
                 </Link>
               ))}
             {filter &&
               !searchItem &&
               filterCatProducts?.map((product) => (
                 <Link
+                  to={`/product/${categoryPath}${product.name}${product.id}`}
+                  className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
                   onClick={clickProductHandle}
                   key={product.id}
                   id={product.id}
-                  to={`/product/${categoryPath}/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
                 >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    id={product.name}
-                    className="text-center font-bold text-base"
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
+                  <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                    <CardHeader className=" justify-center items-center">
+                      <img
+                        src={product.images[0].url}
+                        alt="card-image"
+                        className="h-[25rem] w-[full] object-contain items-center"
+                      />
+                    </CardHeader>
+                    <CardBody>
+                      <Typography
+                        variant="h5"
+                        color="blue-gray"
+                        className="mb-2"
+                        id={product.name}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Typography className="text-start">
+                        {product.description}
+                      </Typography>
+                      <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                        {" "}
+                        <div>
+                          <button>
+                            <i class="bx bxs-circle text-primary-color"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#23856D]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#E77C40]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#252B42]"></i>
+                          </button>
+                        </div>
                         {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
+                      </Typography>
+                    </CardBody>
+                    <CardFooter className="flex justify-between gap-2">
+                      <div>
+                        {" "}
+                        <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                          <option
+                            key="worstRated"
+                            value="worstRated"
+                            className=" text-lg font-bold"
+                          >
+                            M
+                          </option>
+                          <option
+                            key="bestRated"
+                            value="bestRated"
+                            className=" text-lg font-bold"
+                          >
+                            S
+                          </option>
+                          <option
+                            key="priceAsc"
+                            value="priceAsc"
+                            className=" text-lg font-bold"
+                          >
+                            L
+                          </option>
+                          <option
+                            key="priceDesc"
+                            value="priceDesc"
+                            className=" text-lg font-bold"
+                          >
+                            XL
+                          </option>
+                        </select>
+                      </div>
+                      <Button className="w-52 bg-orange-500">
+                        Sepete Ekle
+                      </Button>
+                    </CardFooter>
+                  </Card>
                 </Link>
               ))}
             {searchItem &&
               !filter &&
               searchCatProducts?.map((product) => (
                 <Link
+                  to={`/product/${categoryPath}${product.name}${product.id}`}
+                  className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
                   onClick={clickProductHandle}
                   key={product.id}
                   id={product.id}
-                  to={`/product/${categoryPath}/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
                 >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    id={product.name}
-                    className="text-center font-bold text-base"
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
+                  <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                    <CardHeader className=" justify-center items-center">
+                      <img
+                        src={product.images[0].url}
+                        alt="card-image"
+                        className="h-[25rem] w-[full] object-contain items-center"
+                      />
+                    </CardHeader>
+                    <CardBody>
+                      <Typography
+                        variant="h5"
+                        color="blue-gray"
+                        className="mb-2"
+                        id={product.name}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Typography className="text-start">
+                        {product.description}
+                      </Typography>
+                      <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                        {" "}
+                        <div>
+                          <button>
+                            <i class="bx bxs-circle text-primary-color"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#23856D]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#E77C40]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#252B42]"></i>
+                          </button>
+                        </div>
                         {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
+                      </Typography>
+                    </CardBody>
+                    <CardFooter className="flex justify-between gap-2">
+                      <div>
+                        {" "}
+                        <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                          <option
+                            key="worstRated"
+                            value="worstRated"
+                            className=" text-lg font-bold"
+                          >
+                            M
+                          </option>
+                          <option
+                            key="bestRated"
+                            value="bestRated"
+                            className=" text-lg font-bold"
+                          >
+                            S
+                          </option>
+                          <option
+                            key="priceAsc"
+                            value="priceAsc"
+                            className=" text-lg font-bold"
+                          >
+                            L
+                          </option>
+                          <option
+                            key="priceDesc"
+                            value="priceDesc"
+                            className=" text-lg font-bold"
+                          >
+                            XL
+                          </option>
+                        </select>
+                      </div>
+                      <Button className="w-52 bg-orange-500">
+                        Sepete Ekle
+                      </Button>
+                    </CardFooter>
+                  </Card>
                 </Link>
               ))}
             {filter &&
               searchItem &&
               filterSearchCatProducts?.map((product) => (
                 <Link
+                  to={`/product/${categoryPath}${product.name}${product.id}`}
+                  className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
                   onClick={clickProductHandle}
                   key={product.id}
                   id={product.id}
-                  to={`/product/${categoryPath}/${product.name}/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
                 >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5
-                    id={product.name}
-                    className="text-center font-bold text-base"
-                  >
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
+                  <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                    <CardHeader className=" justify-center items-center">
+                      <img
+                        src={product.images[0].url}
+                        alt="card-image"
+                        className="h-[25rem] w-[full] object-contain items-center"
+                      />
+                    </CardHeader>
+                    <CardBody>
+                      <Typography
+                        variant="h5"
+                        color="blue-gray"
+                        className="mb-2"
+                        id={product.name}
+                      >
+                        {product.name}
+                      </Typography>
+                      <Typography className="text-start">
+                        {product.description}
+                      </Typography>
+                      <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                        {" "}
+                        <div>
+                          <button>
+                            <i class="bx bxs-circle text-primary-color"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#23856D]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#E77C40]"></i>
+                          </button>
+                          <button>
+                            <i class="bx bxs-circle text-[#252B42]"></i>
+                          </button>
+                        </div>
                         {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
+                      </Typography>
+                    </CardBody>
+                    <CardFooter className="flex justify-between gap-2">
+                      <div>
+                        {" "}
+                        <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                          <option
+                            key="worstRated"
+                            value="worstRated"
+                            className=" text-lg font-bold"
+                          >
+                            M
+                          </option>
+                          <option
+                            key="bestRated"
+                            value="bestRated"
+                            className=" text-lg font-bold"
+                          >
+                            S
+                          </option>
+                          <option
+                            key="priceAsc"
+                            value="priceAsc"
+                            className=" text-lg font-bold"
+                          >
+                            L
+                          </option>
+                          <option
+                            key="priceDesc"
+                            value="priceDesc"
+                            className=" text-lg font-bold"
+                          >
+                            XL
+                          </option>
+                        </select>
+                      </div>
+                      <Button className="w-52 bg-orange-500">
+                        Sepete Ekle
+                      </Button>
+                    </CardFooter>
+                  </Card>
                 </Link>
               ))}
           </div>
         )}
-        {/* </InfiniteScroll> */}
 
         <div className="sm:hidden flex flex-col gap-[30px] w-full px-4">
           {mobileProducts?.map((product) => (
             <Link
-              to={`/product${categoryPath}${product.name}/${product.id}`}
-              className="flex flex-col text-center gap-[10px] "
+              to={`/product/${categoryPath}${product.name}${product.id}`}
+              className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
+              onClick={clickProductHandle}
+              key={product.id}
+              id={product.id}
             >
-              <h5 className="text-center font-bold text-base">
-                {product.name}
-              </h5>
-              <a
-                href=""
-                className="font-bold text-sm text-second-text text-center"
-              >
-                {product.description}
-                <div className="pt-3">
-                  <span className="text-[#BDBDBD] text-base ">
-                    {product.price}
-                  </span>
-                </div>{" "}
-              </a>
-              <div>
-                <button>
-                  <i class="bx bxs-circle text-primary-color"></i>
-                </button>
-                <button>
-                  <i class="bx bxs-circle text-[#23856D]"></i>
-                </button>
-                <button>
-                  <i class="bx bxs-circle text-[#E77C40]"></i>
-                </button>
-                <button>
-                  <i class="bx bxs-circle text-[#252B42]"></i>
-                </button>
-              </div>
+              <Card className="flex flex-col w-96 h-[50rem] gap-1 justify-center items-center">
+                <CardHeader className=" justify-center items-center">
+                  <img
+                    src={product.images[0].url}
+                    alt="card-image"
+                    className="h-[25rem] w-[full] object-contain items-center"
+                  />
+                </CardHeader>
+                <CardBody>
+                  <Typography
+                    variant="h5"
+                    color="blue-gray"
+                    className="mb-2"
+                    id={product.name}
+                  >
+                    {product.name}
+                  </Typography>
+                  <Typography className="text-start">
+                    {product.description}
+                  </Typography>
+                  <Typography className="flex justify-between mt-10 text-end font-bold text-orange-800">
+                    {" "}
+                    <div>
+                      <button>
+                        <i class="bx bxs-circle text-primary-color"></i>
+                      </button>
+                      <button>
+                        <i class="bx bxs-circle text-[#23856D]"></i>
+                      </button>
+                      <button>
+                        <i class="bx bxs-circle text-[#E77C40]"></i>
+                      </button>
+                      <button>
+                        <i class="bx bxs-circle text-[#252B42]"></i>
+                      </button>
+                    </div>
+                    {product.price}₺
+                  </Typography>
+                </CardBody>
+                <CardFooter className="flex justify-between gap-2">
+                  <div>
+                    {" "}
+                    <select className="p-4 w-32 rounded-md border border-[#DADADA] text-black">
+                      <option
+                        key="worstRated"
+                        value="worstRated"
+                        className=" text-lg font-bold"
+                      >
+                        M
+                      </option>
+                      <option
+                        key="bestRated"
+                        value="bestRated"
+                        className=" text-lg font-bold"
+                      >
+                        S
+                      </option>
+                      <option
+                        key="priceAsc"
+                        value="priceAsc"
+                        className=" text-lg font-bold"
+                      >
+                        L
+                      </option>
+                      <option
+                        key="priceDesc"
+                        value="priceDesc"
+                        className=" text-lg font-bold"
+                      >
+                        XL
+                      </option>
+                    </select>
+                  </div>
+                  <Button className="w-52 bg-orange-500">Sepete Ekle</Button>
+                </CardFooter>
+              </Card>
             </Link>
           ))}
         </div>
