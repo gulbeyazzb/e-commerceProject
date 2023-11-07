@@ -95,7 +95,7 @@ export const FilterComponent = () => {
             </div>
             <button
               type="submit"
-              className="bg-primary-color py-[10px] px-5 rounded text-[#FFFFFF]"
+              className="bg-orange-500 py-[15px] px-5 rounded text-[#FFFFFF]"
             >
               Filter
             </button>
