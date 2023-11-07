@@ -1,19 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchCategoryActionCreator } from "../../store/actions/globalAction";
-import {
-  NavLink,
-  useHistory,
-  useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
 
 const ProductListShopCards = () => {
   const dispatch = useDispatch();
-  const [queryParams] = useQueryParams();
-  const history = useHistory();
   const { pathname, search } = useLocation();
-  const [categoryCode, setCategoryCode] = useState("");
   console.log("search:", search, "path:", pathname);
   useEffect(() => {
     dispatch(fetchCategoryActionCreator());
