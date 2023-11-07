@@ -10,10 +10,12 @@ import { Spinner } from "@material-tailwind/react";
 const CategorilizeProducts = () => {
   useEffect(() => {
     dispatch(fetchProductActionCreator());
-  });
+  }, []);
 
   const dispatch = useDispatch();
-  const { categoryID } = useParams();
+  const categories = useSelector((store) => store.global.categories);
+  const { category } = useParams();
+  const categoryID = categories.find((c) => c.code == category)?.id;
   const products = useSelector((store) => store.product.productList);
 
   const categorilizeProducts = products.products?.filter((product) => {
@@ -37,12 +39,6 @@ const CategorilizeProducts = () => {
     }
   });
 
-  let searchProducts = products.products.filter((product) => {
-    if (searchItem) {
-      return product.name.toLowerCase().includes(searchItem.toLowerCase());
-    }
-  });
-
   let filterCategorilizedProducts = categorilizeProducts.sort((a, b) => {
     if (filter === "priceAsc") {
       return a.price - b.price;
@@ -58,22 +54,7 @@ const CategorilizeProducts = () => {
     }
   });
 
-  let filterSearchProducts = searchProducts.sort((a, b) => {
-    if (filter === "priceAsc") {
-      return a.price - b.price;
-    }
-    if (filter === "priceDesc") {
-      return b.price - a.price;
-    }
-    if (filter === "worstRated") {
-      return a.rating - b.rating;
-    }
-    if (filter === "bestRated") {
-      return b.rating - a.rating;
-    }
-  });
-
-  let filterProducts = products.products.sort((a, b) => {
+  let filterSearchProducts = searchCategorilizedProducts.sort((a, b) => {
     if (filter === "priceAsc") {
       return a.price - b.price;
     }
@@ -94,163 +75,7 @@ const CategorilizeProducts = () => {
         {productFetching && <Spinner />}
         {productFetched && (
           <div className="hidden sm:flex flex-wrap gap-[4rem] justify-center ">
-            {!categoryID &&
-              !filter &&
-              !searchItem &&
-              products.products?.map((product) => (
-                <Link
-                  to={`/product/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5 className="text-center font-bold text-base">
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {!categoryID &&
-              filter &&
-              !searchItem &&
-              filterProducts?.map((product) => (
-                <Link
-                  to={`/product/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5 className="text-center font-bold text-base">
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {!categoryID &&
-              searchItem &&
-              !filter &&
-              searchProducts?.map((product) => (
-                <Link
-                  to={`/product/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5 className="text-center font-bold text-base">
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {!categoryID &&
-              filter &&
-              searchItem &&
-              filterSearchProducts?.map((product) => (
-                <Link
-                  to={`/product/${product.id}`}
-                  className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
-                >
-                  {/* <img src={product.src} className="h-[15rem]"></img> */}
-                  <h5 className="text-center font-bold text-base">
-                    {product.name}
-                  </h5>
-                  <a
-                    href=""
-                    className="font-bold text-sm text-second-text text-center"
-                  >
-                    {product.description}
-                    <div className="pt-3">
-                      <span className="text-[#BDBDBD] text-base ">
-                        {product.price}₺
-                      </span>
-                    </div>{" "}
-                  </a>
-                  <div>
-                    <button>
-                      <i class="bx bxs-circle text-primary-color"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#23856D]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#E77C40]"></i>
-                    </button>
-                    <button>
-                      <i class="bx bxs-circle text-[#252B42]"></i>
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            {categoryID &&
+            {category &&
               !filter &&
               !searchItem &&
               categorilizeProducts?.map((product) => (
@@ -289,7 +114,7 @@ const CategorilizeProducts = () => {
                   </div>
                 </Link>
               ))}
-            {categoryID &&
+            {category &&
               filter &&
               !searchItem &&
               filterCategorilizedProducts?.map((product) => (
@@ -328,10 +153,10 @@ const CategorilizeProducts = () => {
                   </div>
                 </Link>
               ))}
-            {categoryID &&
+            {category &&
               searchItem &&
               !filter &&
-              searchProducts?.map((product) => (
+              filterSearchProducts?.map((product) => (
                 <Link
                   to={`/product/${product.id}`}
                   className="flex flex-col text-center gap-[2rem] w-[15rem] h-[15rem] justify-center items-center"
@@ -367,7 +192,7 @@ const CategorilizeProducts = () => {
                   </div>
                 </Link>
               ))}
-            {categoryID &&
+            {category &&
               searchItem &&
               filter &&
               searchCategorilizedProducts?.map((product) => (

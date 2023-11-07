@@ -10,14 +10,11 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { products } from "../mocks/productList/products";
 
 const ProductPage = () => {
-  const { id } = useParams();
-  const myData = products.find((product) => product.id === Number(id));
-
   return (
     <>
       <NavBarDark />
       <ProductHeader />
-      <ProductCard myData={myData} />
+      <ProductCard />
       <div className="sm:w-[1050px] mx-auto">
         <ProductDescription />
       </div>

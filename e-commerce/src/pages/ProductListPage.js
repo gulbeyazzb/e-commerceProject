@@ -1,16 +1,16 @@
 import Clients from "../components/ProductList/Clients";
 import { FilterComponent } from "../components/ProductList/FilterComponent";
 import ProductListShopCards from "../components/ProductList/ProductListShopCards";
-import CategorilizeProducts from "../components/ProductList/CategorilizeProducts";
+import Products from "../components/ProductList/Products";
 import ProductHeader from "../components/ProductList/ProductHeader";
 
-const ProductListPage = ({ products }) => {
+const ProductListPage = () => {
   return (
     <>
       <ProductHeader />
       <ProductListShopCards />
       <FilterComponent />
-      <CategorilizeProducts products={products} />
+      <Products />
       <Clients />
     </>
   );

@@ -11,11 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import MD5 from "crypto-js/md5";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
-import { setSearchAction } from "../store/actions/productAction";
+import { useHistory, useLocation } from "react-router-dom";
+import useQueryParams from "../hooks/useQueryParams";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [queryParams] = useQueryParams();
+  const history = useHistory();
+  const { pathname, search } = useLocation();
 
   const userInfo = useSelector((store) => store.user.userInfo);
   console.log("user info on navbar:", userInfo);
@@ -39,11 +43,13 @@ const NavBar = () => {
   const manCategories = categories.filter((category) =>
     category.code.includes("e:")
   );
-
-  const searchHandle = (e) => {
-    dispatch(setSearchAction(e.target.value));
+  const clickHandle = (e) => {
+    // e.preventDefault();
+    // history.push({
+    //   pathname: pathname,
+    //   search: search,
+    // });
   };
-
   return (
     <div className="bg-white ">
       <div className="py-6 sm:w-[90rem] m-auto">
@@ -105,7 +111,7 @@ const NavBar = () => {
                       <p className="font-bold text-black text-xl p-2">Woman</p>
                       {womanCategories.map((category) => (
                         <NavLink
-                          to={`/shopping/${category.id}`}
+                          to={`/shopping/${category.code}`}
                           className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
@@ -118,10 +124,11 @@ const NavBar = () => {
                       <p className="font-bold text-black text-xl p-2">Men</p>
                       {manCategories.map((category) => (
                         <NavLink
-                          to={`/shopping/${category.id}`}
+                          to={`/shopping/${category.code}`}
                           className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
+                          onClick={clickHandle}
                           id={category.id}
                         >
                           {category.title}
@@ -194,7 +201,6 @@ const NavBar = () => {
               className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
               placeholder="Search"
               hidden={visibleItem}
-              onChange={searchHandle}
             ></input>
             <button
               onClick={() => setVisibleItem(!visibleItem)}

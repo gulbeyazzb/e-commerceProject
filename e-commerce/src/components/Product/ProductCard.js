@@ -1,7 +1,26 @@
 import React, { useEffect } from "react";
 import { Carousel } from "@material-tailwind/react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
+import useQueryParams from "../../hooks/useQueryParams";
 
-export default function ProductCard({ myData }) {
+export default function ProductCard() {
+  const [queryParams] = useQueryParams();
+  const products = useSelector((store) => store.product.productList.products);
+  const { category, productName, productID } = useParams();
+  const cat = category?.slice(6, category.length);
+  const gender = category?.slice(0, 1);
+  const categoryCode = gender + ":" + cat;
+
+  const categories = useSelector((store) => store.global.categories);
+  const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
+
+  const product = products?.filter(
+    (p) =>
+      p.category_id === categoryID &&
+      p.name === productName &&
+      p.id === Number(productID)
+  );
   return (
     <div className="bg-[#FAFAFA] w-full">
       <div className="sm:pb-12 sm:w-[1050px] mx-auto">
@@ -23,46 +42,38 @@ export default function ProductCard({ myData }) {
                   </div>
                 )}
               >
-                <img
-                  src={myData.src}
-                  alt="image 1"
-                  className=" w-[506px] h-[450px]"
-                />
-                <img
-                  src={myData.src2}
-                  alt="image 2"
-                  className=" w-[506px] h-[450px] "
-                />
+                {product?.images?.map((img, i) => (
+                  <img src={img} alt={i} className=" w-[506px] h-[450px]" />
+                ))}
               </Carousel>
               <div className="flex gap-4 sm:w-[219px] sm:h-[75px]">
-                <img
-                  src={myData.src}
-                  className="opacity-50 w-24 h-[75px]"
-                ></img>
-                <img
-                  src={myData.src2}
-                  className="opacity-50 w-24 h-[75px]"
-                ></img>
+                {product?.images?.map((img, i) => (
+                  <img src={img} className="opacity-50 w-24 h-[75px]"></img>
+                ))}{" "}
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-7 w-full sm:w-[510px] h-[471px] ">
             <h4 className="font-normal text-xl text-[#252B42]">
-              {myData?.heading}
+              {product?.name}
             </h4>
             <div className="flex gap-2">
               <i className="bx bx-star"></i>
-              <h6 className="font-bold text-xs text-[#737373]">10 Reviews</h6>
+              <h6 className="font-bold text-xs text-[#737373]">
+                {product.rating} time rated
+              </h6>
             </div>
-            <h5 className="text-2xl font-bold text-[#252B42]">$1,139.33</h5>
+            <h5 className="text-2xl font-bold text-[#252B42]">
+              {product.price}
+            </h5>
             <div className="flex gap-1">
-              <p className="text-[#737373] font-bold text-sm">Availability :</p>
-              <p className="text-primary-color font-bold text-sm">In Stock </p>
+              <p className="text-[#737373] font-bold text-sm">Availability:</p>
+              <p className="text-primary-color font-bold text-sm">
+                {product.stock > 0 ? "In Stock" : "No Stock"}
+              </p>
             </div>
             <p className="text-[#737373] font-normal text-sm w-[340px] sm:w-[464px]">
-              Met minim Mollie non desert Alamo est sit cliquey dolor do met
-              sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-              venial consequent sent nostrum met.
+              {product.description}
             </p>
             <hr className="text-[#BDBDBD] border border-1" />
             <div className="flex gap-[10px]">

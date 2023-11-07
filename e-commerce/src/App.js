@@ -17,9 +17,11 @@ function App() {
     if (localStorage.getItem("token")) {
       dispatch(getUserVerifyAction());
     }
-    dispatch(fetchProductActionCreator());
   }, []);
-  const products = useSelector((store) => store.product.productList);
+
+  useEffect(() => {
+    dispatch(fetchProductActionCreator());
+  });
 
   return (
     <>

@@ -6,50 +6,44 @@ export const SET_ACTIVEPAGE = "SET_ACTIVEPAGE";
 export const ADD_PAGECOUNT = "ADD_PAGECOUNT";
 export const DELETE_PAGECOUNT = "DELETE_PAGECOUNT";
 export const CHANGE_FETCH_STATE = "CHANGE_FETCH_STATE ";
-export const ADD_COUNT = "ADD_COUNT ";
+export const SET_PAGECOUNT = "SET_PAGECOUNT ";
 export const REMOVE_COUNT = "REMOVE_COUNT ";
-export const SET_FILTER = "SET_FILTER ";
 export const SET_SEARCH = "SET_SEARCH ";
+export const SET_FILTER = "SET_FILTER ";
+export const SET_TOTALPRODUCTS = "SET_TOTALPRODUCTS ";
+export const PRODUCT_COUNT = "PRODUCT_COUNT ";
 
 export const setActivePageAction = (page) => {
   return { type: SET_ACTIVEPAGE, payload: page };
-};
-
-export const addPageCountAction = () => {
-  return { type: ADD_PAGECOUNT };
-};
-
-export const deletePageCount = () => {
-  return { type: DELETE_PAGECOUNT };
 };
 
 export const changeFetchStateAction = (fetchState) => {
   return { type: CHANGE_FETCH_STATE, payload: fetchState };
 };
 
-export const addCountAction = () => {
-  return { type: ADD_COUNT };
+export const setProductCount = (productCount) => {
+  return { type: PRODUCT_COUNT, payload: productCount };
 };
 
-export const removeCountAction = () => {
-  return { type: REMOVE_COUNT };
-};
+// export const setFilter = (filter) => {
+//   return { type: SET_FILTER, payload: filter };
+// };
 
-export const setFilterAction = (selectedFilter) => {
-  return { type: SET_FILTER, payload: selectedFilter };
-};
+// export const setSearch = (searchItem) => {
+//   return { type: SET_SEARCH, payload: searchItem };
+// };
 
-export const setSearchAction = (searchItem) => {
-  return { type: SET_SEARCH, payload: searchItem };
-};
-
-export const fetchProductActionCreator = () => (dispatch, getState) => {
+export const fetchProductActionCreator = (params) => (dispatch, getState) => {
   if (getState().product.fetchState === FETCH_STATES.NotFetched) {
     dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
-    API.get("products")
+    API.get("products", { params })
       .then((res) => {
-        console.log("thunk pro:", res);
         dispatch({ type: SET_PRODUCT, payload: res.data });
+        dispatch({ type: SET_TOTALPRODUCTS, payload: res.data.total });
+        dispatch({
+          type: SET_PAGECOUNT,
+          payload: Math.ceil(res.data.total / 25),
+        });
         dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
       })
       .catch((err) => {
@@ -57,4 +51,8 @@ export const fetchProductActionCreator = () => (dispatch, getState) => {
         console.error(err);
       });
   }
+};
+
+export const fetchCurrentPageProducts = () => (dispatch) => {
+  dispatch({});
 };
