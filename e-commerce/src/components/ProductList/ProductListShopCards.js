@@ -1,16 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { fetchCategoryActionCreator } from "../../store/actions/globalAction";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
-import useQueryParams from "../../hooks/useQueryParams";
+import { useSelector } from "react-redux";
+import { NavLink, useLocation } from "react-router-dom";
 
 const ProductListShopCards = () => {
-  const dispatch = useDispatch();
-  const { pathname, search } = useLocation();
-  console.log("search:", search, "path:", pathname);
-  useEffect(() => {
-    dispatch(fetchCategoryActionCreator());
-  }, []);
+  const { search } = useLocation();
   const categories = useSelector((store) => store.global.categories);
 
   const mostRating = categories.sort((a, b) => {
@@ -25,8 +17,8 @@ const ProductListShopCards = () => {
             <NavLink
               to={`/shopping/${
                 category.code.includes("k:")
-                  ? `kadın=${category.code.slice(2, category.code.length)}`
-                  : `erkek=${category.code.slice(2, category.code.length)}`
+                  ? `kadın/${category.code.slice(2, category.code.length)}`
+                  : `erkek/${category.code.slice(2, category.code.length)}`
               }${search}`}
               key={category.id}
             >

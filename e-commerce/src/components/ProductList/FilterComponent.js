@@ -7,23 +7,23 @@ import { fetchProductActionCreator } from "../../store/actions/productAction";
 export const FilterComponent = () => {
   const [filterParams, setFilterParams] = useState({
     filter: "",
-    search: "",
+    sort: "",
   });
 
   const dispatch = useDispatch();
   const { category } = useParams();
-  const [queryParams, setQueryParams] = useQueryParams();
+  const { gender } = useParams();
 
-  const changeSearch = (e) => {
-    setFilterParams({
-      ...filterParams,
-      search: e.target.value,
-    });
-  };
-  const submitHandle = (e) => {
-    e.preventDefault();
-    setQueryParams(filterParams);
-  };
+  const genderFirstChar = gender.slice(0, 1);
+  const categoryCode = genderFirstChar + ":" + category;
+  // const cat = category?.slice(6, category.length);
+  // const gender = category?.slice(0, 1);
+  // console.log("cat:", cat, "gender", gender);
+  // const categoryCode = gender + ":" + cat;
+
+  const categories = useSelector((store) => store.global.categories);
+  const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
+  const [queryParams, setQueryParams] = useQueryParams();
 
   const changeFilter = (e) => {
     setFilterParams({
@@ -32,8 +32,22 @@ export const FilterComponent = () => {
     });
   };
 
+  const changeSort = (e) => {
+    setFilterParams({
+      ...filterParams,
+      sort: e.target.value,
+    });
+  };
+
+  const submitHandle = (e) => {
+    e.preventDefault();
+    setQueryParams(filterParams);
+  };
+
   useEffect(() => {
-    dispatch(fetchProductActionCreator({ ...queryParams, category }));
+    dispatch(
+      fetchProductActionCreator({ ...queryParams, category: categoryID })
+    );
   }, [queryParams, category]);
 
   const productCount = useSelector((store) => store.product.productCount);
@@ -54,39 +68,46 @@ export const FilterComponent = () => {
               name="searchingItem"
               className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
               placeholder="Search"
-              onChange={changeSearch}
+              onChange={changeFilter}
             ></input>
           </div>
           <div className="flex items-center gap-10">
             <div>
               <select
                 className="p-4 rounded-md border border-[#DADADA] text-black"
-                onClick={changeFilter}
+                onClick={changeSort}
               >
                 <option
-                  key="worstRated"
-                  value="worstRated"
+                  key="recommended"
+                  value="recommended"
+                  className=" text-lg font-bold"
+                >
+                  Recommended
+                </option>
+                <option
+                  key="rating:desc"
+                  value="rating:desc"
                   className=" text-lg font-bold"
                 >
                   Worst Rated
                 </option>
                 <option
-                  key="bestRated"
-                  value="bestRated"
+                  key="rating:asc"
+                  value="rating:asc"
                   className=" text-lg font-bold"
                 >
                   Best Rated
                 </option>
                 <option
-                  key="priceAsc"
-                  value="priceAsc"
+                  key="price:asc"
+                  value="price:asc"
                   className=" text-lg font-bold"
                 >
                   Increasing by Price
                 </option>
                 <option
-                  key="priceDesc"
-                  value="priceDesc"
+                  key="price:desc"
+                  value="price:desc"
                   className=" text-lg font-bold"
                 >
                   decreasing by price

@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
-  fetchCurrentPageProducts,
   fetchProductActionCreator,
   setProductCount,
 } from "../../store/actions/productAction";
 import { FETCH_STATES } from "../../store/reducers/productReducer";
-import { Spinner, useSelect } from "@material-tailwind/react";
+import { Spinner } from "@material-tailwind/react";
 import useQueryParams from "../../hooks/useQueryParams";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BarLoading from "../atoms/BarLoading";
 import {
   Card,
   CardHeader,
@@ -28,17 +25,18 @@ import {
 
 const Products = () => {
   const dispatch = useDispatch();
+  const { products } = useSelector((store) => store.product.productList);
+
+  //productCARD URL
+  const { pathname } = useLocation();
+  const categoryPath = pathname.slice(10, pathname.length);
+
   const [queryParams, setQueryParams] = useQueryParams();
 
   const [productDetail, setProductDetail] = useState({
     productName: "",
     productId: "",
   });
-
-  const scrollParams = {
-    limit: 24,
-    offset: 24,
-  };
 
   const clickProductHandle = (e) => {
     const childName = e.target.querySelector("h5");
@@ -53,23 +51,29 @@ const Products = () => {
     setQueryParams(productDetail);
   };
 
+  //INFINITESCROLL
+  const scrollParams = {
+    limit: 24,
+    offset: 24,
+  };
+
   const [hasMore, setHasMore] = useState(true);
 
-  const products = useSelector((store) => store.product.productList);
-
-  const [data, setData] = useState([]);
-  const [scrollProducts, setScrollProducts] = useState(products.products);
+  const [scrollProducts, setScrollProducts] = useState(products);
 
   const [loadMore, setLoadMore] = useState(true);
 
-  const totalProducts = useSelector((store) => store.product.totalProductCount);
+  const totalProductCount = useSelector(
+    (store) => store.product.totalProductCount
+  );
 
+  //SCROLL NEXT FUNCTION
   const fetchMoreData = () => {
     setLoadMore(true);
-    dispatch(fetchProductActionCreator({ ...queryParams, ...scrollParams }));
+    dispatch(fetchProductActionCreator({ ...queryParams }));
     if (
-      totalProducts &&
-      products?.products?.length + scrollParams.offset > totalProducts
+      totalProductCount &&
+      products?.products?.length + scrollParams.offset > totalProductCount
     ) {
       setHasMore(false);
     }
@@ -77,26 +81,27 @@ const Products = () => {
 
   useEffect(() => {
     if (loadMore) {
-      setScrollProducts(scrollProducts.concat(products.products));
+      setScrollProducts(scrollProducts.concat(products));
     } else {
-      setScrollProducts(products.products);
+      setScrollProducts(products);
     }
-  }, [products.products]);
+  }, [products]);
 
-  const filter = queryParams.filter;
-  const searchItem = queryParams.search;
-
+  //category
   const { category } = useParams();
-  const cat = category?.slice(6, category.length);
-  const gender = category?.slice(0, 1);
-  const categoryCode = gender + ":" + cat;
+  const { gender } = useParams();
+
+  const genderFirstChar = gender.slice(0, 1);
+  const categoryCode = genderFirstChar + ":" + category;
+  // const cat = category?.slice(6, category.length);
+  // const gender = category?.slice(0, 1);
+  // console.log("cat:", cat, "gender", gender);
+  // const categoryCode = gender + ":" + cat;
 
   const categories = useSelector((store) => store.global.categories);
   const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
 
-  const categorilizedProducts = scrollProducts?.filter(
-    (p) => p.category_id === categoryID
-  );
+  //
 
   const productFetching = useSelector(
     (store) => store.product.fetchState === FETCH_STATES.Fetching
@@ -105,150 +110,37 @@ const Products = () => {
     (store) => store.product.fetchState === FETCH_STATES.Fetched
   );
 
+  //MOBILE PRODUCTS
   const mobileProducts = scrollProducts?.slice(0, 4);
 
-  let searchProducts = scrollProducts?.filter((product) => {
-    if (searchItem) {
-      return product.description
-        .toLowerCase()
-        .includes(searchItem.toLowerCase());
-    }
-  });
+  const filter = queryParams.filter;
+  const sort = queryParams.sort;
 
-  let filterProducts = scrollProducts?.sort((a, b) => {
-    if (filter === "priceAsc") {
-      return a.price - b.price;
-    }
-    if (filter === "priceDesc") {
-      return b.price - a.price;
-    }
-    if (filter === "worstRated") {
-      return a.rating - b.rating;
-    }
-    if (filter === "bestRated") {
-      return b.rating - a.rating;
-    }
-  });
-
-  let filterSearchProducts = searchProducts?.sort((a, b) => {
-    if (filter === "priceAsc") {
-      return a.price - b.price;
-    }
-    if (filter === "priceDesc") {
-      return b.price - a.price;
-    }
-    if (filter === "worstRated") {
-      return a.rating - b.rating;
-    }
-    if (filter === "bestRated") {
-      return b.rating - a.rating;
-    }
-  });
-
-  let searchCatProducts = categorilizedProducts?.filter((product) => {
-    if (searchItem) {
-      return product.description
-        .toLowerCase()
-        .includes(searchItem.toLowerCase());
-    }
-  });
-
-  let filterCatProducts = categorilizedProducts?.sort((a, b) => {
-    if (filter === "priceAsc") {
-      return a.price - b.price;
-    }
-    if (filter === "priceDesc") {
-      return b.price - a.price;
-    }
-    if (filter === "worstRated") {
-      return a.rating - b.rating;
-    }
-    if (filter === "bestRated") {
-      return b.rating - a.rating;
-    }
-  });
-
-  let filterSearchCatProducts = searchCatProducts?.sort((a, b) => {
-    if (filter === "priceAsc") {
-      return a.price - b.price;
-    }
-    if (filter === "priceDesc") {
-      return b.price - a.price;
-    }
-    if (filter === "worstRated") {
-      return a.rating - b.rating;
-    }
-    if (filter === "bestRated") {
-      return b.rating - a.rating;
-    }
-  });
+  console.log("filter:", filter, "sort:", sort);
 
   useEffect(() => {
-    if (category && !filter && searchItem) {
-      setData(searchCatProducts);
-      const searchCatProductsCount = searchCatProducts?.length;
-      dispatch(setProductCount(searchCatProductsCount));
-    }
-    if (category && filter && searchItem) {
-      setData(filterSearchCatProducts);
-
-      const filterSearchCatProductsCount = filterSearchCatProducts?.length;
-      dispatch(setProductCount(filterSearchCatProductsCount));
-    }
-
-    if (category && filter && !searchItem) {
-      setData(filterCatProducts);
-
-      const filterCatProductsCount = filterCatProducts?.length;
-      dispatch(setProductCount(filterCatProductsCount));
-    }
-
-    if (!category && filter && searchItem) {
-      setData(filterSearchProducts);
-
-      const filterSearchProductsCount = filterSearchProducts?.length;
-      dispatch(setProductCount(filterSearchProductsCount));
-    }
-    if (!category && filter && !searchItem) {
-      setData(filterProducts);
-
-      const filterProductsCount = filterProducts?.length;
-      dispatch(setProductCount(filterProductsCount));
-    }
-    if (!category && !filter && !searchItem) {
-      setData(scrollProducts);
-
-      const productCount = scrollProducts?.length;
-      dispatch(setProductCount(productCount));
-    }
-    if (!category && !filter && searchItem) {
-      setData(searchProducts);
-
-      const productCount = scrollProducts?.length;
-      dispatch(setProductCount(productCount));
-    }
-  }, [category, filter, searchItem]);
-
-  const { pathname } = useLocation();
-  const categoryPath = pathname.slice(10, pathname.length);
+    setLoadMore(false);
+    dispatch(fetchProductActionCreator(filter, sort, categoryID));
+    dispatch(setProductCount(products.length));
+  }, [categoryID, filter, sort]);
 
   return (
     <div className=" w-full ">
       <div className="flex flex-col gap-4 w-full">
         <div className="flex justify-center items-center">
-          {productFetching && <BarLoading />}
+          {productFetching && <Spinner />}
         </div>
         <InfiniteScroll
-          dataLength={data?.length}
+          dataLength={products?.length}
           next={fetchMoreData}
           hasMore={hasMore}
-          // loader={<p className="text-center">loading...</p>}
+          loader={loadMore && "loading..."}
           endMessage={<p>You have seen it all</p>}
           className="infiniteScroll"
         >
           {productFetched && (
             <div className="hidden sm:flex flex-wrap gap-4 justify-center items-center">
-              {data?.map((product) => (
+              {products?.map((product) => (
                 <Link
                   to={`/product/${categoryPath}${product.name}${product.id}`}
                   className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center "

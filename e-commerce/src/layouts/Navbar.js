@@ -111,7 +111,17 @@ const NavBar = () => {
                       <p className="font-bold text-black text-xl p-2">Woman</p>
                       {womanCategories.map((category) => (
                         <NavLink
-                          to={`/shopping/${category.code}`}
+                          to={`/shopping/${
+                            category.code.includes("k:")
+                              ? `kadın/${category.code.slice(
+                                  2,
+                                  category.code.length
+                                )}`
+                              : `erkek/${category.code.slice(
+                                  2,
+                                  category.code.length
+                                )}`
+                          }${search}`}
                           className="text-gray-700 block px-4 py-2 text-sm"
                           role="menuitem"
                           tabindex="-1"
