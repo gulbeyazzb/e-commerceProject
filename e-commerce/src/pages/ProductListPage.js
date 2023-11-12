@@ -12,7 +12,6 @@ const ProductListPage = () => {
       <ProductListShopCards />
       {/* <ScrollCategories /> */}
       <FilterComponent />
-      <Products />
       <Clients />
     </>
   );

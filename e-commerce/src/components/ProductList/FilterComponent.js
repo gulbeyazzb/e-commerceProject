@@ -3,27 +3,36 @@ import useQueryParams from "../../hooks/useQueryParams";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductActionCreator } from "../../store/actions/productAction";
+import Products from "./Products";
+import { FETCH_STATES } from "../../store/reducers/productReducer";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export const FilterComponent = () => {
+  const dispatch = useDispatch();
+
+  const { products } = useSelector((store) => store.product.productList);
+
   const [filterParams, setFilterParams] = useState({
     filter: "",
     sort: "",
   });
+  const [categoryID, setCategoryID] = useState();
 
-  const dispatch = useDispatch();
-  const { category } = useParams();
-  const { gender } = useParams();
-
-  const genderFirstChar = gender.slice(0, 1);
-  const categoryCode = genderFirstChar + ":" + category;
-  // const cat = category?.slice(6, category.length);
-  // const gender = category?.slice(0, 1);
-  // console.log("cat:", cat, "gender", gender);
-  // const categoryCode = gender + ":" + cat;
-
-  const categories = useSelector((store) => store.global.categories);
-  const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
   const [queryParams, setQueryParams] = useQueryParams();
+
+  //category
+  const { category, gender } = useParams();
+  const categories = useSelector((store) => store.global.categories);
+
+  const productFetching = useSelector(
+    (store) => store.product.fetchState === FETCH_STATES.Fetching
+  );
+  const productFetched = useSelector(
+    (store) => store.product.fetchState === FETCH_STATES.Fetched
+  );
+
+  //MOBILE PRODUCTS
+  const mobileProducts = products?.slice(0, 4);
 
   const changeFilter = (e) => {
     setFilterParams({
@@ -43,14 +52,28 @@ export const FilterComponent = () => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
+  console.log("queryParams:", queryParams);
 
   useEffect(() => {
-    dispatch(
-      fetchProductActionCreator({ ...queryParams, category: categoryID })
-    );
-  }, [queryParams, category]);
+    const categoryCode = gender?.slice(0, 1) + ":" + category;
+    const categoryRec = categories?.find((c) => c.code == categoryCode);
+    setCategoryID(categoryRec?.id);
+  }, [gender, category, categories]);
 
-  const productCount = useSelector((store) => store.product.productCount);
+  useEffect(() => {
+    if ((category && categoryID) || !category) {
+      dispatch(
+        fetchProductActionCreator({ ...queryParams, category: categoryID })
+      );
+    }
+  }, [queryParams, categoryID]);
+
+  const productCount = products?.length;
+
+  const fetchMoreData = () => {};
+
+  const [hasMore, setHasMore] = useState(true);
+
   return (
     <div className="py-6 ">
       <div className="mobile-col-flex justify-center items-center gap-6 sm:gap-[12rem] py-6 sm:py-0">
@@ -65,7 +88,7 @@ export const FilterComponent = () => {
             <p className="font-bold text-second-text text-sm">search:</p>
             <input
               type="text"
-              name="searchingItem"
+              name="filter"
               className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
               placeholder="Search"
               onChange={changeFilter}
@@ -77,13 +100,6 @@ export const FilterComponent = () => {
                 className="p-4 rounded-md border border-[#DADADA] text-black"
                 onClick={changeSort}
               >
-                <option
-                  key="recommended"
-                  value="recommended"
-                  className=" text-lg font-bold"
-                >
-                  Recommended
-                </option>
                 <option
                   key="rating:desc"
                   value="rating:desc"
@@ -123,6 +139,19 @@ export const FilterComponent = () => {
           </div>
         </form>
       </div>
+      <InfiniteScroll
+        next={fetchMoreData}
+        dataLength={products?.length}
+        loader={<p className="text-center">loading...</p>}
+        hasMore={hasMore}
+      >
+        <Products
+          mobileProducts={mobileProducts}
+          products={products}
+          productFetched={productFetched}
+          productFetching={productFetching}
+        />
+      </InfiniteScroll>
     </div>
   );
 };
