@@ -34,23 +34,23 @@ export const setProductCount = (productCount) => {
 // };
 
 export const fetchProductActionCreator = (params) => (dispatch, getState) => {
-  if (getState().product.fetchState === FETCH_STATES.NotFetched) {
-    dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
-    API.get("products", { params })
-      .then((res) => {
-        dispatch({ type: SET_PRODUCT, payload: res.data });
-        dispatch({ type: SET_TOTALPRODUCTS, payload: res.data.total });
-        dispatch({
-          type: SET_PAGECOUNT,
-          payload: Math.ceil(res.data.total / 25),
-        });
-        dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
-      })
-      .catch((err) => {
-        dispatch(changeFetchStateAction(FETCH_STATES.FetchFailed));
-        console.error(err);
+  console.log("params:", params);
+
+  dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
+  API.get("products", { params })
+    .then((res) => {
+      dispatch({ type: SET_PRODUCT, payload: res.data });
+      dispatch({ type: SET_TOTALPRODUCTS, payload: res.data.total });
+      dispatch({
+        type: SET_PAGECOUNT,
+        payload: Math.ceil(res.data.total / 25),
       });
-  }
+      dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
+    })
+    .catch((err) => {
+      dispatch(changeFetchStateAction(FETCH_STATES.FetchFailed));
+      console.error(err);
+    });
 };
 
 export const fetchCurrentPageProducts = () => (dispatch) => {
