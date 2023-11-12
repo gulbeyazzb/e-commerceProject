@@ -1,19 +1,17 @@
 import React from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
-
-function paramsToObject(entries) {
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+const paramsToObject = (entries) => {
   const result = {};
   for (const [key, value] of entries) {
     result[key] = value;
   }
   return result;
-}
-
+};
 const useQueryParams = () => {
   const { search, pathname } = useLocation();
   const history = useHistory();
   const searchParams = new URLSearchParams(search);
-
   const queryParams = React.useMemo(
     () => paramsToObject(searchParams),
     [search]
@@ -40,14 +38,12 @@ const useQueryParams = () => {
       .join("&");
     return queryString ? `?${queryString}` : "";
   };
-
-  function setQueryParams(queryObj) {
+  const setQueryParams = (queryObj) => {
     history.push({
       pathname: pathname,
       search: createQueryString(queryObj),
     });
-  }
+  };
   return [queryParams, setQueryParams];
 };
-
 export default useQueryParams;

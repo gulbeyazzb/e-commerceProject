@@ -22,7 +22,6 @@ const NavBar = () => {
   const { pathname, search } = useLocation();
 
   const userInfo = useSelector((store) => store.user.userInfo);
-  console.log("user info on navbar:", userInfo);
 
   const userNotFetched = useSelector(
     (store) => store.user.fetchState === FETCH_STATES.NotFetched
@@ -113,7 +112,7 @@ const NavBar = () => {
                         <NavLink
                           to={`/shopping/${
                             category.code.includes("k:")
-                              ? `kadın/${category.code.slice(
+                              ? `kadin/${category.code.slice(
                                   2,
                                   category.code.length
                                 )}`

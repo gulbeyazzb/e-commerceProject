@@ -17,7 +17,7 @@ const ProductListShopCards = () => {
             <NavLink
               to={`/shopping/${
                 category.code.includes("k:")
-                  ? `kadın/${category.code.slice(2, category.code.length)}`
+                  ? `kadin/${category.code.slice(2, category.code.length)}`
                   : `erkek/${category.code.slice(2, category.code.length)}`
               }${search}`}
               key={category.id}

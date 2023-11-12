@@ -19,10 +19,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchProductActionCreator());
-  });
-
   return (
     <>
       <Main />
