@@ -12,6 +12,7 @@ export const SET_SEARCH = "SET_SEARCH ";
 export const SET_FILTER = "SET_FILTER ";
 export const SET_TOTALPRODUCTS = "SET_TOTALPRODUCTS ";
 export const PRODUCT_COUNT = "PRODUCT_COUNT ";
+export const ADD_PRODUCTS = "ADD_PRODUCTS ";
 
 export const setActivePageAction = (page) => {
   return { type: SET_ACTIVEPAGE, payload: page };
@@ -39,7 +40,7 @@ export const fetchProductActionCreator = (params) => (dispatch, getState) => {
   dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
   API.get("products", { params })
     .then((res) => {
-      dispatch({ type: SET_PRODUCT, payload: res.data });
+      dispatch({ type: SET_PRODUCT, payload: res.data.products });
       dispatch({ type: SET_TOTALPRODUCTS, payload: res.data.total });
       dispatch({
         type: SET_PAGECOUNT,
@@ -53,6 +54,16 @@ export const fetchProductActionCreator = (params) => (dispatch, getState) => {
     });
 };
 
-export const fetchCurrentPageProducts = () => (dispatch) => {
-  dispatch({});
+export const scrollingAddProducts = (params) => (dispatch) => {
+  dispatch(changeFetchStateAction(FETCH_STATES.Fetching));
+  API.get("products", { params })
+    .then((res) => {
+      dispatch({ type: ADD_PRODUCTS, payload: res.data.products });
+      dispatch({ type: SET_TOTALPRODUCTS, payload: res.data.total });
+      dispatch(changeFetchStateAction(FETCH_STATES.Fetched));
+    })
+    .catch((err) => {
+      dispatch(changeFetchStateAction(FETCH_STATES.FetchFailed));
+      console.error(err);
+    });
 };

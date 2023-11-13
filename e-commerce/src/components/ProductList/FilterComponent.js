@@ -2,23 +2,36 @@ import React, { useEffect, useState } from "react";
 import useQueryParams from "../../hooks/useQueryParams";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductActionCreator } from "../../store/actions/productAction";
+import {
+  fetchProductActionCreator,
+  scrollingAddProducts,
+} from "../../store/actions/productAction";
 import Products from "./Products";
 import { FETCH_STATES } from "../../store/reducers/productReducer";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchCategoryActionCreator } from "../../store/actions/globalAction";
 
 export const FilterComponent = () => {
-  const dispatch = useDispatch();
+  const products = useSelector((store) => store.product.productList);
 
-  const { products } = useSelector((store) => store.product.productList);
+  const totalProductCount = useSelector(
+    (store) => store.product.totalProductCount
+  );
+  const dispatch = useDispatch();
+  const [categoryID, setCategoryID] = useState();
+  const [queryParams, setQueryParams] = useQueryParams();
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(0);
 
   const [filterParams, setFilterParams] = useState({
     filter: "",
     sort: "",
   });
-  const [categoryID, setCategoryID] = useState();
 
-  const [queryParams, setQueryParams] = useQueryParams();
+  const infinitiveParams = {
+    limit: 24,
+    offset: offset,
+  };
 
   //category
   const { category, gender } = useParams();
@@ -34,6 +47,7 @@ export const FilterComponent = () => {
   //MOBILE PRODUCTS
   const mobileProducts = products?.slice(0, 4);
 
+  //FILTER METHODS
   const changeFilter = (e) => {
     setFilterParams({
       ...filterParams,
@@ -52,7 +66,6 @@ export const FilterComponent = () => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
-  console.log("queryParams:", queryParams);
 
   useEffect(() => {
     const categoryCode = gender?.slice(0, 1) + ":" + category;
@@ -60,19 +73,39 @@ export const FilterComponent = () => {
     setCategoryID(categoryRec?.id);
   }, [gender, category, categories]);
 
+  const fetchMoreData = () => {
+    dispatch(
+      scrollingAddProducts({
+        ...queryParams,
+        ...infinitiveParams,
+        category: categoryID,
+      })
+    );
+    setOffset(offset + 24);
+  };
+
   useEffect(() => {
     if ((category && categoryID) || !category) {
       dispatch(
-        fetchProductActionCreator({ ...queryParams, category: categoryID })
+        fetchProductActionCreator({
+          ...queryParams,
+          category: categoryID,
+          limit: infinitiveParams?.limit,
+          offset: 0,
+        })
       );
     }
+    setHasMore(true);
+    setOffset(24);
   }, [queryParams, categoryID]);
 
+  useEffect(() => {
+    if (totalProductCount && products?.length === totalProductCount) {
+      setHasMore(false);
+    }
+  }, [products]);
+
   const productCount = products?.length;
-
-  const fetchMoreData = () => {};
-
-  const [hasMore, setHasMore] = useState(true);
 
   return (
     <div className="py-6 ">
@@ -140,10 +173,12 @@ export const FilterComponent = () => {
         </form>
       </div>
       <InfiniteScroll
+        dataLength={productCount}
         next={fetchMoreData}
-        dataLength={products?.length}
         loader={<p className="text-center">loading...</p>}
         hasMore={hasMore}
+        endMessage={<p>You have seen it all</p>}
+        className="infiniteScroll"
       >
         <Products
           mobileProducts={mobileProducts}

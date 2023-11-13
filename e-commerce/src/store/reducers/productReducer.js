@@ -9,6 +9,7 @@ import { SET_FILTER } from "../actions/productAction";
 import { SET_SEARCH } from "../actions/productAction";
 import { SET_TOTALPRODUCTS } from "../actions/productAction";
 import { PRODUCT_COUNT } from "../actions/productAction";
+import { ADD_PRODUCTS } from "../actions/productAction";
 
 export const FETCH_STATES = {
   NotFetched: "NOT_FETCHED",
@@ -31,7 +32,13 @@ const product = {
 export const productReducer = (state = product, action) => {
   switch (action.type) {
     case SET_PRODUCT:
-      return { ...state, productList: { ...action.payload } };
+      return { ...state, productList: [...action.payload] };
+
+    case ADD_PRODUCTS:
+      return {
+        ...state,
+        productList: [...state.productList, ...action.payload],
+      };
 
     case SET_TOTALPRODUCTS:
       return { ...state, totalProductCount: action.payload };
