@@ -18,19 +18,19 @@ export default function TeamCTA() {
           <div className=" flex p-[10px] gap-[34px]">
             <a href="">
               {" "}
-              <i class="bx bxl-facebook-square text-4xl text-[#395185] "></i>
+              <i className="bx bxl-facebook-square text-4xl text-[#395185] "></i>
             </a>
             <a href="">
               {" "}
-              <i class="bx bxl-instagram text-4xl text-black"></i>
+              <i className="bx bxl-instagram text-4xl text-black"></i>
             </a>
             <a href="">
               {" "}
-              <i class="bx bxl-linkedin text-4xl text-[#0A66C2]"></i>
+              <i className="bx bxl-linkedin text-4xl text-[#0A66C2]"></i>
             </a>
             <a href="">
               {" "}
-              <i class="bx bxl-twitter text-4xl text-[#55ACEE]"></i>
+              <i className="bx bxl-twitter text-4xl text-[#55ACEE]"></i>
             </a>
           </div>
         </div>

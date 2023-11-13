@@ -8,7 +8,7 @@ export default function ProductHeader() {
         <NavLink to="/" className=" text-[#252B42]" exact>
           Home
         </NavLink>
-        <i class="bx bxs-chevron-right text-[#BDBDBD] text-2xl"></i>
+        <i className="bx bxs-chevron-right text-[#BDBDBD] text-2xl"></i>
         <NavLink to="/shopping" className="mr-1">
           Shop
         </NavLink>

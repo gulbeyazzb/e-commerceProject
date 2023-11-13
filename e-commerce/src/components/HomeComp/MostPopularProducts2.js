@@ -25,7 +25,7 @@ export default function MostPopularProducts2() {
         </Link>
 
         <div className="flex items-center text-second-text gap-1">
-          <i class="bx bx-download h-4 w-4"></i>
+          <i className="bx bx-download h-4 w-4"></i>
           <p className="font-bold text-sm ">15 Sales</p>
         </div>
         <div className="flex">
@@ -34,16 +34,16 @@ export default function MostPopularProducts2() {
         </div>
         <div>
           <button>
-            <i class="bx bxs-circle text-primary-color"></i>
+            <i className="bx bxs-circle text-primary-color"></i>
           </button>
           <button>
-            <i class="bx bxs-circle text-[#23856D]"></i>
+            <i className="bx bxs-circle text-[#23856D]"></i>
           </button>
           <button>
-            <i class="bx bxs-circle text-[#E77C40]"></i>
+            <i className="bx bxs-circle text-[#E77C40]"></i>
           </button>
           <button>
-            <i class="bx bxs-circle text-[#252B42]"></i>
+            <i className="bx bxs-circle text-[#252B42]"></i>
           </button>
         </div>
       </div>

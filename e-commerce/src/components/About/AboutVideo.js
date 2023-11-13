@@ -8,7 +8,7 @@ export const AboutVideo = () => {
         <source src={demo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <i class="absolute bx bx-play text-8xl text-white"></i>
+      <i className="absolute bx bx-play text-8xl text-white"></i>
     </div>
   );
 };

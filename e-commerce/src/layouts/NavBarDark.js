@@ -5,10 +5,10 @@ export default function NavBarDark() {
         <div className="flex font-normal text-sm gap-6 ">
           {" "}
           <a href="tel:5414558154">
-            <i class="bx bxs-phone-call me-2"></i>+90 (555) 555 55 55
+            <i className="bx bxs-phone-call me-2"></i>+90 (555) 555 55 55
           </a>
           <a href="mailto:glbzbayram@gmail.com">
-            <i class="bx bx-envelope me-2"></i>glbzbayram@gmail.com
+            <i className="bx bx-envelope me-2"></i>glbzbayram@gmail.com
           </a>
         </div>
         <div className="font-bold text-sm">
@@ -17,13 +17,13 @@ export default function NavBarDark() {
         <div className="flex justify-between items-center font-bold text-sm gap-2">
           <h6>Follow Us :</h6>
           <a href="">
-            <i class="bx bxl-facebook-circle text-white text-lg"></i>
+            <i className="bx bxl-facebook-circle text-white text-lg"></i>
           </a>
           <a>
-            <i class="bx bxl-instagram text-white text-lg"></i>
+            <i className="bx bxl-instagram text-white text-lg"></i>
           </a>
           <a>
-            <i class="bx bxl-twitter text-white text-lg"></i>
+            <i className="bx bxl-twitter text-white text-lg"></i>
           </a>
         </div>
       </div>

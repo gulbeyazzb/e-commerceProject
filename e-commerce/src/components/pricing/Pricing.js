@@ -34,7 +34,7 @@ export default function Pricing() {
           >
             {pricingType === "Month" && (
               <i
-                class={
+                className={
                   "bx bxs-circle text-[#D0D0D0]  md:w-6 md:h-6 md:text-2xl text-xl md:pb-8  transform  duration-700 ease-in-out " +
                   (toggle ? null : toggleButtonClass)
                 }
@@ -42,7 +42,7 @@ export default function Pricing() {
             )}
             {pricingType === "Year" && (
               <i
-                class={
+                className={
                   " bx bxs-circle text-[#D0D0D0] md:text-2xl text-xl  md:w-6 md:h-6 md:pb-8  transform  duration-700 ease-in-out " +
                   (toggle ? null : toggleButtonClass)
                 }
@@ -72,23 +72,23 @@ export default function Pricing() {
               </div>
               <div className="flex flex-col gap-[15px]">
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
               </div>
@@ -114,23 +114,23 @@ export default function Pricing() {
               </div>
               <div className="flex flex-col gap-[15px]">
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
               </div>
@@ -156,23 +156,23 @@ export default function Pricing() {
               </div>
               <div className="flex flex-col gap-[15px]">
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#2dc071] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
                 <div className="flex gap-[10px] font-bold text-sm items-center">
-                  <i class="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
+                  <i className="bx bxs-check-circle text-[#BDBDBD] text-5xl"></i>
                   <h6>Unlimited product updates</h6>
                 </div>
               </div>

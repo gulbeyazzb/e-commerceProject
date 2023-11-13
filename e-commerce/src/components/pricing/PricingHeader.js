@@ -14,7 +14,7 @@ export default function PricingHeader() {
             <NavLink to="/" className=" text-[#252B42] font-bold" exact>
               Home
             </NavLink>
-            <i class="bx bxs-chevron-right text-[#BDBDBD] text-2xl "></i>
+            <i className="bx bxs-chevron-right text-[#BDBDBD] text-2xl "></i>
             <p className="mr-1 ">Team</p>
           </div>
         </div>

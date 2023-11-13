@@ -64,17 +64,17 @@ const Footer = () => {
             Get In Touch
           </Link>
           <a href="tel:5455555555" className="flex gap-1 items-center">
-            <i class="bx bxs-phone-call "></i>+90 (555) 555 55 55
+            <i className="bx bxs-phone-call "></i>+90 (555) 555 55 55
           </a>
           <Link to="/location" className="flex gap-1 items-center">
-            <i class="bx bx-current-location "></i>
+            <i className="bx bx-current-location "></i>
             Amsterdam,Netherlands
           </Link>
           <a
             href="mailto:glbzbayram@gmail.com"
             className="flex gap-1 items-center"
           >
-            <i class="bx bx-envelope "></i>glbzbayram@gmail.com
+            <i className="bx bx-envelope "></i>glbzbayram@gmail.com
           </a>
         </div>
       </div>
@@ -84,13 +84,13 @@ const Footer = () => {
         </p>
         <div className="flex gap-6 justify-between items-center w-[100px]">
           <a href="">
-            <i class="bx bxl-facebook-circle text-[#335BF5] text-3xl"></i>
+            <i className="bx bxl-facebook-circle text-[#335BF5] text-3xl"></i>
           </a>
           <a href="">
-            <i class="bx bxl-instagram text-[#E51F5A] text-3xl"></i>
+            <i className="bx bxl-instagram text-[#E51F5A] text-3xl"></i>
           </a>
           <a href="">
-            <i class="bx bxl-twitter text-[#23A6F0] text-3xl"></i>
+            <i className="bx bxl-twitter text-[#23A6F0] text-3xl"></i>
           </a>
         </div>
       </div>

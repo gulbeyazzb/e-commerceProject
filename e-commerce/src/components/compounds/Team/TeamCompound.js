@@ -12,15 +12,15 @@ const TeamCompound = () => {
             <div className="flex gap-5 justify-center ">
               <a href={data.facebook}>
                 {" "}
-                <i class="bx bxl-facebook-circle text-2xl text-[#335BF5] sm:text-primary-color"></i>
+                <i className="bx bxl-facebook-circle text-2xl text-[#335BF5] sm:text-primary-color"></i>
               </a>
               <a href={data.instagram}>
                 {" "}
-                <i class="bx bxl-instagram text-2xl text-[#E51F5A] sm:text-primary-color"></i>
+                <i className="bx bxl-instagram text-2xl text-[#E51F5A] sm:text-primary-color"></i>
               </a>
               <a href={data.twitter}>
                 {" "}
-                <i class="bx bxl-twitter text-2xl text-primary-color"></i>
+                <i className="bx bxl-twitter text-2xl text-primary-color"></i>
               </a>
             </div>
           </div>

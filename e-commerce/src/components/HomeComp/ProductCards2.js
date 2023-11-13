@@ -49,8 +49,8 @@ const ProductCards2 = () => {
                   </div>
                 </div>
                 <div className="flex gap-[15px]">
-                  <i class="bx bx-chevron-left py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
-                  <i class="bx bx-chevron-right py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
+                  <i className="bx bx-chevron-left py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
+                  <i className="bx bx-chevron-right py-[14px] px-5 border border-muted-color text-muted-color rounded-[34px] sm:text-xl text-lg font-bold"></i>
                 </div>
               </div>
             </div>

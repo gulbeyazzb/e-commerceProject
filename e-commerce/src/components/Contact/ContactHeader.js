@@ -18,16 +18,16 @@ export default function ContactHeader() {
         <div className="flex justify-center sm:justify-start gap-[34px] p-[10px] text-3xl text-[#252B42]">
           {" "}
           <a>
-            <i class="bx bxl-twitter"></i>{" "}
+            <i className="bx bxl-twitter"></i>{" "}
           </a>{" "}
           <a>
-            <i class="bx bxl-facebook-square"></i>{" "}
+            <i className="bx bxl-facebook-square"></i>{" "}
           </a>{" "}
           <a>
-            <i class="bx bxl-instagram"></i>{" "}
+            <i className="bx bxl-instagram"></i>{" "}
           </a>{" "}
           <a>
-            <i class="bx bxl-linkedin"></i>{" "}
+            <i className="bx bxl-linkedin"></i>{" "}
           </a>{" "}
         </div>
       </div>

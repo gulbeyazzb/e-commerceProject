@@ -131,16 +131,16 @@ const Products = ({
                       {product.price}₺
                       <div>
                         <button>
-                          <i class="bx bxs-circle text-primary-color"></i>
+                          <i className="bx bxs-circle text-primary-color"></i>
                         </button>
                         <button>
-                          <i class="bx bxs-circle text-[#23856D]"></i>
+                          <i className="bx bxs-circle text-[#23856D]"></i>
                         </button>
                         <button>
-                          <i class="bx bxs-circle text-[#E77C40]"></i>
+                          <i className="bx bxs-circle text-[#E77C40]"></i>
                         </button>
                         <button>
-                          <i class="bx bxs-circle text-[#252B42]"></i>
+                          <i className="bx bxs-circle text-[#252B42]"></i>
                         </button>
                       </div>
                     </Typography>
@@ -220,16 +220,16 @@ const Products = ({
                     {" "}
                     <div>
                       <button>
-                        <i class="bx bxs-circle text-primary-color"></i>
+                        <i className="bx bxs-circle text-primary-color"></i>
                       </button>
                       <button>
-                        <i class="bx bxs-circle text-[#23856D]"></i>
+                        <i className="bx bxs-circle text-[#23856D]"></i>
                       </button>
                       <button>
-                        <i class="bx bxs-circle text-[#E77C40]"></i>
+                        <i className="bx bxs-circle text-[#E77C40]"></i>
                       </button>
                       <button>
-                        <i class="bx bxs-circle text-[#252B42]"></i>
+                        <i className="bx bxs-circle text-[#252B42]"></i>
                       </button>
                     </div>
                     {product.price}₺

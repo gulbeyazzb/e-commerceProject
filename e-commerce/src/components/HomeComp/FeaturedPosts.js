@@ -36,11 +36,11 @@ const FeaturedPosts = () => {
               </p>
               <div className="flex justify-between">
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-alarm text-primary-color"></i>
+                  <i className="bx bx-alarm text-primary-color"></i>
                   22 April 2021
                 </div>
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-line-chart text-[#23856D]"></i>
+                  <i className="bx bx-line-chart text-[#23856D]"></i>
                   10 comments
                 </div>
               </div>
@@ -49,7 +49,7 @@ const FeaturedPosts = () => {
                 className="flex font-bold text-sm text-second-text items-center "
               >
                 Learn More
-                <i class="bx bx-chevron-right text-primary-color text-2xl "></i>
+                <i className="bx bx-chevron-right text-primary-color text-2xl "></i>
               </NavLink>
             </div>
           </div>
@@ -73,11 +73,11 @@ const FeaturedPosts = () => {
               </p>
               <div className="flex justify-between">
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-alarm text-primary-color"></i>
+                  <i className="bx bx-alarm text-primary-color"></i>
                   22 April 2021
                 </div>
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-line-chart text-[#23856D]"></i>
+                  <i className="bx bx-line-chart text-[#23856D]"></i>
                   10 comments
                 </div>
               </div>
@@ -86,7 +86,7 @@ const FeaturedPosts = () => {
                 className="flex font-bold text-sm text-second-text items-center "
               >
                 Learn More
-                <i class="bx bx-chevron-right text-primary-color text-2xl "></i>
+                <i className="bx bx-chevron-right text-primary-color text-2xl "></i>
               </NavLink>
             </div>
           </div>
@@ -110,11 +110,11 @@ const FeaturedPosts = () => {
               </p>
               <div className="flex justify-between">
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-alarm text-primary-color"></i>
+                  <i className="bx bx-alarm text-primary-color"></i>
                   22 April 2021
                 </div>
                 <div className="font-normal text-xs text-second-text">
-                  <i class="bx bx-line-chart text-[#23856D]"></i>
+                  <i className="bx bx-line-chart text-[#23856D]"></i>
                   10 comments
                 </div>
               </div>
@@ -123,7 +123,7 @@ const FeaturedPosts = () => {
                 className="flex font-bold text-sm text-second-text items-center "
               >
                 Learn More
-                <i class="bx bx-chevron-right text-primary-color text-2xl "></i>
+                <i className="bx bx-chevron-right text-primary-color text-2xl "></i>
               </NavLink>
             </div>
           </div>

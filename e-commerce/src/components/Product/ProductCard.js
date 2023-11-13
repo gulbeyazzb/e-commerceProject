@@ -78,25 +78,25 @@ export default function ProductCard() {
             <hr className="text-[#BDBDBD] border border-1" />
             <div className="flex gap-[10px]">
               <button>
-                <i class="bx bxs-circle text-3xl text-primary-color"></i>
+                <i className="bx bxs-circle text-3xl text-primary-color"></i>
               </button>
               <button>
-                <i class="bx bxs-circle text-3xl text-[#23856D]"></i>
+                <i className="bx bxs-circle text-3xl text-[#23856D]"></i>
               </button>
               <button>
-                <i class="bx bxs-circle text-3xl text-[#E77C40]"></i>
+                <i className="bx bxs-circle text-3xl text-[#E77C40]"></i>
               </button>
               <button>
-                <i class="bx bxs-circle text-3xl text-[#252B42]"></i>
+                <i className="bx bxs-circle text-3xl text-[#252B42]"></i>
               </button>
             </div>
             <div className="flex gap-[10px]">
               <button className="bg-primary-color py-[10px] px-5 font-bold text-sm text-white">
                 Select Options
               </button>
-              <i class="bx bx-heart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
-              <i class="bx bx-cart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
-              <i class="bx bx-bullseye border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
+              <i className="bx bx-heart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
+              <i className="bx bx-cart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
+              <i className="bx bx-bullseye border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
             </div>
           </div>
         </div>

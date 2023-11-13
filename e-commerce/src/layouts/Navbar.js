@@ -74,7 +74,7 @@ const NavBar = () => {
               <NavLink to="/shopping" className="" activeClassName="text-black">
                 Shop
               </NavLink>
-              <div class="relative inline-block text-left">
+              <div className="relative inline-block text-left">
                 <div className="flex items-center">
                   <button
                     onClick={() => setToggle(!toggle)}
@@ -85,7 +85,7 @@ const NavBar = () => {
                     aria-haspopup="true"
                   >
                     <svg
-                      class="-mr-1 h-10 w-10 sm:h-5 sm:w-5 text-gray-400"
+                      className="-mr-1 h-10 w-10 sm:h-5 sm:w-5 text-gray-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -106,7 +106,7 @@ const NavBar = () => {
                     aria-labelledby="menu-button"
                     tabindex="-1"
                   >
-                    <div class="py-1" role="none">
+                    <div className="py-1" role="none">
                       <p className="font-bold text-black text-xl p-2">Woman</p>
                       {womanCategories.map((category) => (
                         <NavLink
@@ -179,7 +179,7 @@ const NavBar = () => {
               <div className="flex">
                 {" "}
                 <i
-                  class={`${
+                  className={`${
                     visibleItem ? "flex" : "flex sm:hidden"
                   } hidden sm:flex bx bx-user text-[#23a6f0] text-2xl `}
                 ></i>
@@ -215,7 +215,7 @@ const NavBar = () => {
               onClick={() => setVisibleItem(!visibleItem)}
               className="flex items-center "
             >
-              <i class="bx bx-search  text-2xl"></i>
+              <i className="bx bx-search  text-2xl"></i>
             </button>
             <NavLink
               to="/cart"
@@ -223,7 +223,7 @@ const NavBar = () => {
               className="flex items-center"
               hidden={!visibleItem}
             >
-              <i class="bx bx-cart  text-2xl" hidden={!visibleItem}></i>
+              <i className="bx bx-cart  text-2xl" hidden={!visibleItem}></i>
               <p hidden={!visibleItem}>1</p>
             </NavLink>
             <NavLink
@@ -232,7 +232,7 @@ const NavBar = () => {
               exact
               className="flex items-center"
             >
-              <i class="bx bx-heart text-2xl" hidden={!visibleItem}></i>{" "}
+              <i className="bx bx-heart text-2xl" hidden={!visibleItem}></i>{" "}
               <p hidden={!visibleItem}>1</p>
             </NavLink>
 
@@ -253,7 +253,7 @@ const NavBar = () => {
                   <MenuHandler>
                     <Button className="p-0 shadow-none bg-transparent">
                       {" "}
-                      <i class="bx bx-menu text-black text-3xl"></i>
+                      <i className="bx bx-menu text-black text-3xl"></i>
                     </Button>
                   </MenuHandler>
                   <MenuList className="">

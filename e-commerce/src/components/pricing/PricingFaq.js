@@ -14,7 +14,7 @@ export default function PricingFaq() {
         <div className="flex flex-col items-center gap-10 sm:gap-[30px] container m-auto justify-center sm:px-24 px-0">
           <div className="mobile-col-flex  items-center gap-10 sm:gap-[30px] ">
             <div className="flex gap-5 p-6 ">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="flex flex-col">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -27,7 +27,7 @@ export default function PricingFaq() {
               </div>
             </div>
             <div className="flex gap-5 p-6 ">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -42,7 +42,7 @@ export default function PricingFaq() {
           </div>
           <div className="mobile-col-flex items-center gap-10 sm:gap-[30px] ">
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -55,7 +55,7 @@ export default function PricingFaq() {
               </div>
             </div>
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -70,7 +70,7 @@ export default function PricingFaq() {
           </div>
           <div className="mobile-col-flex items-center gap-10 sm:gap-[30px] ">
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
@@ -83,7 +83,7 @@ export default function PricingFaq() {
               </div>
             </div>
             <div className="flex gap-5 p-6">
-              <i class="bx bx-chevron-right text-primary-color text-3xl"></i>
+              <i className="bx bx-chevron-right text-primary-color text-3xl"></i>
               <div className="">
                 <h5 className="text-[#252B42] text-base font-bold">
                   the quick fox jumps over the lazy dog
