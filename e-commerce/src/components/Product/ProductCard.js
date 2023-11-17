@@ -1,19 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "@material-tailwind/react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useQueryParams from "../../hooks/useQueryParams";
+import { fetchProductActionCreator } from "../../store/actions/productAction";
 
 export default function ProductCard() {
-  const [queryParams] = useQueryParams();
+  const dispatch = useDispatch();
   const products = useSelector((store) => store.product.productList.products);
-  const { category, productName, productID } = useParams();
-  const cat = category?.slice(6, category.length);
-  const gender = category?.slice(0, 1);
-  const categoryCode = gender + ":" + cat;
+  const { category, productName, productID, gender } = useParams();
+  const [categoryID, setCategoryID] = useState();
 
   const categories = useSelector((store) => store.global.categories);
-  const categoryID = categories?.find((c) => c.code == categoryCode)?.id;
+
+  useEffect(() => {
+    const categoryCode = gender?.slice(0, 1) + ":" + category;
+    const categoryRec = categories?.find((c) => c.code == categoryCode);
+    setCategoryID(categoryRec?.id);
+  }, [category, categories, gender]);
+
+  useEffect(() => {
+    if ((category && categoryID) || !category) {
+      dispatch(
+        fetchProductActionCreator({
+          productID: productID,
+          category: categoryID,
+          productName: productName,
+        })
+      );
+    }
+  }, [productName, productID, categoryID]);
 
   const product = products?.filter(
     (p) =>
@@ -21,6 +37,7 @@ export default function ProductCard() {
       p.name === productName &&
       p.id === Number(productID)
   );
+
   return (
     <div className="bg-[#FAFAFA] w-full">
       <div className="sm:pb-12 sm:w-[1050px] mx-auto">
@@ -60,20 +77,20 @@ export default function ProductCard() {
             <div className="flex gap-2">
               <i className="bx bx-star"></i>
               <h6 className="font-bold text-xs text-[#737373]">
-                {product.rating} time rated
+                {product?.rating} time rated
               </h6>
             </div>
             <h5 className="text-2xl font-bold text-[#252B42]">
-              {product.price}
+              {product?.price}
             </h5>
             <div className="flex gap-1">
               <p className="text-[#737373] font-bold text-sm">Availability:</p>
               <p className="text-primary-color font-bold text-sm">
-                {product.stock > 0 ? "In Stock" : "No Stock"}
+                {product?.stock > 0 ? "In Stock" : "No Stock"}
               </p>
             </div>
             <p className="text-[#737373] font-normal text-sm w-[340px] sm:w-[464px]">
-              {product.description}
+              {product?.description}
             </p>
             <hr className="text-[#BDBDBD] border border-1" />
             <div className="flex gap-[10px]">

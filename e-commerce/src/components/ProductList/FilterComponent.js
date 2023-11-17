@@ -181,6 +181,8 @@ export const FilterComponent = () => {
         className="infiniteScroll"
       >
         <Products
+          gender={gender}
+          category={category}
           mobileProducts={mobileProducts}
           products={products}
           productFetched={productFetched}

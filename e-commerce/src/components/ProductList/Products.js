@@ -28,12 +28,12 @@ const Products = ({
   mobileProducts,
   productFetching,
   productFetched,
+  category,
+  gender,
 }) => {
   const dispatch = useDispatch();
 
   // //productCARD URL
-  const { pathname } = useLocation();
-  const categoryPath = pathname.slice(10, pathname.length);
 
   // const [productDetail, setProductDetail] = useState({
   //   productName: "",
@@ -97,7 +97,9 @@ const Products = ({
           <div className="hidden sm:flex flex-wrap gap-4 justify-center items-center">
             {products?.map((product) => (
               <Link
-                to={`/product/${categoryPath}${product.name}${product.id}`}
+                to={`/shopping/${gender}/${category}/${product.id}/${product.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")} `}
                 className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center "
                 onClick=""
                 key={product.id}
@@ -107,13 +109,14 @@ const Products = ({
                   className="flex flex-col w-80 h-[35rem]  "
                   key={product.id}
                 >
-                  <div className="rounded-md justify-center items-center w-80 h-[320px] line-clamp-1">
+                  <div className=" hover:brightness-50 rounded-md justify-center items-center w-80 h-[320px] line-clamp-1">
                     <img
                       src={product.images[0].url}
                       alt="card-image"
-                      className="rounded-xl h-full w-full object-contain items-center line-clamp-1 hover:brightness-75"
+                      className=" rounded-xl h-full w-full object-contain items-center line-clamp-1"
                     />
                   </div>
+
                   <CardBody className="line-clamp-2">
                     <Typography
                       variant="h5"
@@ -188,7 +191,7 @@ const Products = ({
         )}
 
         <div className="sm:hidden flex flex-col gap-[30px] w-full px-4">
-          {mobileProducts?.map((product) => (
+          {/* {mobileProducts?.map((product) => (
             <Link
               to={`/product/${categoryPath}${product.name}${product.id}`}
               className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center"
@@ -273,7 +276,7 @@ const Products = ({
                 </CardFooter>
               </Card>
             </Link>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

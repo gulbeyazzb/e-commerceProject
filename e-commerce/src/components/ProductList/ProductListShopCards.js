@@ -27,8 +27,8 @@ const ProductListShopCards = () => {
                   className="relative z-0 sm:h-[15rem] w-full sm:w-auto px-2 sm:p-0"
                   src={category.img}
                 ></img>
-                <div className=" absolute z-50  top-[40%] left-[30%] ">
-                  <h2 className="sm:text-base font-bold text-5xl">
+                <div className=" absolute top-[45%] left-[30%] ">
+                  <h2 className="sm:text-lg font-bold text-5xl">
                     {category.title}
                   </h2>
                 </div>
