@@ -7,12 +7,10 @@ import ProductDescription from "../components/Product/ProductDescription";
 import ProductBestSeller from "../components/Product/ProductBestSeller";
 import Clients from "../components/ProductList/Clients";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { products } from "../mocks/productList/products";
 
 const ProductPage = () => {
   return (
     <>
-      <NavBarDark />
       <ProductHeader />
       <ProductCard />
       <div className="sm:w-[1050px] mx-auto">
