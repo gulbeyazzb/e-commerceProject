@@ -20,15 +20,16 @@ export const PageContent = () => {
       <Route path="/shopping/:gender?/:category?">
         <ProductListPage />
       </Route>
+      <Route path="product/:gender/:category/:productId/:productNameSlug">
+        <ProductPage />
+      </Route>
       <Route path="/about" exact>
         <AboutPage />
       </Route>
       <Route path="/contact" exact>
         <ContactPage />
       </Route>
-      <Route path="product/:category?" exact>
-        <ProductPage />
-      </Route>
+
       <Route path="/team" exact>
         <TeamPage />
       </Route>
