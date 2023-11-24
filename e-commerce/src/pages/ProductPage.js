@@ -13,9 +13,7 @@ const ProductPage = () => {
     <>
       <ProductHeader />
       <ProductCard />
-      <div className="sm:w-[1050px] mx-auto">
-        <ProductDescription />
-      </div>
+      <ProductDescription />
       <ProductBestSeller />
       <Clients />
     </>

@@ -28,64 +28,12 @@ const Products = ({
   mobileProducts,
   productFetching,
   productFetched,
-  category,
-  gender,
 }) => {
   const dispatch = useDispatch();
 
-  // //productCARD URL
-
-  // const [productDetail, setProductDetail] = useState({
-  //   productName: "",
-  //   productId: "",
-  // });
-
-  // const clickProductHandle = (e) => {
-  //   const childName = e.target.querySelector("h5");
-  //   const childID = e.target.id;
-  //   const name = childName.id;
-
-  //   setProductDetail({
-  //     ...productDetail,
-  //     productId: childID,
-  //     productName: name,
-  //   });
-  //   setQueryParams(productDetail);
-  // };
-
-  //INFINITESCROLL
-  // const scrollParams = {
-  //   limit: 24,
-  //   offset: 24,
-  // };
-
-  // const [scrollProducts, setScrollProducts] = useState(products);
-
-  // const [loadMore, setLoadMore] = useState(true);
-
-  // const totalProductCount = useSelector(
-  //   (store) => store.product.totalProductCount
-  // );
-
-  //SCROLL NEXT FUNCTION
-  // const fetchMoreData = () => {
-  //   setLoadMore(true);
-  //   if (
-  //     totalProductCount &&
-  //     products?.products?.length + scrollParams.offset > totalProductCount
-  //   ) {
-  //     setHasMore(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (loadMore) {
-  //     setScrollProducts(scrollProducts.concat(products));
-  //   } else {
-  //     setScrollProducts(products);
-  //   }
-  // }, [products]);
-
+  const { pathname } = useLocation();
+  const location = useLocation();
+  console.log(location);
   return (
     <div className=" w-full ">
       <div className="flex flex-col gap-4 w-full">
@@ -97,7 +45,7 @@ const Products = ({
           <div className="hidden sm:flex flex-wrap gap-4 justify-center items-center">
             {products?.map((product) => (
               <Link
-                to={`/shopping/${gender}/${category}/${product.id}/${product.name
+                to={`${pathname}/${product.id}/${product.name
                   .toLowerCase()
                   .replaceAll(" ", "-")} `}
                 className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center "

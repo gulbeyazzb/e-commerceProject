@@ -17,12 +17,17 @@ export const PageContent = () => {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/shopping/:gender?/:category?">
+      <Route path="/shopping/:gender?/:category?" exact>
         <ProductListPage />
       </Route>
-      <Route path="product/:gender/:category/:productId/:productNameSlug">
+
+      <Route
+        path="/shopping/:gender?/:category?/:productId?/:productNameSlug?"
+        exact
+      >
         <ProductPage />
       </Route>
+
       <Route path="/about" exact>
         <AboutPage />
       </Route>
