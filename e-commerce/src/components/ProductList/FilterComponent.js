@@ -9,7 +9,6 @@ import {
 import Products from "./Products";
 import { FETCH_STATES } from "../../store/reducers/productReducer";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchCategoryActionCreator } from "../../store/actions/globalAction";
 
 export const FilterComponent = () => {
   const products = useSelector((store) => store.product.productList);
@@ -187,6 +186,7 @@ export const FilterComponent = () => {
           products={products}
           productFetched={productFetched}
           productFetching={productFetching}
+          categoryID={categoryID}
         />
       </InfiniteScroll>
     </div>

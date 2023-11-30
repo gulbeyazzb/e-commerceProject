@@ -37,7 +37,7 @@ const BestSeller = () => {
         <div className="hidden sm:flex flex-wrap gap-[30px]">
           {products?.map((product) => (
             <Link
-              to={`shopping/gender/category/${product.id}/${product.name
+              to={`product/${product.id}/${product.name
                 .toLowerCase()
                 .replaceAll(" ", "-")} `}
               className="flex flex-col text-center gap-[2rem] mb-10 justify-center items-center "

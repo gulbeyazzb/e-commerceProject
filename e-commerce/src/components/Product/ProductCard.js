@@ -48,7 +48,11 @@ export default function ProductCard() {
             )}
           >
             {product?.images?.map((img, i) => (
-              <img src={image} alt={i} className=" w-[506px] h-[450px]" />
+              <img
+                src={image}
+                alt={i}
+                className="w-full h-full object-contain"
+              />
             ))}
           </Carousel>
           <div className="flex gap-4 sm:w-[219px] sm:h-[75px]">

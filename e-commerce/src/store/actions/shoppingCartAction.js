@@ -13,3 +13,7 @@ export const setPaymentAction = (payment) => {
 export const setAddressAction = (address) => {
   return { type: SET_ADDRESS, payload: address };
 };
+
+export const addToCartThunkAction = (addedProduct, count) => (dispatch) => {
+  dispatch(setCartListAction(addedProduct, count));
+};

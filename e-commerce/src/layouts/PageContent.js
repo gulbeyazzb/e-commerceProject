@@ -21,10 +21,7 @@ export const PageContent = () => {
         <ProductListPage />
       </Route>
 
-      <Route
-        path="/shopping/:gender?/:category?/:productId?/:productNameSlug?"
-        exact
-      >
+      <Route path="/product/:productId/:productNameSlug" exact>
         <ProductPage />
       </Route>
 

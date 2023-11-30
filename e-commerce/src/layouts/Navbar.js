@@ -13,10 +13,13 @@ import MD5 from "crypto-js/md5";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
 import { useHistory, useLocation } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
+import CartDropdown from "../components/Product/CartDropdown";
+import { setActive } from "@material-tailwind/react/components/Tabs/TabsContext";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [open, setOpen] = useState(false);
   const [queryParams] = useQueryParams();
   const history = useHistory();
   const { pathname, search } = useLocation();
@@ -49,6 +52,24 @@ const NavBar = () => {
     //   search: search,
     // });
   };
+  const [cart, setCart] = useState([]);
+  const cartProducts = useSelector((store) => store.shoppingCart.cartList);
+  const count = useSelector((store) => store.shoppingCart.count);
+  console.log(count);
+  // console.log(cartProducts);
+  // useEffect(() => {
+  //   const p = cartProducts.filter((p, i) => {
+  //     for (let j = i + 1; j < cartProducts.length; j++) {
+  //       if (cartProducts[i].id === cartProducts[j].id) {
+  //         return p;
+  //       }
+  //     }
+  //   });
+  //   setCart({ ...cart, p });
+  // }, [cartProducts]);
+  // console.log(cart);
+  console.log(cartProducts);
+
   return (
     <div className="bg-white ">
       <div className="py-6 sm:w-[90rem] m-auto">
@@ -217,15 +238,60 @@ const NavBar = () => {
             >
               <i className="bx bx-search  text-2xl"></i>
             </button>
+
+            {/*-------------------------------CART DROPDOWN NAV ------------------------------------------------------------  */}
+
+            <p hidden={!visibleItem}>1</p>
             <NavLink
               to="/cart"
               exact
-              className="flex items-center"
+              className="items-center flex"
               hidden={!visibleItem}
             >
-              <i className="bx bx-cart  text-2xl" hidden={!visibleItem}></i>
-              <p hidden={!visibleItem}>1</p>
+              <i
+                className="bx bx-cart  text-2xl"
+                onMouseOver={() => setOpen(true)}
+                onMouseLeave={() => setOpen(false)}
+                hidden={!visibleItem}
+              ></i>
+              {open && (
+                <div
+                  className="absolute right-20 z-10 top-12 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-center"
+                  onMouseOver={() => setOpen(true)}
+                  onMouseLeave={() => setOpen(false)}
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabindex="-1"
+                >
+                  {cartProducts?.map((product) =>
+                    product.map((p) => (
+                      <div className="flex flex-col p-2 text-center w-full">
+                        <div className="flex">
+                          <img
+                            src={p?.images[0]?.url}
+                            className="w-20  py-2"
+                          ></img>
+                          <div className="flex flex-col pt-3">
+                            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
+                              {p.name}
+                            </h5>
+                            <span className="text-[#BDBDBD] text-base ">
+                              {p.price} TL
+                            </span>
+                          </div>{" "}
+                        </div>
+                        <hr className="text-gray-600 font-bold text-5xl" />
+                      </div>
+                    ))
+                  )}
+                  <Button className="h-full w-full bg-orange-800 ">
+                    GO TO CART
+                  </Button>
+                </div>
+              )}
             </NavLink>
+
             <NavLink
               hidden={!visibleItem}
               to="/favorites"
