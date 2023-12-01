@@ -9,7 +9,10 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { addToCartThunkAction } from "../../store/actions/shoppingCartAction";
+import {
+  addToCartThunkAction,
+  updateQuantityThunkAction,
+} from "../../store/actions/shoppingCartAction";
 import { useState } from "react";
 
 const Products = ({
@@ -23,19 +26,17 @@ const Products = ({
 
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
   const [count, setCount] = useState(0);
-  const addToCartClickHandle = (id, e) => {
-    cartProducts?.map((product) => {
-      product.map((p) => {
-        p.id === id ? setCount(count + 1) : setCount(1);
-      });
-    });
-    const addedProduct = products.filter((product) => {
-      return product.id == id;
-    });
-    dispatch(addToCartThunkAction(addedProduct, count));
+
+  const addToCartClickHandle = (product) => {
+    const productIndex = cartProducts.findIndex((p) => p.id === product.id);
+    if (productIndex >= 0) {
+      dispatch(updateQuantityThunkAction(product.id));
+    } else {
+      const addQuantity = { ...product, productQuantity: 1 };
+      dispatch(addToCartThunkAction(addQuantity));
+    }
     toast.success("the product has been added to cart");
   };
-  console.log(count);
   return (
     <div className=" w-full ">
       <div className="flex flex-col gap-4 w-full">
@@ -130,7 +131,7 @@ const Products = ({
                     </select>
                   </div>
                   <Button
-                    onClick={(e) => addToCartClickHandle(product.id, e)}
+                    onClick={() => addToCartClickHandle(product)}
                     id={product.id}
                     className="h-full bg-orange-800 "
                   >

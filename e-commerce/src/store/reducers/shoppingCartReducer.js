@@ -1,12 +1,12 @@
 import { SET_CART_LIST } from "../actions/shoppingCartAction";
 import { SET_PAYMENT } from "../actions/shoppingCartAction";
 import { SET_ADDRESS } from "../actions/shoppingCartAction";
+import { UPDATE_QUANTITY } from "../actions/shoppingCartAction";
 
 const shoppingCart = {
   cartList: [],
   payment: {},
   address: {},
-  count: [],
 };
 
 export const shoppingCartReducer = (state = shoppingCart, action) => {
@@ -16,7 +16,14 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
       return {
         ...state,
         cartList: [...state.cartList, payload],
-        count: [...state.count, payload.count],
+      };
+
+    case UPDATE_QUANTITY:
+      return {
+        ...state,
+        cartList: state.cartList.map((p) =>
+          p.id == payload ? { ...p, productQuantity: p.productQuantity + 1 } : p
+        ),
       };
 
     case SET_PAYMENT:

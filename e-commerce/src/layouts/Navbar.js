@@ -54,8 +54,6 @@ const NavBar = () => {
   };
   const [cart, setCart] = useState([]);
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
-  const count = useSelector((store) => store.shoppingCart.count);
-  console.log(count);
   // console.log(cartProducts);
   // useEffect(() => {
   //   const p = cartProducts.filter((p, i) => {
@@ -68,7 +66,7 @@ const NavBar = () => {
   //   setCart({ ...cart, p });
   // }, [cartProducts]);
   // console.log(cart);
-  console.log(cartProducts);
+  console.log("burası..", cartProducts);
 
   return (
     <div className="bg-white ">
@@ -256,7 +254,7 @@ const NavBar = () => {
               ></i>
               {open && (
                 <div
-                  className="absolute right-20 z-10 top-12 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-center"
+                  className="absolute right-32 z-10 top-12 mt-2 w-80 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-opacity-75 text-white"
                   onMouseOver={() => setOpen(true)}
                   onMouseLeave={() => setOpen(false)}
                   role="menu"
@@ -264,27 +262,27 @@ const NavBar = () => {
                   aria-labelledby="menu-button"
                   tabindex="-1"
                 >
-                  {cartProducts?.map((product) =>
-                    product.map((p) => (
-                      <div className="flex flex-col p-2 text-center w-full">
-                        <div className="flex">
-                          <img
-                            src={p?.images[0]?.url}
-                            className="w-20  py-2"
-                          ></img>
-                          <div className="flex flex-col pt-3">
-                            <h5 className="pb-3 text-center font-bold text-base text-[#252B42]">
-                              {p.name}
-                            </h5>
-                            <span className="text-[#BDBDBD] text-base ">
-                              {p.price} TL
+                  {cartProducts?.map((p) => (
+                    <div className="flex flex-col p-2 ">
+                      <div className="flex gap-2 w-full justify-between">
+                        <img src={p?.images[0].url} className="w-20 py-2"></img>
+                        <div className="flex flex-col pt-3 w-3/4">
+                          <h5 className="pb-3 font-bold text-base ">
+                            {p.name}
+                          </h5>
+                          <div className="flex justify-between">
+                            <span className="text-base text-center ">
+                              count: {p.productQuantity}
                             </span>
-                          </div>{" "}
-                        </div>
-                        <hr className="text-gray-600 font-bold text-5xl" />
-                      </div>
-                    ))
-                  )}
+                            <span className=" text-base ">
+                              {p.productQuantity * p.price} TL
+                            </span>
+                          </div>
+                        </div>{" "}
+                      </div>{" "}
+                      <hr className=" w-full text-white font-extrabold text-5xl" />
+                    </div>
+                  ))}
                   <Button className="h-full w-full bg-orange-800 ">
                     GO TO CART
                   </Button>
