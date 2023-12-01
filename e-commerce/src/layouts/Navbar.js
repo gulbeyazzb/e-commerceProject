@@ -11,18 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import MD5 from "crypto-js/md5";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
-import { useHistory, useLocation } from "react-router-dom";
-import useQueryParams from "../hooks/useQueryParams";
-import CartDropdown from "../components/Product/CartDropdown";
-import { setActive } from "@material-tailwind/react/components/Tabs/TabsContext";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [open, setOpen] = useState(false);
-  const [queryParams] = useQueryParams();
-  const history = useHistory();
-  const { pathname, search } = useLocation();
+  const { search } = useLocation();
 
   const userInfo = useSelector((store) => store.user.userInfo);
 
@@ -45,28 +40,9 @@ const NavBar = () => {
   const manCategories = categories.filter((category) =>
     category.code.includes("e:")
   );
-  const clickHandle = (e) => {
-    // e.preventDefault();
-    // history.push({
-    //   pathname: pathname,
-    //   search: search,
-    // });
-  };
+  const clickHandle = (e) => {};
   const [cart, setCart] = useState([]);
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
-  // console.log(cartProducts);
-  // useEffect(() => {
-  //   const p = cartProducts.filter((p, i) => {
-  //     for (let j = i + 1; j < cartProducts.length; j++) {
-  //       if (cartProducts[i].id === cartProducts[j].id) {
-  //         return p;
-  //       }
-  //     }
-  //   });
-  //   setCart({ ...cart, p });
-  // }, [cartProducts]);
-  // console.log(cart);
-  console.log("burası..", cartProducts);
 
   return (
     <div className="bg-white ">
@@ -78,7 +54,7 @@ const NavBar = () => {
               to="/"
               exact
               className={`${
-                visibleItem ? "flex" : "hidden sm:flex"
+                !visibleItem ? "flex" : "hidden sm:flex"
               } font-bold text-2xl px-4 sm:px-0`}
             >
               Bandage
@@ -228,8 +204,9 @@ const NavBar = () => {
               name="searchingItem"
               className="border border-[#DADADA] rounded-md bg-[#F5F5F5] text-black p-2 sm:w-72"
               placeholder="Search"
-              hidden={visibleItem}
+              hidden={!visibleItem}
             ></input>
+
             <button
               onClick={() => setVisibleItem(!visibleItem)}
               className="flex items-center "
@@ -239,18 +216,17 @@ const NavBar = () => {
 
             {/*-------------------------------CART DROPDOWN NAV ------------------------------------------------------------  */}
 
-            <p hidden={!visibleItem}>1</p>
             <NavLink
               to="/cart"
               exact
               className="items-center flex"
-              hidden={!visibleItem}
+              hidden={visibleItem}
             >
               <i
                 className="bx bx-cart  text-2xl"
                 onMouseOver={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
-                hidden={!visibleItem}
+                hidden={visibleItem}
               ></i>
               {open && (
                 <div
@@ -288,16 +264,17 @@ const NavBar = () => {
                   </Button>
                 </div>
               )}
+              <p hidden={visibleItem}>1</p>
             </NavLink>
 
             <NavLink
-              hidden={!visibleItem}
+              hidden={visibleItem}
               to="/favorites"
               exact
               className="flex items-center"
             >
-              <i className="bx bx-heart text-2xl" hidden={!visibleItem}></i>{" "}
-              <p hidden={!visibleItem}>1</p>
+              <i className="bx bx-heart text-2xl" hidden={visibleItem}></i>{" "}
+              <p hidden={visibleItem}>1</p>
             </NavLink>
 
             {userFetched && (
@@ -312,7 +289,7 @@ const NavBar = () => {
             )}
 
             <div className="flex sm:hidden text-5xl">
-              {visibleItem && (
+              {!visibleItem && (
                 <Menu>
                   <MenuHandler>
                     <Button className="p-0 shadow-none bg-transparent">
