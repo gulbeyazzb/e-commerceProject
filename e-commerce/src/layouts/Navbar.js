@@ -41,7 +41,6 @@ const NavBar = () => {
     category.code.includes("e:")
   );
   const clickHandle = (e) => {};
-  const [cart, setCart] = useState([]);
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
 
   return (
@@ -266,7 +265,7 @@ const NavBar = () => {
               )}
               <p hidden={visibleItem}>1</p>
             </NavLink>
-
+            {/*-------------------------------CART DROPDOWN NAV ------------------------------------------------------------  */}
             <NavLink
               hidden={visibleItem}
               to="/favorites"
