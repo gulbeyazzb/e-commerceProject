@@ -174,14 +174,14 @@ const NavBar = () => {
                 {" "}
                 <i
                   className={`${
-                    visibleItem ? "flex" : "flex sm:hidden"
+                    !visibleItem ? "flex" : "flex sm:hidden"
                   } hidden sm:flex bx bx-user text-[#23a6f0] text-2xl `}
                 ></i>
                 <NavLink
                   to="/login"
                   exact
                   className={`${
-                    visibleItem ? "flex" : "flex sm:hidden "
+                    !visibleItem ? "flex" : "flex sm:hidden "
                   } font-bold text-lg px-4 sm:px-0 hidden sm:flex items-center `}
                 >
                   Login /
@@ -190,7 +190,7 @@ const NavBar = () => {
                   to="/signup"
                   exact
                   className={`${
-                    visibleItem ? "flex" : "flex sm:hidden "
+                    !visibleItem ? "flex" : "flex sm:hidden "
                   } font-bold text-lg px-4 sm:px-0 hidden sm:flex items-center `}
                 >
                   Register
