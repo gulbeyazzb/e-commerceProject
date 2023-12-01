@@ -9,12 +9,13 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/Login/SignUp";
 import ProtectedPage from "../pages/ProductedPage";
 import CartPage from "../pages/CartPage";
+import PageHome from "../pages/PageHome";
 
 const PageContent = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <homePage />
+        <PageHome />
       </Route>
       <Route path="/shopping/:gender?/:category?" exact>
         <ProductListPage />

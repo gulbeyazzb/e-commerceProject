@@ -8,7 +8,7 @@ import ProductCards2 from "../components/HomeComp/ProductCards2";
 import ShopCards from "../components/HomeComp/ShopCards";
 import Header from "../layouts/Header";
 
-const HomePage = () => {
+const PageHome = () => {
   return (
     <>
       <Header />
@@ -23,4 +23,4 @@ const HomePage = () => {
     </>
   );
 };
-export default HomePage;
+export default PageHome;
