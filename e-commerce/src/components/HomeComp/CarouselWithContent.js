@@ -65,7 +65,7 @@ export function CarouselWithContent() {
             <div className="flex justify-center gap-2">
               <Link
                 to="/product-list"
-                className="w-40 m-auto rounded py-[1rem] px-10  bg-primary-color font-bold text-base text-center text-white"
+                className="w-40 m-auto rounded py-[1rem] px-10  bg-orange-900 font-bold text-base text-center text-white"
               >
                 Start Now
               </Link>
