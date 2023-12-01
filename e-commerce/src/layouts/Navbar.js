@@ -254,7 +254,7 @@ const NavBar = () => {
               ></i>
               {open && (
                 <div
-                  className="absolute right-32 z-10 top-12 mt-2 w-80 origin-top-right rounded-md bg-black shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-opacity-75 text-white"
+                  className="absolute right-32 z-10 top-12 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-gray-600"
                   onMouseOver={() => setOpen(true)}
                   onMouseLeave={() => setOpen(false)}
                   role="menu"
@@ -267,7 +267,7 @@ const NavBar = () => {
                       <div className="flex gap-2 w-full justify-between">
                         <img src={p?.images[0].url} className="w-20 py-2"></img>
                         <div className="flex flex-col pt-3 w-3/4">
-                          <h5 className="pb-3 font-bold text-base ">
+                          <h5 className="pb-3 font-bold text-base text-black">
                             {p.name}
                           </h5>
                           <div className="flex justify-between">
