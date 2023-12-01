@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 import ProductListPage from "../pages/ProductListPage";
-import HomePage from "..//pages//HomePage";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import ProductPage from "../pages/ProductPage";
@@ -15,7 +14,7 @@ const PageContent = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <HomePage />
+        <homePage />
       </Route>
       <Route path="/shopping/:gender?/:category?" exact>
         <ProductListPage />
