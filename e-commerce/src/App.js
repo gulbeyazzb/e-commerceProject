@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import "./App.css";
 import Main from "./layouts/Main";
 import { animateScroll as scroll } from "react-scroll";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getUserVerifyAction } from "./store/actions/userAction";
-import { fetchProductActionCreator } from "./store/actions/productAction";
 
 function App() {
   const scrollToTop = () => {

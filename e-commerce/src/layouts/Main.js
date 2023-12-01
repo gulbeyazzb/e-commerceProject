@@ -1,5 +1,5 @@
 import NavBar from "./Navbar";
-import { PageContent } from "./PageContent";
+import PageContent from "./PageContent";
 import Footer from "../layouts/Footer";
 
 const Main = ({}) => {
