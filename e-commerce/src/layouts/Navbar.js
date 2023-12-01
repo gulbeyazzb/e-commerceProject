@@ -258,13 +258,25 @@ const NavBar = () => {
                       <hr className=" w-full text-white font-extrabold text-5xl" />
                     </div>
                   ))}
-                  <Button className="h-full w-full bg-orange-800 ">
-                    GO TO CART
-                  </Button>
+                  {cartProducts.length > 0 && (
+                    <Button className="h-full w-full bg-orange-800 ">
+                      GO TO CART
+                    </Button>
+                  )}
+                  {cartProducts.length == 0 && (
+                    <NavLink
+                      to="/shopping"
+                      className="flex opacity-75 justify-center items-center w-full m-auto text-white text-xl font-bold bg-orange-900 text-center  shadow-lg"
+                    >
+                      Basket is empty! Let's Shop{" "}
+                      <i className="bx bxs-chevron-right w-40 text-2xl"></i>
+                    </NavLink>
+                  )}
                 </div>
               )}
-              <p hidden={visibleItem}>1</p>
+              <p hidden={visibleItem}>{cartProducts.length}</p>
             </NavLink>
+
             {/*-------------------------------CART DROPDOWN NAV ------------------------------------------------------------  */}
             <NavLink
               hidden={visibleItem}

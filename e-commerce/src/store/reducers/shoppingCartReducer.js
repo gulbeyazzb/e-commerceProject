@@ -19,10 +19,19 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
       };
 
     case UPDATE_QUANTITY:
+      console.log(payload);
       return {
         ...state,
         cartList: state.cartList.map((p) =>
-          p.id == payload ? { ...p, productQuantity: p.productQuantity + 1 } : p
+          p.id == payload.id
+            ? {
+                ...p,
+                productQuantity:
+                  payload.updateType == "increment"
+                    ? p.productQuantity + 1
+                    : p.productQuantity - 1,
+              }
+            : p
         ),
       };
 

@@ -7,8 +7,8 @@ export const setCartListAction = (cartList) => {
   return { type: SET_CART_LIST, payload: cartList };
 };
 
-export const updateQuantityAction = (index) => {
-  return { type: UPDATE_QUANTITY, payload: index };
+export const updateQuantityAction = (type, id) => {
+  return { type: UPDATE_QUANTITY, payload: type, id };
 };
 
 export const setPaymentAction = (payment) => {
@@ -23,6 +23,6 @@ export const addToCartThunkAction = (addedProduct) => (dispatch) => {
   dispatch(setCartListAction(addedProduct));
 };
 
-export const updateQuantityThunkAction = (id) => (dispatch) => {
-  dispatch(updateQuantityAction(id));
+export const updateQuantityThunkAction = (updateType, id) => (dispatch) => {
+  dispatch(updateQuantityAction(updateType, id));
 };

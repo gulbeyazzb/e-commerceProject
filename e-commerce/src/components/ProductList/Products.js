@@ -27,9 +27,11 @@ const Products = ({
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
 
   const addToCartClickHandle = (product) => {
-    const productIndex = cartProducts.findIndex((p) => p.id === product.id);
+    const updateType = "increment";
+    const id = product.id;
+    const productIndex = cartProducts.findIndex((p) => p.id === id);
     if (productIndex >= 0) {
-      dispatch(updateQuantityThunkAction(product.id));
+      dispatch(updateQuantityThunkAction({ updateType, id }));
     } else {
       const addQuantity = { ...product, productQuantity: 1 };
       dispatch(addToCartThunkAction(addQuantity));
