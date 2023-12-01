@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pic1 from "../../Assets/products/unsplash_QANOF9iJlFs.png";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { API } from "../../api/api";
 
 export default function ProductDescription() {
+  const { productId } = useParams();
+  console.log(productId);
+  const [product, setProduct] = useState();
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    API.get(`products/${productId}`).then((res) => {
+      setProduct(res.data);
+      setImage(res.data.images.map((img) => img.url));
+    });
+  }, [productId]);
+
+  const clickImageHandle = (e) => {
+    console.log(e.target.src);
+    setImage(e.target.src);
+  };
+
   return (
     <div className="flex-col items-center ">
       <div className="flex sm:gap-6 gap-2 py-6 sm:py-0 justify-center">
@@ -17,8 +36,14 @@ export default function ProductDescription() {
         </a>
       </div>
       <hr className="text-[#BDBDBD]  py-4" />
-      <div className="mobile-col-flex justify-center gap-12">
-        <img className="h-[392px] shadow-xl" src={pic1}></img>
+      <div className="mobile-col-flex sm:justify-center items-center gap-12">
+        {product?.images?.map((img, i) => (
+          <img
+            src={image}
+            alt={i}
+            className=" object-contain  shadow-xl h-[392px]"
+          />
+        ))}
         <div className="flex flex-col gap-[30px] w-[342px] sm:h-[427px]">
           <h5 className="text-2xl font-bold text-[#252B42]">
             the quick fox jumps over{" "}

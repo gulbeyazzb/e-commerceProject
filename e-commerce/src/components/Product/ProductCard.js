@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "@material-tailwind/react";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import useQueryParams from "../../hooks/useQueryParams";
-import { fetchProductActionCreator } from "../../store/actions/productAction";
-import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { API } from "../../api/api";
+import {
+  addToCartThunkAction,
+  updateQuantityThunkAction,
+} from "../../store/actions/shoppingCartAction";
+import { Button } from "@material-tailwind/react";
 
 export default function ProductCard() {
   const { productId } = useParams();
@@ -28,9 +28,23 @@ export default function ProductCard() {
     setImage(e.target.src);
   };
 
+  const cartProducts = useSelector((store) => store.shoppingCart.cartList);
+  const dispatch = useDispatch();
+
+  const addToCartClickHandle = (product) => {
+    const productIndex = cartProducts.findIndex((p) => p.id === product.id);
+    if (productIndex >= 0) {
+      dispatch(updateQuantityThunkAction(product.id));
+    } else {
+      const addQuantity = { ...product, productQuantity: 1 };
+      dispatch(addToCartThunkAction(addQuantity));
+    }
+    toast.success("the product has been added to cart");
+  };
+
   return (
     <div className="bg-[#FAFAFA] w-full pt-6">
-      <div className="mobile-col-flex p-3 sm:p-0 sm:justify-center gap-28">
+      <div className="mobile-col-flex p-3 sm:p-0 sm:justify-center gap-4 sm:gap-28">
         <div className="flex flex-col gap-4 sm:w-[506px] sm:h-[546px] rounded">
           <Carousel
             navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -106,9 +120,26 @@ export default function ProductCard() {
             </button>
           </div>
           <div className="flex gap-[10px]">
-            <button className="bg-primary-color py-[10px] px-5 font-bold text-sm text-white">
-              Add to Cart
-            </button>
+            <Button
+              onClick={() => addToCartClickHandle(product)}
+              id={productId}
+              className="h-full bg-orange-800 "
+            >
+              Add To Cart
+            </Button>
+            <ToastContainer
+              className="hidden sm:flex"
+              position="top-center"
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
             <i className="bx bx-heart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
             <i className="bx bx-cart border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
             <i className="bx bx-bullseye border border-1 rounded-full text-3xl w-10 text-center text-[#252B42]"></i>
