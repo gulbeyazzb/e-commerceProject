@@ -159,7 +159,7 @@ const Products = ({
         <div className="sm:hidden flex flex-wrap justify-between">
           {products?.map((product) => (
             <Card
-              className="flex flex-col w-[186px] items-between mb-3"
+              className="flex flex-col w-[200px] px-2 items-between mb-3"
               key={product.id}
             >
               {" "}
