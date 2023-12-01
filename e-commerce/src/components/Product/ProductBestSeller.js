@@ -34,6 +34,8 @@ const BestSeller = () => {
           </h3>
         </div>
         <hr className="text-[#ECECEC]" />
+
+        {/* WEB DESİGN */}
         <div className="hidden sm:flex flex-wrap gap-[30px]">
           {products?.map((product) => (
             <Link
@@ -125,32 +127,75 @@ const BestSeller = () => {
             </Link>
           ))}
         </div>
-        {/* <div className="sm:hidden flex flex-col gap-[70px] w-[330px]">
-          {mobileProducts.map((product) => (
-            <Link
-              to={`/product/${product.id}`}
-              onClick={scrollToTop}
-              className="sm:w-[238px] sm:h-[442px] flex flex-col"
+
+        {/* MOBILE DESİGN */}
+        <div className="sm:hidden flex flex-wrap justify-between">
+          {products?.map((product) => (
+            <Card
+              className="flex flex-col w-[200px] px-2 items-between mb-3"
+              key={product.id}
             >
-              <img src={product.src}></img>
-              <div className="flex flex-col justify-start pt-[25px] pb-[35px] px-[25px] gap-[10px] bg-white">
-                <h5 className="font-bold text-base text-[#252B42]">
-                  {product.heading}
-                </h5>
-                <Link
-                  to="/english-department"
-                  className=" font-bold text-sm text-[#737373]"
+              {" "}
+              <Link
+                to={`/product/${product.id}/${product.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")} `}
+                key={product.id}
+                id={product.id}
+              >
+                <div className=" hover:brightness-50 rounded-md line-clamp-1">
+                  <img
+                    src={product.images[0].url}
+                    alt="card-image"
+                    className="w-full object-center h-60 object-cover items-center line-clamp-1"
+                  />
+                </div>
+              </Link>
+              <CardBody className="flex flex-col line-clamp-2 gap-1">
+                <Typography className="text-start line-clamp-1">
+                  {product.description}
+                </Typography>
+                <Typography className="flex font-bold text-orange-800 line-clamp-1">
+                  {" "}
+                  <div>
+                    <button>
+                      <i className="bx bxs-circle text-primary-color"></i>
+                    </button>
+                    <button>
+                      <i className="bx bxs-circle text-[#23856D]"></i>
+                    </button>
+                    <button>
+                      <i className="bx bxs-circle text-[#E77C40]"></i>
+                    </button>
+                    <button>
+                      <i className="bx bxs-circle text-[#252B42]"></i>
+                    </button>
+                  </div>
+                </Typography>
+                <Typography
+                  variant="h5"
+                  color="blue-gray"
+                  className="mb-2 line-clamp-4 font-normal text-base"
+                  id={product.rating}
                 >
-                  English Department
-                </Link>
-                <div>
-                  <span className="text-[#BDBDBD] text-base ">$16.48</span>
-                  <span className="text-[#23856D] text-base ">$16.48</span>
-                </div>{" "}
-              </div>
-            </Link>
+                  <div className="flex gap-2">
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <span className="font-bold text-xs text-[#737373]">
+                      {" "}
+                      ({product?.rating})
+                    </span>
+                  </div>
+                </Typography>
+                <span className="font-bold text-orange-800 ">
+                  {product.price}₺
+                </span>
+              </CardBody>
+            </Card>
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import brand6 from "../../Assets/clientsLogo/fa-brands-6.png";
 const Clients = () => {
   return (
     <div className=" py-12 bg-[#FAFAFA]">
-      <div className="mobile-col-flex sm:justify-center items-center  gap-[60px]">
+      <div className="flex flex-wrap px-4 sm:px-0 sm:justify-center items-center gap-8 sm:gap-[60px]">
         <img className="sm:w-[80px] sm:h-[33.81px]" src={brand1}></img>
         <img className="sm:w-[83px] sm:h-[59px]" src={brand2}></img>
         <img className="sm:w-[102px] sm:h-[75px]" src={brand3}></img>

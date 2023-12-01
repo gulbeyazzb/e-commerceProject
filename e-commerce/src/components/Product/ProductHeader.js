@@ -7,7 +7,7 @@ export default function ProductHeader() {
 
   return (
     <div className="bg-[#FAFAFA] ">
-      <div className="flex justify-center items-center">
+      <div className="flex flex-row justify-between px-4 sm:justify-center sm:items-center">
         <div>
           <button
             className="flex justify-center sm:justify-start gap-[5px] sm:w-[1050px] m-auto text-black font-bold text-lg items-center pt-6"

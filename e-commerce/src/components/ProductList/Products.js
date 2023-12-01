@@ -25,7 +25,6 @@ const Products = ({
   const [clicked, setClicked] = useState(" Add to Cart ");
 
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
-  const [count, setCount] = useState(0);
 
   const addToCartClickHandle = (product) => {
     const productIndex = cartProducts.findIndex((p) => p.id === product.id);
@@ -205,13 +204,16 @@ const Products = ({
                   className="mb-2 line-clamp-4 font-normal text-base"
                   id={product.rating}
                 >
-                  <span className="text-orange-600 font-bold">
-                    {" "}
-                    {product.rating}{" "}
-                  </span>
-                  <span className="text-gray-600 text-opacity-75">
-                    times was added to fav
-                  </span>
+                  <div className="flex gap-2">
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <i className="bx bxs-star text-yellow-600"></i>
+                    <span className="font-bold text-xs text-[#737373]">
+                      {" "}
+                      ({product?.rating})
+                    </span>
+                  </div>
                 </Typography>
                 <span className="font-bold text-orange-800 ">
                   {product.price}₺
