@@ -12,6 +12,10 @@ import { FETCH_STATES } from "../store/reducers/productReducer";
 import MD5 from "crypto-js/md5";
 import { fetchCategoryActionCreator } from "../store/actions/globalAction";
 import { useLocation } from "react-router-dom";
+import {
+  setTotalPriceAction,
+  setTotalQuantityAction,
+} from "../store/actions/shoppingCartAction";
 
 const NavBar = () => {
   const [visibleItem, setVisibleItem] = useState(false);
@@ -42,6 +46,12 @@ const NavBar = () => {
   );
   const clickHandle = (e) => {};
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
+
+  useEffect(() => {
+    dispatch(setTotalQuantityAction());
+  }, [cartProducts]);
+
+  const { totalQuantity } = useSelector((store) => store.shoppingCart);
 
   return (
     <div className="bg-white ">
@@ -274,7 +284,7 @@ const NavBar = () => {
                   )}
                 </div>
               )}
-              <p hidden={visibleItem}>{cartProducts.length}</p>
+              <p hidden={visibleItem}>{totalQuantity}</p>
             </NavLink>
 
             {/*-------------------------------CART DROPDOWN NAV ------------------------------------------------------------  */}
