@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-tailwind/react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { updateQuantityThunkAction } from "../store/actions/shoppingCartAction";
+import {
+  setTotalPriceAction,
+  updateQuantityThunkAction,
+  updateTotalPriceAction,
+} from "../store/actions/shoppingCartAction";
+import { Checkbox } from "@material-tailwind/react";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -13,12 +18,27 @@ export default function CartPage() {
     dispatch(updateQuantityThunkAction({ updateType, id }));
   };
 
+  useEffect(() => {
+    dispatch(setTotalPriceAction());
+  }, [cartProducts, dispatch]);
+
+  const { totalAmount } = useSelector((store) => store.shoppingCart);
+
+  const checkHandle = (e) => {
+    const id = e.target.id;
+    const checkedState = e.target.checked;
+    console.log(id, checkedState);
+    dispatch(updateTotalPriceAction({ checkedState, id }));
+    dispatch(setTotalPriceAction());
+  };
+
   return (
-    <div className="h-screen">
+    <div className="h-full">
       <div className=" w-full  sm:my-28 sm:w-[1050px] m-auto rounded-md bg-white shadow-lg  text-gray-600">
         {cartProducts?.map((p) => (
           <div className="flex flex-col p-2 ">
             <div className="flex gap-2 w-full justify-between">
+              <Checkbox defaultChecked id={p.id} onClick={checkHandle} />
               <img src={p?.images[0].url} className="w-20 py-2"></img>
               <div className="flex flex-col pt-3 w-3/4">
                 <h5 className="pb-3 font-bold text-base text-black">
@@ -54,9 +74,14 @@ export default function CartPage() {
           </div>
         ))}
         {cartProducts.length > 0 && (
-          <Button className="w-80 sm:w-full m-auto bg-orange-800 ">
-            Go To Pay
-          </Button>
+          <div className="flex flex-end flex-col">
+            <span className="text-right font-bold text-black my-3">
+              Total: {totalAmount}
+            </span>
+            <Button className="w-80 sm:w-full m-auto bg-orange-800 ">
+              CHECKOUT
+            </Button>
+          </div>
         )}
       </div>
       {cartProducts.length == 0 && (
