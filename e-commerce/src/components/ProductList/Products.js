@@ -13,16 +13,9 @@ import {
   addToCartThunkAction,
   updateQuantityThunkAction,
 } from "../../store/actions/shoppingCartAction";
-import { useState } from "react";
 
-const Products = ({
-  products,
-  mobileProducts,
-  productFetching,
-  productFetched,
-}) => {
+const Products = ({ products, productFetching, productFetched }) => {
   const dispatch = useDispatch();
-  const [clicked, setClicked] = useState(" Add to Cart ");
 
   const cartProducts = useSelector((store) => store.shoppingCart.cartList);
 
@@ -33,7 +26,7 @@ const Products = ({
     if (productIndex >= 0) {
       dispatch(updateQuantityThunkAction({ updateType, id }));
     } else {
-      const addQuantity = { ...product, productQuantity: 1 };
+      const addQuantity = { ...product, productQuantity: 1, checked: true };
       dispatch(addToCartThunkAction(addQuantity));
     }
     toast.success("the product has been added to cart");
@@ -137,7 +130,7 @@ const Products = ({
                     id={product.id}
                     className="h-full bg-orange-800 "
                   >
-                    {clicked}
+                    ADD TO BASKET
                   </Button>
                 </CardFooter>
                 <ToastContainer
