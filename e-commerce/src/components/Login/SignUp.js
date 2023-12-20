@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { API } from "../../api/api";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 
 const Signup = () => {
   const [sellerRole, setSellerRole] = useState(false);
