@@ -5,11 +5,14 @@ import { UPDATE_QUANTITY } from "../actions/shoppingCartAction";
 import { SET_TOTALPRICE } from "../actions/shoppingCartAction";
 import { SET_TOTALQUANTITY } from "../actions/shoppingCartAction";
 import { UPDATE_TOTAL_AMOUNT } from "../actions/shoppingCartAction";
+import { DELETE_PRODUCT_FROM_CART } from "../actions/shoppingCartAction";
+import { SELECTED_ADDRESS } from "../actions/shoppingCartAction";
 
 const shoppingCart = {
   cartList: [],
   payment: {},
-  address: {},
+  address: [],
+  selectedAddress: {},
   totalAmount: 0,
   totalQuantity: 0,
 };
@@ -21,6 +24,12 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
       return {
         ...state,
         cartList: [...state.cartList, payload],
+      };
+
+    case DELETE_PRODUCT_FROM_CART:
+      return {
+        ...state,
+        cartList: state.cartList.filter((cartItem) => cartItem.id !== payload),
       };
 
     case UPDATE_QUANTITY:
@@ -82,6 +91,12 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
 
     case SET_ADDRESS:
       return { ...state, address: payload };
+
+    case SELECTED_ADDRESS:
+      return {
+        ...state,
+        selectedAddress: state.address.filter((a) => a.id === Number(payload)),
+      };
 
     default:
       return state;

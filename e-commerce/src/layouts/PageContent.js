@@ -10,6 +10,7 @@ import SignUp from "../components/Login/SignUp";
 import ProtectedPage from "../pages/ProductedPage";
 import CartPage from "../pages/CartPage";
 import PageHome from "../pages/PageHome";
+import OrderPage from "../pages/OrderPage";
 
 const PageContent = () => {
   return (
@@ -46,6 +47,9 @@ const PageContent = () => {
       </Route>
       <Route path="/cart" exact>
         <ProtectedPage PageComponent={CartPage} fromURL={"/cart"} />
+      </Route>
+      <Route path="/order" exact>
+        <OrderPage />
       </Route>
     </Switch>
   );
