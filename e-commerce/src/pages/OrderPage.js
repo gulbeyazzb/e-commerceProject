@@ -3,28 +3,34 @@ import { useForm } from "react-hook-form";
 import { Spinner } from "@material-tailwind/react";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
-import { API } from "../api/api";
 import { Dialog, Card } from "@material-tailwind/react";
 import {
+  getDistrictsOfEachCity,
+  getCityNames,
+  getNeighbourhoodsByCityCodeAndDistrict,
+  getCityCodes,
+} from "turkey-neighbourhoods";
+import {
+  UpdateAddressAction,
   fetchAddressThunkAction,
   setAddressThunkAction,
   setSelectedAddress,
 } from "../store/actions/shoppingCartAction";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import Modal from "../components/Modal";
+import axios from "axios";
 
 const OrderPage = () => {
   const [spinner, setSpinner] = useState(false);
   const [city, setCity] = useState(true);
-  //const [addresses, setAddresses] = useState([]);
   const [newAddress, setNewAddress] = useState(false);
-  //const [selectedAddress, setSelectedAddress] = useState();
   const dispatch = useDispatch();
   const addresses = useSelector((store) => store.shoppingCart.address);
   const selectedAddress = useSelector(
     (store) => store.shoppingCart.selectedAddress[0]
   );
-
-  console.log("selected", selectedAddress);
+  const [editOpen, SetEditOpen] = useState(false);
 
   const {
     register,
@@ -44,117 +50,196 @@ const OrderPage = () => {
     mode: "onChange",
   });
 
-  const changeOptionHandle = (e) => {
-    const selectedId = e.target.value;
-    selectedId === "samsun" ? setCity(true) : setCity(false);
-  };
-
   const onFormSubmit = (formData) => {
+    const cityName = cityDistrictNeighborhoodObj[formData.city];
+    const postData = {
+      title: formData.title,
+      name: formData.name,
+      surname: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: cityName,
+      district: formData.district,
+      neighborhood: formData.neighborhood,
+    };
     setSpinner(true);
-    dispatch(setAddressThunkAction(formData));
+    dispatch(setAddressThunkAction(postData));
     setTimeout(() => {
       setNewAddress(false);
       setSpinner(false);
     }, 1000);
   };
 
+  const cities = getCityNames();
+  const districts = getDistrictsOfEachCity();
+  const codes = getCityCodes();
+  const [districtsOfCity, setDistrictsOfCity] = useState([districts["01"]]);
+  const [cityCode, setCityCode] = useState("01");
+  const [neighborhood, setNeighborhood] = useState(["Akpınar Mah"]);
+  const cityDistrictNeighborhoodObj = {};
+  cities.forEach((city, i) => {
+    cityDistrictNeighborhoodObj[codes[i]] = city;
+  });
+
+  const clickHandleCity = (e) => {
+    const value = e.target.value;
+    setCityCode(value);
+    setDistrictsOfCity(districts[value]);
+  };
+
+  const districtHandle = (e) => {
+    setNeighborhood(
+      getNeighbourhoodsByCityCodeAndDistrict(cityCode, e.target.value)
+    );
+  };
+
   const selectAddressHandle = (e) => {
     dispatch(setSelectedAddress(e.target.id));
   };
 
-  useEffect(() => {
-    API.get("user/address").then((res) => setSelectedAddress(res.data[0]));
-  }, []);
+  const editClickHandle = (e) => {
+    SetEditOpen(true);
+    dispatch(UpdateAddressAction(e.target.id));
+  };
 
   useEffect(() => {
     dispatch(fetchAddressThunkAction());
   }, [newAddress]);
 
   return (
-    <div className="w-full">
+    <div className="w-[1140px] m-auto">
       <ToastContainer />
-      <div className="mx-12 flex justify-center gap-4">
-        <div className="border border-b-4 border-b-orange-700 border-gray-400 text-gray-600 pt-3 bg-gray-100 shadow-lg p-6 rounded-md text-xl w-[48%]  ">
-          <h1 className="text-3xl font-extrabold text-orange-700">Address</h1>
-          <div className="flex flex-col gap-4 ">
+      {/* ----------------------ADDRESS OR PAYMENT HEADER SECTION--------------------------------------------------- */}
+      <div className="mx-12 flex justify-center gap-1 h-[140px]">
+        {/* ----------------------------------ADDRESS HEADER------------------------------------ */}
+        <div className=" border border-b-4 border-b-orange-700 border-gray-400 text-gray-600 pt-3 bg-gray-100 shadow-lg p-3 rounded-md text-xl w-[48%]  ">
+          <h1 className="text-2xl font-extrabold text-orange-700">
+            Address Info
+          </h1>
+
+          <div className="flex flex-col text-xs">
             <div className="flex justify-between items-center">
-              <h5 className="py-3 font-bold text-base flex items-center text-black gap-1">
+              <h5 className=" font-bold flex items-center text-black gap-1">
                 <i className="bx bxs-user text-orange-700 h-full text-lg"></i>{" "}
                 {selectedAddress?.name + " " + selectedAddress?.surname}
               </h5>
-              <h5 className="py-3 font-bold text-base flex items-center text-black gap-1">
+              <h5 className=" font-bold flex items-center text-black gap-1">
                 <i className="bx bxs-phone h-full text-lg"></i>{" "}
-                {selectedAddress?.phone}
+                {selectedAddress?.phone.slice(0, 3) +
+                  "**********" +
+                  selectedAddress?.phone.slice(8, 10)}
               </h5>
             </div>
             <div className="flex flex-col">
-              <p className="text-base ">{selectedAddress?.address}</p>
-              <span className=" text-base  ">
+              <p className=" ">{selectedAddress?.address}</p>
+              <span className=" ">
                 {selectedAddress?.district + "/" + selectedAddress?.city}
               </span>
             </div>
           </div>
         </div>
 
-        <div className="border border-gray-400 text-gray-600 pt-3 bg-gray-300 shadow-lg p-6 rounded-md text-xl w-[48%]  ">
-          <h1 className="text-3xl font-extrabold text-gray-600">Payment</h1>
+        {/* ----------------------------------PAYMENT HEADER------------------------------------ */}
+        <NavLink
+          to="/payment"
+          className="border border-gray-400 text-gray-600 pt-3 bg-gray-300 shadow-lg p-6 rounded-md text-xl w-[48%]  "
+        >
+          <h1 className="text-2xl font-extrabold text-gray-600">Payment</h1>
           <div className="flex flex-col gap-4 ">
-            <h5 className="py-3 font-bold text-base flex items-center text-gray-500 gap-1">
-              aaa
+            <h5 className="py-2 text-xs font-bold  text-gray-500">
+              You can make your payment safely by{" "}
+              <span className="text-black">Debit/Credit Card</span> or{" "}
+              <span className="text-black">Shopping Credit.</span>
             </h5>
           </div>
-        </div>
+        </NavLink>
       </div>
-      <div className="mx-16 mb-16 shadow-xl shadow-blue-gray-300 border-light-green-50 ">
-        <h1 className="text-lg font-extrabold p-10">Delivery Address</h1>
-        <div className="flex flex-col pb-10 px-10 justify-between">
-          <button
-            className="border border-gray-400 text-gray-600 pt-3 bg-gray-100 shadow-lg p-20 rounded-md text-xl w-[48%] cursor-pointer text-center"
-            formNoValidate="formnovalidate"
-            disabled={spinner}
-            onClick={() => setNewAddress(true)}
-          >
-            {spinner ? <Spinner className="text-center" /> : "Add New Address"}
-          </button>
-          <div className="flex flex-wrap justify-between">
-            {addresses?.map((address) => (
-              <label className="w-[48%]" htmlFor={address.id}>
-                <input
-                  //{...register("address")}
-                  type="radio"
-                  name="address"
-                  value={address.title}
-                  id={address.id}
-                  onClick={selectAddressHandle}
-                />
-                {address.title}
-                <div htmlFor={address.id}>
-                  <div className="flex flex-col gap-4 text-gray-600 pt-3 bg-gray-100 shadow-lg p-6 rounded-md">
-                    <div className="flex justify-between items-center">
-                      <h5 className="py-3 font-bold text-base flex items-center text-black gap-1">
-                        <i className="bx bxs-user text-orange-700 h-full text-lg"></i>{" "}
-                        {address.name + " " + address.surname}
-                      </h5>
-                      <h5 className="py-3 font-bold text-base flex items-center text-black gap-1">
-                        <i className="bx bxs-phone h-full text-lg"></i>{" "}
-                        {address.phone.slice(0, 3) +
-                          "**********" +
-                          address.phone.slice(8, 10)}
-                      </h5>
-                    </div>
-                    <div className="flex flex-col justify-start">
-                      <p className="text-base ">{address.address}</p>
-                      <span className=" text-base  ">
-                        {address.district + "/" + address.city}
-                      </span>
-                    </div>
+
+      {/* ----------------------ADDRESS------------------------------------------------------------------------------ */}
+      <div className="mx-16 my-8 shadow-xl shadow-blue-gray-300 border-light-green-50">
+        <h1 className="text-lg font-extrabold p-4">Delivery Address</h1>
+
+        {addresses?.length == 0 && (
+          <div className="flex justify-center">
+            <button
+              className="border border-gray-400 text-gray-600 pt-3 bg-gray-100 shadow-lg p-20 rounded-md text-xl w-[48%] cursor-pointer text-center"
+              formNoValidate="formnovalidate"
+              disabled={spinner}
+              onClick={() => setNewAddress(true)}
+            >
+              {spinner ? (
+                <Spinner className="text-center" />
+              ) : (
+                "Add New Address"
+              )}
+            </button>
+          </div>
+        )}
+
+        <div className="flex flex-wrap justify-between items-center relative box-border px-6 pb-10 gap-8">
+          {addresses?.length > 0 && (
+            <button
+              className="border border-gray-400 text-gray-600 bg-gray-100 shadow-lg rounded-md text-xl w-[48%] cursor-pointer text-center h-[110px] box-border"
+              formNoValidate="formnovalidate"
+              disabled={spinner}
+              onClick={() => setNewAddress(true)}
+            >
+              {spinner ? (
+                <Spinner className="text-center" />
+              ) : (
+                "Add New Address"
+              )}
+            </button>
+          )}
+          {addresses?.map((address) => (
+            <label
+              className="w-[48%] box-border relative "
+              htmlFor={address.id}
+            >
+              <div className="flex justify-between">
+                <div>
+                  <input
+                    type="radio"
+                    name="address"
+                    value={address.title}
+                    id={address.id}
+                    onClick={selectAddressHandle}
+                  />
+                  {address.title}
+                </div>
+                <button id={address.id} onClick={editClickHandle}>
+                  Edit
+                </button>
+              </div>
+
+              <div htmlFor={address.id} className="h-[110px] box-border">
+                <div className="flex flex-col gap-4 text-gray-600  bg-gray-100 shadow-lg rounded-md p-4">
+                  <div className="flex justify-between items-center">
+                    <h5 className=" font-bold text-base flex items-center text-black gap-1">
+                      <i className="bx bxs-user text-orange-700 h-full text-lg"></i>{" "}
+                      {address.name + " " + address.surname}
+                    </h5>
+                    <h5 className=" font-bold text-base flex items-center text-black gap-1">
+                      <i className="bx bxs-phone h-full text-lg"></i>{" "}
+                      {address.phone.slice(0, 3) +
+                        "**********" +
+                        address.phone.slice(8, 10)}
+                    </h5>
+                  </div>
+                  <div className="flex flex-col justify-start">
+                    <p className="text-base ">{address.address}</p>
+                    <span className=" text-base  ">
+                      {address.district + "/" + address.city}
+                    </span>
                   </div>
                 </div>
-              </label>
-            ))}
-          </div>
+              </div>
+            </label>
+          ))}
         </div>
       </div>
+
+      {/* ----------------------FORM----------------------------------------------------------------------------------- */}
       <Dialog
         size="md"
         className="shadow-none bg-transparent"
@@ -244,20 +329,21 @@ const OrderPage = () => {
               <div className="sm:w-2/3 w-full flex flex-col">
                 <label className="font-bold text-xl p-3">City</label>
                 <select
-                  className="p-4 rounded-md border border-[#DADADA] text-black"
+                  className="w-[300px] p-5 rounded-md border border-[#DADADA] text-black"
                   {...register("city")}
-                  onClick={(e) => changeOptionHandle(e)}
+                  // onClick={(e) => changeOptionHandle(e)}
+                  onChange={clickHandleCity}
                 >
-                  <option key="1" value="samsun" className=" text-lg font-bold">
-                    Samsun
-                  </option>
-                  <option
-                    key="2"
-                    value="antalya"
-                    className=" text-lg font-bold"
-                  >
-                    Antalya
-                  </option>
+                  {codes?.map((code, i) => (
+                    <option
+                      key={i}
+                      value={code}
+                      id={code}
+                      className="w-[300px] text-lg font-bold"
+                    >
+                      {cityDistrictNeighborhoodObj[code]}
+                    </option>
+                  ))}
                 </select>
                 <div className="text-red-600">{errors.city?.message}</div>
               </div>
@@ -267,28 +353,40 @@ const OrderPage = () => {
               <div className="sm:w-2/3 w-full flex flex-col ">
                 <label className="font-bold text-xl p-3">District</label>
                 <select
-                  className="p-4 rounded-md border border-[#DADADA] text-black"
+                  className="w-[250px] p-5 rounded-md border border-[#DADADA] text-black"
                   {...register("district")}
+                  onChange={districtHandle}
                 >
-                  <option key="1" value="samsun" className=" text-lg font-bold">
-                    İlkadım
-                  </option>
-                  <option key="2" value="samsun" className=" text-lg font-bold">
-                    Atakum
-                  </option>
+                  {districtsOfCity?.map((district, i) => (
+                    <option
+                      key={i}
+                      value={district}
+                      className="w-[250px] text-lg font-bold"
+                    >
+                      {district}
+                    </option>
+                  ))}
                 </select>
                 <div className="text-red-600">{errors.district?.message}</div>
               </div>
               <div className="sm:w-2/3 w-full flex flex-col ">
                 <label className="font-bold text-xl p-3">Neighborhood</label>
-                <input
+                <select
                   placeholder="Neighborhood"
-                  className="p-4 rounded-md border border-[#DADADA] text-black"
-                  {...register("neighborhood", {
-                    required: "Neighborhood is required!",
-                  })}
-                  invalid={!!errors.neighborhood?.message}
-                />
+                  className="w-[340px] p-5 rounded-md border border-[#DADADA] text-black"
+                  {...register("neighborhood")}
+                >
+                  {neighborhood?.map((n, i) => (
+                    <option
+                      key={i}
+                      value={n}
+                      className="w-[330px] text-lg font-bold"
+                      invalid={!!errors.neighborhood?.message}
+                    >
+                      {n}
+                    </option>
+                  ))}
+                </select>
                 <div className="text-red-600">
                   {errors.neighborhood?.message}
                 </div>
@@ -320,6 +418,16 @@ const OrderPage = () => {
           </form>
         </Card>
       </Dialog>
+
+      <Modal
+        errors={errors}
+        spinner={spinner}
+        register={register}
+        editOpen={editOpen}
+        SetEditOpen={SetEditOpen}
+        handleSubmit={handleSubmit}
+        onFormSubmit={onFormSubmit}
+      />
     </div>
   );
 };

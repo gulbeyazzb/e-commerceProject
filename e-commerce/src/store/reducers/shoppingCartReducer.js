@@ -7,6 +7,7 @@ import { SET_TOTALQUANTITY } from "../actions/shoppingCartAction";
 import { UPDATE_TOTAL_AMOUNT } from "../actions/shoppingCartAction";
 import { DELETE_PRODUCT_FROM_CART } from "../actions/shoppingCartAction";
 import { SELECTED_ADDRESS } from "../actions/shoppingCartAction";
+import { UPDATE_ADDRESS } from "../actions/shoppingCartAction";
 
 const shoppingCart = {
   cartList: [],
@@ -15,6 +16,7 @@ const shoppingCart = {
   selectedAddress: {},
   totalAmount: 0,
   totalQuantity: 0,
+  updateAddress: {},
 };
 
 export const shoppingCartReducer = (state = shoppingCart, action) => {
@@ -96,6 +98,12 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
       return {
         ...state,
         selectedAddress: state.address.filter((a) => a.id === Number(payload)),
+      };
+
+    case UPDATE_ADDRESS:
+      return {
+        ...state,
+        updateAddress: state.address.filter((a) => a.id === Number(payload)),
       };
 
     default:

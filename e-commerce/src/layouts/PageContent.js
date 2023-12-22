@@ -11,6 +11,7 @@ import ProtectedPage from "../pages/ProductedPage";
 import CartPage from "../pages/CartPage";
 import PageHome from "../pages/PageHome";
 import OrderPage from "../pages/OrderPage";
+import PaymentPage from "../pages/PaymentPage";
 
 const PageContent = () => {
   return (
@@ -50,6 +51,9 @@ const PageContent = () => {
       </Route>
       <Route path="/order" exact>
         <OrderPage />
+      </Route>
+      <Route path="/payment" exact>
+        <PaymentPage />
       </Route>
     </Switch>
   );

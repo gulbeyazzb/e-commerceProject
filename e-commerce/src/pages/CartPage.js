@@ -82,19 +82,6 @@ export default function CartPage() {
               <hr className=" w-full text-white font-extrabold text-5xl" />
             </div>
           ))}
-          {cartProducts.length > 0 && (
-            <div className="flex flex-end flex-col">
-              <span className="text-right font-bold text-black my-3 me-4">
-                Total: {totalAmount.toFixed(2)} TL
-              </span>
-              <NavLink
-                to="/order"
-                className="w-80 sm:w-full m-auto bg-orange-800 text-white p-4 rounded-md"
-              >
-                CHECKOUT
-              </NavLink>
-            </div>
-          )}
         </div>
         {cartProducts.length > 0 && (
           <div className="w-96 mx-auto sm:py-20 ">

@@ -11,6 +11,7 @@ export const UPDATE_TOTAL_AMOUNT = "UPDATE_TOTAL_AMOUNT";
 export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const FETCH_ADDRESS = "FETCH_ADDRESS";
 export const SELECTED_ADDRESS = "SELECTED_ADDRESS";
+export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
 
 export const setCartListAction = (cartList) => {
   return { type: SET_CART_LIST, payload: cartList };
@@ -50,6 +51,10 @@ export const fetchAddresAction = (addresses) => {
 
 export const setSelectedAddress = (id) => {
   return { type: SELECTED_ADDRESS, payload: id };
+};
+
+export const UpdateAddressAction = (id) => {
+  return { type: UPDATE_ADDRESS, payload: id };
 };
 
 export const setAddressThunkAction = (formData) => (dispatch) => {
