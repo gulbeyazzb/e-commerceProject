@@ -9,6 +9,7 @@ import {
   updateTotalPriceAction,
 } from "../store/actions/shoppingCartAction";
 import { Checkbox } from "@material-tailwind/react";
+import OrderSummary from "../components/OrderSummary";
 
 export default function CartPage() {
   const dispatch = useDispatch();
@@ -22,8 +23,6 @@ export default function CartPage() {
   useEffect(() => {
     dispatch(setTotalPriceAction());
   }, [cartProducts, dispatch]);
-
-  const { totalAmount } = useSelector((store) => store.shoppingCart);
 
   const checkHandle = (e) => {
     const id = e.target.id;
@@ -40,7 +39,7 @@ export default function CartPage() {
   return (
     <div>
       <div className=" flex justify-between sm:w-[1250px] m-auto gap-10">
-        <div className="w-3/4 sm:my-20  m-auto rounded-md bg-white shadow-lg  text-gray-600">
+        <div className="w-3/4 sm:my-20  m-auto rounded-md text-gray-600">
           {cartProducts?.map((p) => (
             <div className="flex flex-col p-2 ">
               <div className="flex gap-2 w-full justify-between">
@@ -83,55 +82,7 @@ export default function CartPage() {
             </div>
           ))}
         </div>
-        {cartProducts.length > 0 && (
-          <div className="w-96 mx-auto sm:py-20 ">
-            <div className="flex flex-col gap-4 text-gray-600 pt-3 bg-white shadow-lg p-6">
-              <h5 className="py-3 font-bold text-base text-black">
-                ORDER SUMMARY :
-              </h5>
-              <div className="flex justify-between">
-                <span className="text-base text-center ">Cart Total :</span>
-                <span className=" text-base text-black font-bold ">
-                  {totalAmount.toFixed(2)} TL
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-base text-center ">Shipping Cost :</span>
-                <span className=" text-base text-black font-bold ">30 TL</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-base text-start w-2/3">
-                  Free shipping for orders of 150 TL and above
-                </span>
-                <span className=" text-base text-orange-700 font-bold ">
-                  -30 TL
-                </span>
-              </div>
-              <hr className=" w-full text-white font-extrabold text-5xl" />
-              <div className="flex justify-between">
-                <span className="text-base text-start w-2/3 text-black font-bold ">
-                  TOTAL :
-                </span>
-                <span className=" text-lg text-orange-700 font-bold ">
-                  {totalAmount.toFixed(2)} TL
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <input
-                  type="text"
-                  placeholder="discount code"
-                  className="text-center w-full p-2 border border-gray-400"
-                ></input>
-              </div>
-              <NavLink
-                to="/order"
-                className="h-full w-full bg-orange-800 text-white p-4 rounded-md"
-              >
-                CHECKOUT
-              </NavLink>
-            </div>
-          </div>
-        )}
+        {cartProducts.length > 0 && <OrderSummary />}
       </div>
 
       {cartProducts.length == 0 && (
