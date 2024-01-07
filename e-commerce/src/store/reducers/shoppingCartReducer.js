@@ -8,6 +8,7 @@ import { UPDATE_TOTAL_AMOUNT } from "../actions/shoppingCartAction";
 import { DELETE_PRODUCT_FROM_CART } from "../actions/shoppingCartAction";
 import { SELECTED_ADDRESS } from "../actions/shoppingCartAction";
 import { UPDATE_ADDRESS } from "../actions/shoppingCartAction";
+import { ADD_CREDIT_CARD } from "../actions/shoppingCartAction";
 
 const shoppingCart = {
   cartList: [],
@@ -17,6 +18,7 @@ const shoppingCart = {
   totalAmount: 0,
   totalQuantity: 0,
   updateAddress: {},
+  creditCard: [],
 };
 
 export const shoppingCartReducer = (state = shoppingCart, action) => {
@@ -93,6 +95,9 @@ export const shoppingCartReducer = (state = shoppingCart, action) => {
 
     case SET_ADDRESS:
       return { ...state, address: payload };
+
+    case ADD_CREDIT_CARD:
+      return { ...state, creditCard: payload };
 
     case SELECTED_ADDRESS:
       return {

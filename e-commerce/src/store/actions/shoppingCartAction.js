@@ -12,6 +12,7 @@ export const DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART";
 export const FETCH_ADDRESS = "FETCH_ADDRESS";
 export const SELECTED_ADDRESS = "SELECTED_ADDRESS";
 export const UPDATE_ADDRESS = "UPDATE_ADDRESS";
+export const ADD_CREDIT_CARD = "ADD_CREDIT_CARD";
 
 export const setCartListAction = (cartList) => {
   return { type: SET_CART_LIST, payload: cartList };
@@ -83,4 +84,26 @@ export const updateQuantityThunkAction = (updateType, id) => (dispatch) => {
 
 export const addToCartThunkAction = (addedProduct) => (dispatch) => {
   dispatch(setCartListAction(addedProduct));
+};
+
+export const addCreditCardThunkAction = (addedCard) => (dispatch) => {
+  API.post("card", addedCard)
+    .then((res) => {
+      toast.success("Kart başarılı bir şekilde kaydedildi!");
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Kart kaydedilirken bir hata ile karşılaşıldı!");
+    });
+};
+
+export const fetchCreditCardThunkAction = () => (dispatch) => {
+  API.get("card")
+    .then((res) => {
+      dispatch({ type: ADD_CREDIT_CARD, payload: res.data });
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Cart bilgileri çekilemedi!");
+    });
 };
