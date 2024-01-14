@@ -34,7 +34,7 @@ const Payment = ({ selectAddressHandle }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      card_nu: "",
+      card_number: "",
       month: "",
       year: "",
       cvv: "",
@@ -55,6 +55,7 @@ const Payment = ({ selectAddressHandle }) => {
   };
 
   const submitHandle = (formData) => {
+    console.log("card ekleme fordata:", formData);
     dispatch(addCreditCardThunkAction(formData));
   };
 
