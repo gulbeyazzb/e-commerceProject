@@ -1,25 +1,68 @@
-import { Card } from "@material-tailwind/react";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Spinner } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { setAddressThunkAction } from "../store/actions/shoppingCartAction";
+import { useDispatch } from "react-redux";
+import { API } from "../api/api";
 
 const Modal = ({
-  errors,
   spinner,
-  register,
-  changeOptionHandle,
   editOpen,
   SetEditOpen,
-  handleSubmit,
-  onFormSubmit,
-}) => {
-  const editAddress = useSelector(
-    (store) => store.shoppingCart.updateAddress[0]
-  );
+  edittedAddress,
 
-  const changeHandle = (e) => {
-    console.log(e.target);
+  codes,
+  clickHandleCity,
+  districtHandle,
+  districtsOfCity,
+  cityDistrictNeighborhoodObj,
+  neighborhood,
+}) => {
+  const dispatch = useDispatch();
+
+  const [addressData, setAddressData] = useState({
+    title: "",
+    name: "",
+    surname: "",
+    phone: "",
+    city: "",
+    district: "",
+    neighborhood: "",
+    address: "",
+  });
+
+  const inputChangeHandler = (event) => {
+    console.log(event);
+    const { value, name } = event.target; // name = "password" | "email" | "name"
+    setAddressData({
+      ...addressData,
+      [name]: value,
+    });
   };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    const addressId = event.target.id;
+    const postData = {
+      title: event.target[0].value,
+      name: event.target[1].value,
+      surname: event.target[2].value,
+      phone: event.target[3].value,
+      city: event.target[4].value,
+      district: event.target[5].value,
+      neighborhood: event.target[6].value,
+      address: event.target[7].value,
+    };
+
+    dispatch(setAddressThunkAction(postData));
+    setTimeout(() => {
+      SetEditOpen(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    setAddressData(edittedAddress);
+  }, [edittedAddress]);
+
   return (
     <div className="w-[2000px] ">
       {editOpen ? (
@@ -39,7 +82,8 @@ const Modal = ({
                 </div>
                 <div className="w-full relative p-2 flex-auto">
                   <form
-                    onSubmit={handleSubmit(onFormSubmit)}
+                    id={addressData?.id}
+                    onSubmit={onFormSubmit}
                     className="flex flex-col "
                   >
                     <div className="flex flex-col sm:w-4/4 w-full">
@@ -48,9 +92,9 @@ const Modal = ({
                           Address Title
                         </label>
                         <input
+                          onChange={inputChangeHandler}
                           htmlFor="title"
-                          value={editAddress?.title}
-                          onChange={changeHandle}
+                          value={addressData?.title}
                           name="title"
                           className="p-4 rounded-md border border-[#DADADA] text-black"
                         />
@@ -61,7 +105,9 @@ const Modal = ({
                       <div className=" flex flex-col sm:w-2/3 w-full">
                         <label className="font-bold text-xl p-3">Name</label>
                         <input
-                          value={editAddress?.name}
+                          value={addressData?.name}
+                          onChange={inputChangeHandler}
+                          name="name"
                           className="p-4 rounded-md border border-[#DADADA] text-black"
                           type="text"
                         />
@@ -69,7 +115,9 @@ const Modal = ({
                       <div className=" flex flex-col sm:w-2/3 w-full">
                         <label className="font-bold text-xl p-3">Surname</label>
                         <input
-                          value={editAddress?.surname}
+                          onChange={inputChangeHandler}
+                          name="surname"
+                          value={addressData?.surname}
                           className="p-4 rounded-md border border-[#DADADA] text-black"
                           type="text"
                         />
@@ -80,7 +128,9 @@ const Modal = ({
                       <div className=" flex flex-col sm:w-2/3 w-full ">
                         <label className="font-bold text-xl p-3">Phone</label>
                         <input
-                          value={editAddress?.phone}
+                          onChange={inputChangeHandler}
+                          name="phone"
+                          value={addressData?.phone}
                           className={`p-4 rounded-md border border-[#DADADA] text-black`}
                           type="text"
                         />
@@ -88,24 +138,21 @@ const Modal = ({
                       <div className="sm:w-2/3 w-full flex flex-col">
                         <label className="font-bold text-xl p-3">City</label>
                         <select
+                          name="city"
                           className="p-4 rounded-md border border-[#DADADA] text-black"
-                          onClick={(e) => changeOptionHandle(e)}
+                          onChange={clickHandleCity}
+                          defaultValue={addressData?.city}
                         >
-                          <option
-                            key="1"
-                            value="Samsun"
-                            className=" text-lg font-bold"
-                            selected
-                          >
-                            Samsun
-                          </option>
-                          <option
-                            key="2"
-                            value="Antalya"
-                            className=" text-lg font-bold"
-                          >
-                            Antalya
-                          </option>
+                          {codes?.map((code, i) => (
+                            <option
+                              key={i}
+                              value={code}
+                              id={code}
+                              className="w-[300px] text-lg font-bold"
+                            >
+                              {cityDistrictNeighborhoodObj[code]}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -115,39 +162,50 @@ const Modal = ({
                         <label className="font-bold text-xl p-3">
                           District
                         </label>
-                        <select className="p-4 rounded-md border border-[#DADADA] text-black">
-                          <option
-                            key="1"
-                            value="ilkadim"
-                            className=" text-lg font-bold"
-                          >
-                            İlkadım
-                          </option>
-                          <option
-                            key="2"
-                            value="atakum"
-                            className=" text-lg font-bold"
-                            selected
-                          >
-                            Atakum
-                          </option>
+                        <select
+                          name="district"
+                          className="p-4 rounded-md border border-[#DADADA] text-black"
+                          onChange={districtHandle}
+                        >
+                          {districtsOfCity?.map((district, i) => (
+                            <option
+                              key={i}
+                              value={district}
+                              className="w-[250px] text-lg font-bold"
+                            >
+                              {district}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div className="sm:w-2/3 w-full flex flex-col ">
                         <label className="font-bold text-xl p-3">
                           Neighborhood
                         </label>
-                        <input
-                          value={editAddress?.neighborhood}
-                          className="p-4 rounded-md border border-[#DADADA] text-black"
-                        />
+                        <select
+                          name="neighborhood"
+                          placeholder="Neighborhood"
+                          className="w-[340px] p-5 rounded-md border border-[#DADADA] text-black"
+                        >
+                          {neighborhood?.map((n, i) => (
+                            <option
+                              key={i}
+                              value={n}
+                              className="w-[330px] text-lg font-bold"
+                            >
+                              {n}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
 
                     <div className="sm:w-4/4 w-full flex flex-col ">
                       <label className="font-bold text-xl p-3">Address</label>
                       <input
-                        value={editAddress?.address}
+                        onChange={inputChangeHandler}
+                        name="address"
+                        value={addressData?.address}
                         type="text"
                         className="p-4 rounded-md border border-[#DADADA] text-black"
                       />
