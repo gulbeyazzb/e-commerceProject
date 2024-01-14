@@ -11,7 +11,6 @@ import {
   getCityCodes,
 } from "turkey-neighbourhoods";
 import {
-  UpdateAddressAction,
   fetchAddressThunkAction,
   setAddressThunkAction,
   setSelectedAddress,
@@ -25,6 +24,7 @@ const OrderPage = () => {
   const [spinner, setSpinner] = useState(false);
   const [newAddress, setNewAddress] = useState(false);
   const dispatch = useDispatch();
+  const [edittedAddress, setEdittedAddress] = useState();
   const addresses = useSelector((store) => store.shoppingCart.address);
   const selectedAddress = useSelector(
     (store) => store.shoppingCart.selectedAddress[0]
@@ -96,9 +96,9 @@ const OrderPage = () => {
     dispatch(setSelectedAddress(e.target.id));
   };
 
-  const editClickHandle = (e) => {
+  const editAddress = (address) => {
     SetEditOpen(true);
-    dispatch(UpdateAddressAction(e.target.id));
+    setEdittedAddress(address);
   };
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const OrderPage = () => {
     <div className="w-[1150px] mx-auto flex justify-between">
       <div className="w-3/4 m-auto me-2 sm:py-10 ">
         <ToastContainer />
-        {/* ----------------------ADDRESS OR PAYMENT HEADER SECTION--------------------------------------------------- */}
+
         <div className="ms-16 flex justify-center gap-1 h-[140px]">
           {/* ----------------------------------ADDRESS HEADER------------------------------------ */}
           <div className=" border border-b-4 border-b-orange-700 border-gray-400 text-gray-600 pt-3 bg-gray-100 shadow-lg p-3 rounded-md text-xl w-1/2  ">
@@ -155,7 +155,7 @@ const OrderPage = () => {
           </NavLink>
         </div>
 
-        {/* ----------------------ADDRESS------------------------------------------------------------------------------ */}
+        {/* ----------------------SAVED ADDRESSES------------------------------------------------------------------------------ */}
         <div className="ms-16 my-8 shadow-xl shadow-blue-gray-300 border-light-green-50">
           <h1 className="text-lg font-extrabold p-4">Delivery Address</h1>
 
@@ -194,42 +194,42 @@ const OrderPage = () => {
             {addresses?.map((address) => (
               <label
                 className="w-[47%] box-border relative "
-                htmlFor={address.id}
+                htmlFor={address?.id}
               >
                 <div className="flex justify-between">
                   <label className="flex gap-1 items-center text-base">
                     <input
                       type="radio"
                       name="address"
-                      value={address.title}
-                      id={address.id}
+                      value={address?.title}
+                      id={address?.id}
                       onClick={selectAddressHandle}
                     />
-                    {address.title}
+                    {address?.title}
                   </label>
-                  <button id={address.id} onClick={editClickHandle}>
+                  <button id={address?.id} onClick={() => editAddress(address)}>
                     Edit
                   </button>
                 </div>
 
-                <div htmlFor={address.id} className="h-[110px] box-border">
+                <div htmlFor={address?.id} className="h-[110px] box-border">
                   <div className="flex flex-col gap-3 text-gray-600  bg-gray-100 shadow-lg rounded-md p-4">
                     <div className="flex justify-between items-center">
                       <h5 className=" font-bold text-sm flex items-center text-black gap-1">
                         <i className="bx bxs-user text-orange-700 h-full text-sm"></i>{" "}
-                        {address.name + " " + address.surname}
+                        {address?.name + " " + address?.surname}
                       </h5>
                       <h5 className=" font-bold text-sm flex items-center text-black gap-1">
                         <i className="bx bxs-phone h-full text-sm"></i>{" "}
-                        {address.phone.slice(0, 3) +
+                        {address?.phone.slice(0, 3) +
                           "**********" +
-                          address.phone.slice(8, 10)}
+                          address?.phone.slice(8, 10)}
                       </h5>
                     </div>
                     <div className="flex flex-col justify-start">
-                      <p className="text-xs ">{address.address}</p>
+                      <p className="text-xs ">{address?.address}</p>
                       <span className=" text-xs  ">
-                        {address.district + "/" + address.city}
+                        {address?.district + "/" + address?.city}
                       </span>
                     </div>
                   </div>
@@ -422,13 +422,16 @@ const OrderPage = () => {
         </Dialog>
 
         <Modal
-          errors={errors}
           spinner={spinner}
-          register={register}
           editOpen={editOpen}
           SetEditOpen={SetEditOpen}
-          handleSubmit={handleSubmit}
-          onFormSubmit={onFormSubmit}
+          edittedAddress={edittedAddress}
+          codes={codes}
+          clickHandleCity={clickHandleCity}
+          districtHandle={districtHandle}
+          districtsOfCity={districtsOfCity}
+          cityDistrictNeighborhoodObj={cityDistrictNeighborhoodObj}
+          neighborhood={neighborhood}
         />
       </div>
       <OrderSummary />
